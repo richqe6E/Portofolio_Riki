@@ -1068,7 +1068,7 @@
             <div class="text-5xl mb-2">📊</div>
             <p class="font-outfit font-black text-sm" style="color:#0F1E3A;">Screenshot Menyusul</p>
           </div>
-          <div class="absolute top-3 left-3">
+          <div class="absolute top-3 left-3 z-10">
             <span class="neo-tag neo-tag-navy">Tugas Akhir</span>
           </div>
         </div>
@@ -1091,7 +1091,8 @@
               <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;">📸 Dokumentasi</p>
             </div>
             <div class="doc-gallery" data-folder="assets/dokumentasi/proyek-sia-vba-sosis-azizah" data-count="3"
-                 data-title="SIA Excel VBA - Toko Agen Sosis Azizah"></div>
+                 data-title="SIA Excel VBA - Toko Agen Sosis Azizah"
+                 data-captions="Database Akun &amp; Siklus Akuntansi|Form Transaksi Penjualan (Kasir VBA)|Dashboard Keuangan &amp; Grafik Tren Penjualan"></div>
           </div>
         </div>
       </article>
@@ -1689,7 +1690,8 @@
       img.src = src;
       img.alt = 'Cover proyek';
       img.title = 'Klik untuk memperbesar gambar sampul';
-      img.onclick = () => openLightbox(src, 'Mockup Antarmuka Aplikasi PO-lne-S Mikro Loa Lepu (Layar Kasir & Dashboard)');
+      const cardTitle = area.closest('article')?.querySelector('h3')?.textContent || 'Sampul Proyek';
+      img.onclick = () => openLightbox(src, `Sampul: ${cardTitle}`);
       area.insertBefore(img, area.firstChild);
     });
   });
