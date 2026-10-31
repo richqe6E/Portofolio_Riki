@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riki Rivaldi, A.Md.Ak. — Accounting & Financial System Specialist</title>
+  <meta name="description" content="Portfolio Riki Rivaldi, A.Md.Ak. — Lulusan D3 Akuntansi POLNES, Accounting & Financial System Specialist, Excel VBA Developer, App Developer. Pemegang HKI Program Komputer. Samarinda, Kalimantan Timur." />
+  <meta name="author" content="Riki Rivaldi" />
+
+  <!-- Google Fonts: Outfit (display bold) + Plus Jakarta Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            outfit: ['Outfit', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            neo: {
+              bg:     '#F5F0E8',
+              black:  '#0D0D0D',
+              navy:   '#0F1E3A',
+              navyMid:'#1E2F4F',
+              slate:  '#A7B6D0',
+              lime:   '#D4FF4F',
+              yellow: '#FFE566',
+              sky:    '#C8E8FF',
+              red:    '#FF5A5A',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* ====================================================
+       NEUBRUTALIST CORE STYLES
+       ==================================================== */
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #F5F0E8;
+      color: #0D0D0D;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: #D4FF4F; color: #0D0D0D; }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #F5F0E8; border-left: 3px solid #0D0D0D; }
+    ::-webkit-scrollbar-thumb { background: #0F1E3A; border: 3px solid #0D0D0D; border-radius: 4px; }
+
+    /* ====================================================
+       NEUBRUTALIST SHADOW UTILITY
+       ==================================================== */
+    .neo-shadow        { box-shadow: 4px 4px 0px 0px #0D0D0D; }
+    .neo-shadow-lg     { box-shadow: 6px 6px 0px 0px #0D0D0D; }
+    .neo-shadow-xl     { box-shadow: 8px 8px 0px 0px #0D0D0D; }
+    .neo-shadow-navy   { box-shadow: 6px 6px 0px 0px #0F1E3A; }
+    .neo-shadow-hover:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 7px 7px 0px 0px #0D0D0D;
+    }
+
+    /* ====================================================
+       CARD HOVER LIFT
+       ==================================================== */
+    .card-lift {
+      transition: all 0.18s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .card-lift:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 8px 8px 0px 0px #0D0D0D !important;
+    }
+
+    /* ====================================================
+       BUTTON PRESS
+       ==================================================== */
+    .btn-press {
+      transition: all 0.1s ease-in-out;
+    }
+    .btn-press:active {
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0px 0px #0D0D0D !important;
+    }
+
+    /* ====================================================
+       NAVBAR
+       ==================================================== */
+    #navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 3px solid #0D0D0D;
+    }
+
+    /* ====================================================
+       SCROLL REVEAL — blur+translateY (seperti permintaan)
+       ==================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      filter: blur(5px);
+      transition:
+        opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity:1; transform:none; filter:none; transition:none; }
+    }
+
+    /* ====================================================
+       SKILL BAR
+       ==================================================== */
+    .skill-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: #E0D8CA;
+      border: 2px solid #0D0D0D;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      background: #0F1E3A;
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ====================================================
+       HIGHLIGHT (neobrutalist inline marker)
+       ==================================================== */
+    .neo-highlight {
+      background: #D4FF4F;
+      border: 2px solid #0D0D0D;
+      padding: 0 6px;
+      border-radius: 6px;
+      display: inline-block;
+      transform: rotate(-1deg);
+      box-shadow: 2px 2px 0px 0px #0D0D0D;
+    }
+    .neo-highlight-navy {
+      background: #0F1E3A;
+      color: #D4FF4F;
+      border: 2px solid #0D0D0D;
+      padding: 0 6px;
+      border-radius: 6px;
+      display: inline-block;
+      transform: rotate(0.5deg);
+      box-shadow: 2px 2px 0px 0px #0D0D0D;
+    }
+
+    /* ====================================================
+       PROFILE PHOTO — neubrutalist frame
+       ==================================================== */
+    .profile-neo-frame {
+      border: 4px solid #0D0D0D;
+      border-radius: 20px;
+      box-shadow: 8px 8px 0px 0px #0F1E3A;
+      background: #C8E8FF;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ====================================================
+       TAG / BADGE
+       ==================================================== */
+    .neo-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 12px;
+      border: 2px solid #0D0D0D;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+      background: #fff;
+      box-shadow: 2px 2px 0px 0px #0D0D0D;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .neo-tag-navy {
+      background: #0F1E3A;
+      color: #A7B6D0;
+    }
+    .neo-tag-lime {
+      background: #D4FF4F;
+      color: #0D0D0D;
+    }
+    .neo-tag-yellow {
+      background: #FFE566;
+      color: #0D0D0D;
+    }
+
+    /* ====================================================
+       LIGHTBOX
+       ==================================================== */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(13,13,13,0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    #lightbox.open { display: flex; animation: lb-in 0.25s ease; }
+    @keyframes lb-in { from { opacity:0; } to { opacity:1; } }
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border: 4px solid #fff;
+      border-radius: 12px;
+      box-shadow: 12px 12px 0px 0px #0D0D0D;
+      animation: lb-zoom 0.25s cubic-bezier(0.16,1,0.3,1);
+    }
+    @keyframes lb-zoom { from { transform:scale(0.85); opacity:0; } to { transform:scale(1); opacity:1; } }
+    #lightbox-close {
+      position: absolute; top: 20px; right: 20px;
+      width: 44px; height: 44px;
+      background: #D4FF4F; border: 3px solid #0D0D0D;
+      border-radius: 10px; box-shadow: 3px 3px 0 0 #0D0D0D;
+      cursor: pointer; display: flex; align-items:center; justify-content:center;
+      font-size: 1.3rem; font-weight: 900;
+      transition: all 0.1s ease;
+    }
+    #lightbox-close:hover { background: #c2eb00; }
+    #lightbox-close:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 0 #0D0D0D; }
+
+    /* ====================================================
+       FORM INPUT
+       ==================================================== */
+    .neo-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 3px solid #0D0D0D;
+      border-radius: 10px;
+      background: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #0D0D0D;
+      outline: none;
+      box-shadow: 3px 3px 0px 0px #0D0D0D;
+      transition: all 0.15s;
+    }
+    .neo-input:focus {
+      box-shadow: 5px 5px 0px 0px #0F1E3A;
+      border-color: #0F1E3A;
+    }
+    .neo-input::placeholder { color: #9A9080; font-weight: 500; }
+    textarea.neo-input { resize: vertical; min-height: 120px; }
+
+    .neo-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #0D0D0D;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    /* ====================================================
+       SOCIAL LINK
+       ==================================================== */
+    .social-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border: 3px solid #0D0D0D;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 4px 4px 0px 0px #0D0D0D;
+      text-decoration: none;
+      color: #0D0D0D;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .social-item:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 7px 7px 0px 0px #0D0D0D;
+    }
+
+    /* ====================================================
+       PROJECT CARD
+       ==================================================== */
+    .project-card {
+      border: 3px solid #0D0D0D;
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 6px 6px 0px 0px #0D0D0D;
+      overflow: hidden;
+      transition: all 0.18s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .project-card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 10px 10px 0px 0px #0D0D0D;
+    }
+    .project-thumb-area {
+      width: 100%;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 3px solid #0D0D0D;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ====================================================
+       CERT CARD
+       ==================================================== */
+    .cert-card {
+      border: 3px solid #0D0D0D;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 5px 5px 0px 0px #0D0D0D;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.18s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .cert-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0px 0px #0D0D0D;
+    }
+    .cert-card img {
+      width: 100%; height: 190px; object-fit: cover;
+      border-bottom: 3px solid #0D0D0D;
+    }
+
+    /* ====================================================
+       SECTION HEADER DECORATION
+       ==================================================== */
+    .section-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0F1E3A;
+      color: #D4FF4F;
+      border: 2px solid #0D0D0D;
+      border-radius: 8px;
+      padding: 5px 14px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      box-shadow: 3px 3px 0px 0px #0D0D0D;
+    }
+
+    /* ====================================================
+       BACK TO TOP
+       ==================================================== */
+    #back-to-top {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      width: 48px; height: 48px;
+      background: #D4FF4F;
+      border: 3px solid #0D0D0D;
+      border-radius: 12px;
+      box-shadow: 4px 4px 0px 0px #0D0D0D;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      z-index: 900;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all 0.3s;
+    }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); }
+    #back-to-top:hover { background: #c2eb00; transform: translate(-2px,-2px); box-shadow: 6px 6px 0 0 #0D0D0D; }
+    #back-to-top:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 0 #0D0D0D; }
+
+    /* ====================================================
+       SCROLL PROGRESS
+       ==================================================== */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0;
+      height: 3px;
+      background: #D4FF4F;
+      border-right: 2px solid #0D0D0D;
+      z-index: 10000;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    /* Mobile menu */
+    #mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: #F5F0E8;
+      z-index: 200;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      border-right: 4px solid #0D0D0D;
+      box-shadow: 12px 0px 0px 0px #0D0D0D;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    #mobile-menu.open { transform: translateX(0); }
+    #mobile-menu a {
+      display: block;
+      padding: 16px 4px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      border-bottom: 2px solid #0D0D0D;
+      text-decoration: none;
+      color: #0D0D0D;
+      transition: color 0.15s;
+    }
+    #mobile-menu a:hover { color: #0F1E3A; }
+
+    /* doodle bg floating elements */
+    .doodle { position: absolute; pointer-events: none; opacity: 0.35; }
+
+    /* ====================================================
+       STAT BOX
+       ==================================================== */
+    .stat-box {
+      background: #fff;
+      border: 3px solid #0D0D0D;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 5px 5px 0px 0px #0D0D0D;
+    }
+    .stat-number {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #0F1E3A;
+      line-height: 1;
+    }
+
+    /* ====================================================
+       GALERI FOTO DOKUMENTASI
+       Foto dimuat otomatis dari folder data-folder:
+       foto-1.jpg, foto-2.jpg, ... (juga .jpeg / .png / .webp)
+       ==================================================== */
+    .doc-gallery-wrap {
+      border-top: 3px dashed rgba(13,13,13,0.2);
+      padding-top: 16px;
+      margin-top: 16px;
+    }
+    .doc-gallery-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .doc-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .doc-gallery.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    @media (max-width: 640px) {
+      .doc-gallery.cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    .doc-slot {
+      position: relative;
+      aspect-ratio: 4/3;
+      border: 2px solid #0D0D0D;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 3px 3px 0 0 #0D0D0D;
+      transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      padding: 0;
+    }
+    .doc-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .doc-slot.filled { cursor: zoom-in; }
+    .doc-slot.filled:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 0 #0D0D0D; }
+    .doc-slot.empty {
+      border-style: dashed;
+      box-shadow: none;
+      background: repeating-linear-gradient(45deg, #F5F0E8, #F5F0E8 8px, #EFE8DA 8px, #EFE8DA 16px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; gap: 2px; cursor: default;
+    }
+    .doc-slot.empty .doc-ico { font-size: 1.3rem; line-height: 1; }
+    .doc-slot.empty .doc-txt {
+      font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 0.62rem;
+      text-transform: uppercase; letter-spacing: 0.06em; color: #7A7060;
+    }
+    .doc-slot.empty .doc-file {
+      font-family: ui-monospace, monospace; font-size: 0.55rem; color: #A9A090;
+      padding: 0 4px; word-break: break-all;
+    }
+    .doc-count {
+      font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 0.65rem;
+      padding: 2px 8px; border: 2px solid #0D0D0D; border-radius: 999px; background: #D4FF4F;
+    }
+    .project-thumb-area img.cover-img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    }
+
+    /* Lightbox navigasi + caption */
+    .lb-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 48px; height: 48px;
+      background: #fff; border: 3px solid #0D0D0D; border-radius: 12px;
+      box-shadow: 3px 3px 0 0 #0D0D0D;
+      font-size: 1.4rem; font-weight: 900; cursor: pointer;
+      display: none; align-items: center; justify-content: center;
+    }
+    .lb-nav:hover { background: #D4FF4F; }
+    #lb-prev { left: 16px; }
+    #lb-next { right: 16px; }
+    #lightbox.has-gallery .lb-nav { display: flex; }
+    #lb-caption {
+      position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
+      max-width: 90vw;
+      background: #0F1E3A; color: #D4FF4F;
+      border: 2px solid #0D0D0D; border-radius: 10px; box-shadow: 3px 3px 0 0 #0D0D0D;
+      padding: 6px 14px; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 0.85rem;
+      text-align: center;
+    }
+    #lb-caption:empty { display: none; }
+
+    /* Cert card untuk dokumen portrait */
+    .cert-card img.portrait { object-position: top center; }
+  </style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div id="scroll-progress"></div>
+
+<!-- ================== NAVBAR ================== -->
+<header id="navbar" role="navigation" aria-label="Navigasi utama">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#hero" class="flex items-center gap-2 group" aria-label="Kembali ke atas">
+      <div class="w-10 h-10 bg-neo-lime border-2 border-neo-black rounded-lg flex items-center justify-center neo-shadow transition-transform group-hover:-translate-y-0.5"
+           style="background:#D4FF4F; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D;">
+        <span class="font-outfit font-black text-lg" style="color:#0F1E3A;">R!</span>
+      </div>
+      <span class="font-outfit font-black text-xl tracking-tight" style="color:#0D0D0D;">RIKI<span style="color:#0F1E3A;">.DEV</span></span>
+    </a>
+
+    <!-- Desktop Links -->
+    <nav class="hidden md:flex items-center gap-7 font-outfit font-extrabold text-sm" style="color:#0D0D0D;">
+      <a href="#tentang" class="hover:text-neo-navyMid transition-colors" style="--hover:#1E2F4F;">Tentang</a>
+      <a href="#keahlian" class="hover:text-neo-navyMid transition-colors">Keahlian</a>
+      <a href="#proyek" class="hover:text-neo-navyMid transition-colors">Proyek</a>
+      <a href="#pengalaman" class="hover:text-neo-navyMid transition-colors">Pengalaman</a>
+      <a href="#sertifikat" class="hover:text-neo-navyMid transition-colors">Sertifikat</a>
+      <a href="#kontak" class="hover:text-neo-navyMid transition-colors">Kontak</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <!-- CTA Desktop -->
+      <a href="#kontak"
+         class="hidden md:inline-flex items-center gap-2 font-outfit font-black text-sm px-5 py-2.5 rounded-xl btn-press"
+         style="background:#0F1E3A; color:#D4FF4F; border:2px solid #0D0D0D; box-shadow:4px 4px 0 #0D0D0D;">
+        Hubungi Saya →
+      </a>
+      <!-- Hamburger -->
+      <button id="hamburger" class="md:hidden btn-press p-2 rounded-lg"
+              style="background:#D4FF4F; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D;"
+              aria-label="Buka menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="22" height="22" fill="none" stroke="#0D0D0D" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu navigasi">
+  <div class="flex items-center justify-between mb-6">
+    <span class="font-outfit font-black text-xl">RIKI.DEV</span>
+    <button id="close-menu" class="btn-press p-2 rounded-lg"
+            style="background:#D4FF4F; border:2px solid #0D0D0D; box-shadow:2px 2px 0 #0D0D0D;"
+            aria-label="Tutup menu">
+      <svg width="20" height="20" fill="none" stroke="#0D0D0D" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+  <a href="#tentang" class="mobile-nav-link">Tentang</a>
+  <a href="#keahlian" class="mobile-nav-link">Keahlian</a>
+  <a href="#proyek" class="mobile-nav-link">Proyek</a>
+  <a href="#pengalaman" class="mobile-nav-link">Pengalaman</a>
+  <a href="#sertifikat" class="mobile-nav-link">Sertifikat</a>
+  <a href="#kontak" class="mobile-nav-link">Kontak</a>
+  <a href="mailto:rikyrivaldi369@gmail.com" class="mobile-nav-link" style="border-bottom:none;">
+    rikyrivaldi369@gmail.com
+  </a>
+  <div class="mt-auto pt-6">
+    <a href="#kontak" class="block text-center font-outfit font-black text-base py-4 rounded-xl btn-press"
+       style="background:#0F1E3A; color:#D4FF4F; border:3px solid #0D0D0D; box-shadow:5px 5px 0 #0D0D0D;">
+      Hubungi Saya
+    </a>
+  </div>
+</div>
+
+<!-- ================== HERO ================== -->
+<section id="hero" class="relative overflow-hidden" style="min-height: calc(100vh - 61px);">
+
+  <!-- Floating doodle decorations -->
+  <svg class="doodle" style="top:8%;left:2%;width:80px;height:80px;" viewBox="0 0 100 100">
+    <path d="M 10 50 Q 30 20, 50 50 T 90 50 Q 80 90, 50 80 Z" stroke="#0F1E3A" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </svg>
+  <svg class="doodle" style="top:10%;right:3%;width:100px;height:100px;" viewBox="0 0 100 100">
+    <path d="M 50 10 L 55 38 L 82 40 L 55 45 L 50 72 L 45 45 L 18 40 L 45 38 Z" fill="#D4FF4F" stroke="#0D0D0D" stroke-width="2.5"/>
+  </svg>
+  <svg class="doodle" style="bottom:18%;right:4%;width:70px;height:70px;" viewBox="0 0 100 100">
+    <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 25 25 L 75 75 M 25 75 L 75 25" stroke="#0F1E3A" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+  <svg class="doodle" style="bottom:15%;left:3%;width:60px;height:60px;" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="35" stroke="#A7B6D0" stroke-width="3" fill="none" stroke-dasharray="8 5"/>
+  </svg>
+
+  <div class="max-w-7xl mx-auto px-4 py-12 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+
+    <!-- Left: Text -->
+    <div class="lg:col-span-7 space-y-7">
+
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-outfit font-black text-xs uppercase tracking-wider"
+           style="background:#A7B6D0; border:2px solid #0D0D0D; box-shadow:2px 2px 0 #0D0D0D;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#D4FF4F;border:1px solid #0D0D0D;animation:pulse-dot 2s infinite;" aria-hidden="true"></span>
+        Terbuka untuk Peluang Karier &amp; Freelance
+      </div>
+
+      <!-- Headline -->
+      <div>
+        <h1 class="font-outfit font-black tracking-tight leading-[1.05]" style="font-size:clamp(2.8rem,6vw,4.5rem); color:#0D0D0D;">
+          Halo, Saya<br>
+          <span class="neo-highlight" style="font-size:clamp(2.8rem,6vw,4.5rem);">Riki Rivaldi</span>
+        </h1>
+        <p class="font-outfit font-bold mt-3" style="font-size:clamp(1.1rem,2.5vw,1.5rem); color:#0F1E3A;">
+          Accounting &amp; Financial System Specialist · Excel VBA · App Developer
+        </p>
+      </div>
+
+      <!-- Body copy -->
+      <p class="text-base md:text-lg font-semibold leading-relaxed max-w-xl" style="color:#4A4A4A;">
+        <strong style="color:#0F1E3A;">Ahli Madya Akuntansi (A.Md.Ak.)</strong> lulusan <strong style="color:#0F1E3A;">Politeknik Negeri Samarinda</strong> yang memadukan siklus akuntansi &amp; SAK EMKM dengan perancangan sistem — dari Excel Macro VBA, aplikasi kasir (POS), hingga web modern berbasis JavaScript.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap gap-4">
+        <a href="#kontak"
+           class="inline-flex items-center gap-2 font-outfit font-black text-base px-8 py-4 rounded-xl btn-press"
+           style="background:#0F1E3A; color:#D4FF4F; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;">
+          Hubungi Saya
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+          </svg>
+        </a>
+        <a href="https://id.jobstreet.com/id/profiles/riki-rivaldi-zv476s4dd3" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 font-outfit font-black text-base px-8 py-4 rounded-xl btn-press"
+           style="background:#fff; color:#0D0D0D; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;">
+          Jobstreet Profile
+        </a>
+      </div>
+
+      <!-- Stats row -->
+      <div class="flex flex-wrap items-center gap-6 pt-4" style="border-top: 2px dashed rgba(13,13,13,0.25);">
+        <div>
+          <span class="font-outfit font-black text-3xl" style="color:#0F1E3A;">3.59</span>
+          <p class="font-sans text-xs font-bold uppercase tracking-wider" style="color:#7A7060;">IPK</p>
+        </div>
+        <div style="border-left:2px solid #0D0D0D; height:32px;"></div>
+        <div>
+          <span class="font-outfit font-black text-3xl" style="color:#0F1E3A;">5+</span>
+          <p class="font-sans text-xs font-bold uppercase tracking-wider" style="color:#7A7060;">Proyek Selesai</p>
+        </div>
+        <div style="border-left:2px solid #0D0D0D; height:32px;"></div>
+        <div>
+          <span class="font-outfit font-black text-3xl" style="color:#0F1E3A;">HKI</span>
+          <p class="font-sans text-xs font-bold uppercase tracking-wider" style="color:#7A7060;">Program Komputer</p>
+        </div>
+        <div style="border-left:2px solid #0D0D0D; height:32px;"></div>
+        <div>
+          <span class="font-outfit font-black text-3xl" style="color:#0F1E3A;">92%</span>
+          <p class="font-sans text-xs font-bold uppercase tracking-wider" style="color:#7A7060;">Efisiensi Laporan</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Photo -->
+    <div class="lg:col-span-5 flex items-center justify-center relative">
+      <!-- Stacked offset cards behind photo -->
+      <div class="absolute w-[78%] aspect-[2/3] rounded-2xl rotate-6 translate-x-5 translate-y-5"
+           style="background:#A7B6D0; border:3px solid #0D0D0D; box-shadow:5px 5px 0 #0D0D0D; opacity:0.5;"></div>
+      <div class="absolute w-[78%] aspect-[2/3] rounded-2xl -rotate-2 translate-x-2 -translate-y-2"
+           style="background:#D4FF4F; border:3px solid #0D0D0D; box-shadow:5px 5px 0 #0D0D0D; opacity:0.7;"></div>
+
+      <!-- Main photo card -->
+      <div class="relative profile-neo-frame w-[82%]"
+           style="aspect-ratio:2/3; background:linear-gradient(180deg, #C8E8FF 0%, #E8F4FF 100%);">
+        <img
+          src="assets/img/profil-nobg.jpg"
+          alt="Foto profesional Riki Rivaldi, A.Md.Ak. — Lulusan D3 Akuntansi POLNES"
+          style="width:100%; height:100%; object-fit:cover; object-position:top center;"
+          loading="eager"
+        />
+        <!-- Name tag overlay -->
+        <div class="absolute bottom-4 left-4 right-4">
+          <div class="inline-flex items-center gap-2 px-3 py-2 rounded-xl font-outfit font-black text-sm"
+               style="background:#0F1E3A; color:#D4FF4F; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D;">
+            📍 Samarinda, Kalimantan Timur
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================== STATS BANNER ================== -->
+<div style="background:#0F1E3A; border-top:3px solid #0D0D0D; border-bottom:3px solid #0D0D0D; padding:20px 0;">
+  <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-around gap-6 text-center">
+    <div>
+      <span class="font-outfit font-black text-3xl" style="color:#D4FF4F;">A.Md.Ak.</span>
+      <p class="font-sans text-xs font-bold uppercase tracking-wide" style="color:#A7B6D0;">Ahli Madya Akuntansi · D3</p>
+    </div>
+    <div style="border-left:3px solid rgba(167,182,208,0.3); height:36px;" class="hidden md:block"></div>
+    <div>
+      <span class="font-outfit font-black text-3xl" style="color:#D4FF4F;">POLNES</span>
+      <p class="font-sans text-xs font-bold uppercase tracking-wide" style="color:#A7B6D0;">Politeknik Negeri Samarinda · 2023–2026</p>
+    </div>
+    <div style="border-left:3px solid rgba(167,182,208,0.3); height:36px;" class="hidden md:block"></div>
+    <div>
+      <span class="font-outfit font-black text-3xl" style="color:#D4FF4F;">Kompeten</span>
+      <p class="font-sans text-xs font-bold uppercase tracking-wide" style="color:#A7B6D0;">LSP · Teknisi Akuntansi Madya</p>
+    </div>
+    <div style="border-left:3px solid rgba(167,182,208,0.3); height:36px;" class="hidden md:block"></div>
+    <div>
+      <span class="font-outfit font-black text-3xl" style="color:#D4FF4F;">Fresh Grad</span>
+      <p class="font-sans text-xs font-bold uppercase tracking-wide" style="color:#A7B6D0;">Siap Bekerja · 2026</p>
+    </div>
+  </div>
+</div>
+
+<!-- ================== TENTANG ================== -->
+<section id="tentang" class="py-20 px-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex justify-center mb-10 reveal">
+      <span class="section-mark">★ Tentang Saya</span>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-10 items-start">
+      <div class="reveal reveal-delay-1">
+        <h2 class="font-outfit font-black mb-5" style="font-size:clamp(1.8rem,3.5vw,2.8rem); line-height:1.1; color:#0D0D0D;">
+          Menjembatani <span class="neo-highlight-navy">Keuangan</span> &amp; <span class="neo-highlight">Teknologi</span>
+        </h2>
+        <p class="text-base font-semibold leading-relaxed mb-4" style="color:#4A4A4A;">
+          Lulusan D3 Akuntansi <strong style="color:#0F1E3A;">Politeknik Negeri Samarinda (POLNES)</strong> bergelar Ahli Madya Akuntansi (A.Md.Ak.), dengan spesialisasi pada pengelolaan siklus akuntansi, pengendalian internal persediaan, serta penyusunan laporan keuangan berbasis SAK EMKM.
+        </p>
+        <p class="text-base font-semibold leading-relaxed mb-6" style="color:#4A4A4A;">
+          Unggul dalam merancang Sistem Informasi Akuntansi (SIA) berbasis Excel Macro VBA, mengembangkan aplikasi kasir (Point of Sale), serta memanfaatkan teknologi &amp; AI untuk mengotomatisasi pengolahan data keuangan — terbukti memangkas waktu rekapitulasi laporan hingga <strong style="color:#0F1E3A;">92%</strong>.
+        </p>
+
+        <!-- Tujuan karier box -->
+        <div class="p-5 rounded-2xl" style="background:#fff; border:3px solid #0D0D0D; box-shadow:5px 5px 0 #0D0D0D;">
+          <p class="font-outfit font-black text-xs uppercase tracking-wider mb-2" style="color:#0F1E3A;">🎯 Tujuan Karier</p>
+          <p class="text-sm font-semibold leading-relaxed" style="color:#4A4A4A;">
+            Mengembangkan karier sebagai <strong style="color:#0F1E3A;">Accounting &amp; Financial System Specialist</strong>, Staf Akuntansi/Keuangan, atau System Developer yang menjembatani tata kelola keuangan dan transformasi digital.
+          </p>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2 space-y-5">
+        <!-- Stats grid -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="stat-box">
+            <div class="stat-number">3.59</div>
+            <p class="font-outfit font-bold text-xs uppercase tracking-wide mt-1" style="color:#7A7060;">IPK</p>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">5+</div>
+            <p class="font-outfit font-bold text-xs uppercase tracking-wide mt-1" style="color:#7A7060;">Proyek</p>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">410</div>
+            <p class="font-outfit font-bold text-xs uppercase tracking-wide mt-1" style="color:#7A7060;">TOEFL Prediction</p>
+          </div>
+          <div class="stat-box" style="background:#D4FF4F;">
+            <div class="stat-number" style="color:#0F1E3A;">HKI</div>
+            <p class="font-outfit font-bold text-xs uppercase tracking-wide mt-1" style="color:#4A6040;">Hak Cipta Terdaftar</p>
+          </div>
+        </div>
+
+        <!-- Bidang minat -->
+        <div class="p-5 rounded-2xl" style="background:#fff; border:3px solid #0D0D0D; box-shadow:5px 5px 0 #0D0D0D;">
+          <p class="font-outfit font-black text-xs uppercase tracking-wider mb-3" style="color:#0F1E3A;">Bidang Minat</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="neo-tag">Accounting Information Systems</span>
+            <span class="neo-tag">Financial Reporting</span>
+            <span class="neo-tag">SAK EMKM</span>
+            <span class="neo-tag">Internal Control</span>
+            <span class="neo-tag">Business Process Automation</span>
+            <span class="neo-tag">Point of Sale</span>
+            <span class="neo-tag">Spreadsheet Engineering</span>
+            <span class="neo-tag">Web Development</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== KEAHLIAN ================== -->
+<section id="keahlian" class="py-20 px-4" style="background:#fff; border-top:3px solid #0D0D0D; border-bottom:3px solid #0D0D0D;">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex justify-center mb-4 reveal">
+      <span class="section-mark">⚡ Keahlian</span>
+    </div>
+    <h2 class="font-outfit font-black text-center mb-12 reveal reveal-delay-1" style="font-size:clamp(1.8rem,3.5vw,2.6rem);">
+      Skills &amp; <span class="neo-highlight">Kompetensi</span>
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- Accounting -->
+      <div class="p-6 rounded-2xl reveal reveal-delay-1" style="background:#F5F0E8; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center font-outfit font-black text-lg"
+               style="background:#D4FF4F; border:2px solid #0D0D0D; box-shadow:2px 2px 0 #0D0D0D;">📒</div>
+          <h3 class="font-outfit font-black text-base">Accounting</h3>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between mb-1.5">
+              <span class="text-xs font-bold" style="color:#4A4A4A;">Laporan Keuangan (SAK EMKM)</span>
+              <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">90%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.90"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1.5">
+              <span class="text-xs font-bold" style="color:#4A4A4A;">Siklus Akuntansi Terapan</span>
+              <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">85%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.85"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1.5">
+              <span class="text-xs font-bold" style="color:#4A4A4A;">Pengendalian Internal Persediaan (FIFO)</span>
+              <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">88%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.88"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1.5">
+              <span class="text-xs font-bold" style="color:#4A4A4A;">Rekonsiliasi &amp; Verifikasi Transaksi</span>
+              <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">85%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.85"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1.5">
+              <span class="text-xs font-bold" style="color:#4A4A4A;">Administrasi Kas &amp; Piutang</span>
+              <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">82%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.82"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Excel & Automation -->
+      <div class="p-6 rounded-2xl reveal reveal-delay-2" style="background:#F5F0E8; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center font-outfit font-black text-lg"
+               style="background:#FFE566; border:2px solid #0D0D0D; box-shadow:2px 2px 0 #0D0D0D;">📊</div>
+          <h3 class="font-outfit font-black text-base">Excel &amp; Automation</h3>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between mb-1.5">
+              <span class="text-xs font-bold" style="color:#4A4A4A;">Microsoft Excel Advanced (Formula &amp; PivotTable)</span>
+              <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">92%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.92"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1.5">
+              <span class="text-xs font-bold" style="color:#4A4A4A;">Macro VBA &amp; UserForms</span>
+              <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">85%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.85"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1.5">
+              <span class="text-xs font-bold" style="color:#4A4A4A;">Dashboarding Dinamis</span>
+              <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">88%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.88"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1.5">
+              <span class="text-xs font-bold" style="color:#4A4A4A;">Google Apps Script (GAS)</span>
+              <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">78%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.78"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Web & Programming -->
+      <div class="p-6 rounded-2xl reveal reveal-delay-1" style="background:#F5F0E8; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center font-outfit font-black text-lg"
+               style="background:#C8E8FF; border:2px solid #0D0D0D; box-shadow:2px 2px 0 #0D0D0D;">💻</div>
+          <h3 class="font-outfit font-black text-base">Web &amp; Programming</h3>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between mb-1.5">
+              <span class="text-xs font-bold" style="color:#4A4A4A;">JavaScript (ES6+)</span>
+              <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">80%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.80"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1.5">
+              <span class="text-xs font-bold" style="color:#4A4A4A;">HTML5 &amp; Tailwind CSS</span>
+              <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">88%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.88"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1.5">
+              <span class="text-xs font-bold" style="color:#4A4A4A;">Supabase / REST API</span>
+              <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">72%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.72"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1.5">
+              <span class="text-xs font-bold" style="color:#4A4A4A;">Git / CLI / Vercel</span>
+              <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">75%</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.75"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div class="p-6 rounded-2xl reveal reveal-delay-2" style="background:#F5F0E8; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center font-outfit font-black text-lg"
+               style="background:#A7B6D0; border:2px solid #0D0D0D; box-shadow:2px 2px 0 #0D0D0D;">🛠️</div>
+          <h3 class="font-outfit font-black text-base">Tools &amp; Design</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="neo-tag">VS Code</span>
+          <span class="neo-tag">Antigravity IDE</span>
+          <span class="neo-tag">Supabase</span>
+          <span class="neo-tag">Cloudflare Pages</span>
+          <span class="neo-tag">Vercel</span>
+          <span class="neo-tag">Google Sheets DB</span>
+          <span class="neo-tag">UI Wireframing</span>
+          <span class="neo-tag">Low-fi Prototype</span>
+          <span class="neo-tag">Prompt Engineering</span>
+          <span class="neo-tag">AI Workflow Automation</span>
+          <span class="neo-tag">REST API Integration</span>
+          <span class="neo-tag">SDLC Documentation</span>
+          <span class="neo-tag">MS Word &amp; PowerPoint</span>
+        </div>
+      </div>
+
+      <!-- Soft Skills -->
+      <div class="md:col-span-2 p-6 rounded-2xl reveal reveal-delay-1" style="background:#0F1E3A; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center font-outfit font-black text-lg"
+               style="background:#D4FF4F; border:2px solid #0D0D0D; box-shadow:2px 2px 0 #0D0D0D;">🧠</div>
+          <h3 class="font-outfit font-black text-base" style="color:#fff;">Soft Skills</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="neo-tag neo-tag-lime">Analytical Problem Solving</span>
+          <span class="neo-tag neo-tag-lime">Logika &amp; Perancangan Sistem</span>
+          <span class="neo-tag neo-tag-lime">Data-Driven Decision Making</span>
+          <span class="neo-tag neo-tag-lime">Ketelitian &amp; Akurasi Tinggi</span>
+          <span class="neo-tag neo-tag-lime">Public Speaking</span>
+          <span class="neo-tag neo-tag-lime">Manajemen Waktu</span>
+          <span class="neo-tag neo-tag-lime">Kerja Tim</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== PROYEK ================== -->
+<!--
+  CARA MENAMBAHKAN FOTO DOKUMENTASI / COVER PROYEK
+  ------------------------------------------------
+  Setiap proyek & pengalaman punya folder sendiri di: assets/dokumentasi/<nama-folder>/
+  - Foto dokumentasi : foto-1.jpg, foto-2.jpg, foto-3.jpg, ... (boleh .jpeg / .png / .webp)
+  - Cover / thumbnail: cover.jpg (opsional, menggantikan ikon "Screenshot Menyusul")
+  Jumlah slot diatur lewat atribut data-count, keterangan foto lewat data-captions (dipisah "|").
+-->
+<section id="proyek" class="py-20 px-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex justify-center mb-4 reveal">
+      <span class="section-mark">📁 Proyek</span>
+    </div>
+    <h2 class="font-outfit font-black text-center mb-4 reveal reveal-delay-1" style="font-size:clamp(1.8rem,3.5vw,2.6rem);">
+      Pengembangan Sistem &amp; <span class="neo-highlight">Implementasi</span>
+    </h2>
+    <p class="text-center font-semibold mb-12 reveal reveal-delay-2" style="color:#7A7060; max-width:540px; margin:0 auto 48px;">
+      Proyek nyata yang menggabungkan keahlian akuntansi dengan pengembangan sistem digital.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- Project HKI (Featured) -->
+      <article class="project-card md:col-span-2 reveal reveal-delay-1">
+        <div class="grid md:grid-cols-5">
+          <div class="project-thumb-area md:col-span-2 md:!border-b-0 md:border-r-[3px] md:border-neo-black"
+               data-cover="assets/dokumentasi/proyek-hki-polnes-loa-lepu"
+               style="background:linear-gradient(135deg,#0F1E3A,#1E2F4F); aspect-ratio:auto; min-height:220px;">
+            <div class="text-center">
+              <div class="text-5xl mb-2">©️</div>
+              <p class="font-outfit font-black text-sm" style="color:#D4FF4F;">Hak Cipta Terdaftar</p>
+              <p class="text-xs font-bold mt-1" style="color:#A7B6D0;">No. Pencatatan 001542654</p>
+            </div>
+            <div class="absolute top-3 left-3">
+              <span class="neo-tag neo-tag-lime">HKI · DJKI</span>
+            </div>
+          </div>
+          <div class="p-6 md:col-span-3">
+            <p class="font-outfit font-black text-xs uppercase tracking-wider mb-1" style="color:#0F1E3A;">2026 · Program Komputer</p>
+            <h3 class="font-outfit font-black text-xl mb-1">Aplikasi PO-lne-S Mikro Loa Lepu</h3>
+            <p class="font-semibold text-sm mb-3" style="color:#7A7060;">Tim Pencipta: Riki Rivaldi, Candra Gunawan, Amiruddin, Mat Juri, Omar Dhanny</p>
+            <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;">
+              Program komputer yang resmi tercatat sebagai Ciptaan oleh Direktorat Jenderal Kekayaan Intelektual, Kementerian Hukum RI. Pertama kali diumumkan 6 September 2026 di Kab. Kutai Kartanegara dan dilindungi selama 50 tahun.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="neo-tag neo-tag-yellow">EC002026199600</span>
+              <span class="neo-tag">Program Komputer</span>
+              <span class="neo-tag">Usaha Mikro</span>
+              <span class="neo-tag">Kutai Kartanegara</span>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <button type="button" class="font-outfit font-black text-xs px-4 py-2 rounded-lg btn-press"
+                      style="background:#D4FF4F; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D;"
+                      onclick="openLightboxGroup([{src:'assets/cert/hki-surat-pencatatan-ciptaan.jpg',cap:'Surat Pencatatan Ciptaan'},{src:'assets/cert/hki-lampiran-pencipta.jpg',cap:'Lampiran Pencipta'}],0)">
+                Lihat Sertifikat HKI →
+              </button>
+              <a href="assets/docs/HKI-SuratCiptaan-EC002026199600.pdf" target="_blank" rel="noopener"
+                 class="font-outfit font-black text-xs px-4 py-2 rounded-lg btn-press"
+                 style="background:#fff; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D;">
+                Unduh PDF
+              </a>
+            </div>
+            <div class="doc-gallery-wrap">
+              <div class="doc-gallery-head">
+                <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;">📸 Dokumentasi</p>
+              </div>
+              <div class="doc-gallery" data-folder="assets/dokumentasi/proyek-hki-polnes-loa-lepu" data-count="3"
+                   data-title="PO-lne-S Mikro Loa Lepu"></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 1 -->
+      <article class="project-card reveal reveal-delay-1">
+        <div class="project-thumb-area" data-cover="assets/dokumentasi/proyek-sia-vba-sosis-azizah" style="background:linear-gradient(135deg,#C8E8FF,#A7B6D0);">
+          <div class="text-center">
+            <div class="text-5xl mb-2">📊</div>
+            <p class="font-outfit font-black text-sm" style="color:#0F1E3A;">Screenshot Menyusul</p>
+          </div>
+          <div class="absolute top-3 left-3">
+            <span class="neo-tag neo-tag-navy">Tugas Akhir</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="font-outfit font-black text-xs uppercase tracking-wider mb-1" style="color:#0F1E3A;">2026</p>
+          <h3 class="font-outfit font-black text-xl mb-1">SIA Berbasis Excel Macro VBA</h3>
+          <p class="font-semibold text-sm mb-3" style="color:#7A7060;">Studi Kasus: Toko Agen Sosis Azizah</p>
+          <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;">
+            Aplikasi akuntansi terotomatisasi pengganti pencatatan manual — modul transaksi penjualan/pembelian, kartu persediaan otomatis, dan laporan keuangan sesuai standar SAK EMKM.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="neo-tag">Excel Macro VBA</span>
+            <span class="neo-tag">UserForms</span>
+            <span class="neo-tag">SAK EMKM</span>
+            <span class="neo-tag">FIFO</span>
+          </div>
+          <p class="text-xs font-bold" style="color:#A7B6D0;">Perancang Sistem Informasi Akuntansi</p>
+          <div class="doc-gallery-wrap">
+            <div class="doc-gallery-head">
+              <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;">📸 Dokumentasi</p>
+            </div>
+            <div class="doc-gallery" data-folder="assets/dokumentasi/proyek-sia-vba-sosis-azizah" data-count="3"
+                 data-title="SIA Excel VBA — Toko Agen Sosis Azizah"></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="project-card reveal reveal-delay-2">
+        <div class="project-thumb-area" data-cover="assets/dokumentasi/proyek-pos-android" style="background:linear-gradient(135deg,#FFE566,#D4FF4F);">
+          <div class="text-center">
+            <div class="text-5xl mb-2">🛒</div>
+            <p class="font-outfit font-black text-sm" style="color:#4A4A4A;">Screenshot Menyusul</p>
+          </div>
+          <div class="absolute top-3 left-3">
+            <span class="neo-tag neo-tag-lime">Android App</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="font-outfit font-black text-xs uppercase tracking-wider mb-1" style="color:#0F1E3A;">2026</p>
+          <h3 class="font-outfit font-black text-xl mb-1">Aplikasi POS &amp; Pelaporan Keuangan</h3>
+          <p class="font-semibold text-sm mb-3" style="color:#7A7060;">Point of Sale Android · Offline-first</p>
+          <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;">
+            Aplikasi kasir untuk ritel dengan modul Transaksi Kasir, Manajemen Produk &amp; Stok, Buku Kas, Kontrol Utang/Piutang, serta Laporan Laba Rugi, Laporan Transaksi &amp; Laporan Persediaan otomatis berstandar SAK EMKM.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="neo-tag">Android</span>
+            <span class="neo-tag">Offline-first</span>
+            <span class="neo-tag">SAK EMKM</span>
+            <span class="neo-tag">Utang/Piutang</span>
+          </div>
+          <p class="text-xs font-bold" style="color:#A7B6D0;">System Developer &amp; Accounting Logic Designer</p>
+          <div class="doc-gallery-wrap">
+            <div class="doc-gallery-head">
+              <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;">📸 Dokumentasi</p>
+            </div>
+            <div class="doc-gallery" data-folder="assets/dokumentasi/proyek-pos-android" data-count="3"
+                 data-title="Aplikasi POS Android"></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="project-card reveal reveal-delay-1">
+        <div class="project-thumb-area" data-cover="assets/dokumentasi/proyek-sia-yayasan-pkm" style="background:linear-gradient(135deg,#A7B6D0,#C8E8FF);">
+          <div class="text-center">
+            <div class="text-5xl mb-2">🏫</div>
+            <p class="font-outfit font-black text-sm" style="color:#0F1E3A;">Screenshot Menyusul</p>
+          </div>
+          <div class="absolute top-3 left-3">
+            <span class="neo-tag neo-tag-navy">PKM-PM POLNES</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="font-outfit font-black text-xs uppercase tracking-wider mb-1" style="color:#0F1E3A;">2026</p>
+          <h3 class="font-outfit font-black text-xl mb-1">Sistem Informasi Akademik &amp; Website Yayasan</h3>
+          <p class="font-semibold text-sm mb-3" style="color:#7A7060;">Yayasan At-Tarbiyyah Wijaya Kusuma</p>
+          <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;">
+            Digitalisasi administrasi akademik yayasan — PPDB Online, Portal Admin, Portal Siswa, serta manajemen halaman Profil, Berita, dan Galeri yang terintegrasi.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="neo-tag">HTML5</span>
+            <span class="neo-tag">Tailwind CSS</span>
+            <span class="neo-tag">JavaScript</span>
+            <span class="neo-tag">Supabase</span>
+          </div>
+          <p class="text-xs font-bold" style="color:#A7B6D0;">Tim Pengembang Sistem — Program PKM-PM</p>
+          <div class="doc-gallery-wrap">
+            <div class="doc-gallery-head">
+              <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;">📸 Dokumentasi</p>
+            </div>
+            <div class="doc-gallery" data-folder="assets/dokumentasi/proyek-sia-yayasan-pkm" data-count="3"
+                 data-title="SI Akademik Yayasan At-Tarbiyyah Wijaya Kusuma"></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 4 -->
+      <article class="project-card reveal reveal-delay-2">
+        <div class="project-thumb-area" data-cover="assets/dokumentasi/proyek-quiz-game" style="background:linear-gradient(135deg,#D4FF4F,#FFE566);">
+          <div class="text-center">
+            <div class="text-5xl mb-2">🎮</div>
+            <p class="font-outfit font-black text-sm" style="color:#4A4A4A;">Screenshot Menyusul</p>
+          </div>
+          <div class="absolute top-3 left-3">
+            <span class="neo-tag neo-tag-lime">Freelance</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="font-outfit font-black text-xs uppercase tracking-wider mb-1" style="color:#0F1E3A;">2026</p>
+          <h3 class="font-outfit font-black text-xl mb-1">Quiz Game — Edukasi Interaktif</h3>
+          <p class="font-semibold text-sm mb-3" style="color:#7A7060;">Aplikasi Web Kuis untuk Siswa SD</p>
+          <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;">
+            Game kuis browser — sistem skoring otomatis, papan peringkat real-time, dan lencana pencapaian. Responsif dan tanpa instalasi.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="neo-tag">Google Apps Script</span>
+            <span class="neo-tag">HTML5 Canvas</span>
+            <span class="neo-tag">JavaScript</span>
+          </div>
+          <p class="text-xs font-bold" style="color:#A7B6D0;">Frontend &amp; Game Logic Developer</p>
+          <div class="doc-gallery-wrap">
+            <div class="doc-gallery-head">
+              <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;">📸 Dokumentasi</p>
+            </div>
+            <div class="doc-gallery" data-folder="assets/dokumentasi/proyek-quiz-game" data-count="3"
+                 data-title="Quiz Game Edukasi"></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================== PENGALAMAN ================== -->
+<section id="pengalaman" class="py-20 px-4" style="background:#fff; border-top:3px solid #0D0D0D; border-bottom:3px solid #0D0D0D;">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex justify-center mb-4 reveal">
+      <span class="section-mark">💼 Pengalaman</span>
+    </div>
+    <h2 class="font-outfit font-black text-center mb-12 reveal reveal-delay-1" style="font-size:clamp(1.8rem,3.5vw,2.6rem);">
+      Pendidikan &amp; <span class="neo-highlight">Pengalaman</span>
+    </h2>
+
+    <!-- Magang -->
+    <p class="font-outfit font-black text-xs uppercase tracking-wider mb-4 reveal" style="color:#0F1E3A;">🏦 Pengalaman Kerja</p>
+    <div class="p-6 md:p-8 rounded-2xl mb-10 reveal reveal-delay-1" style="background:#F5F0E8; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;">
+      <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+        <div>
+          <h3 class="font-outfit font-black text-xl md:text-2xl mb-1">Staf Magang — Financing Recovery &amp; Operasional Syariah</h3>
+          <p class="font-bold text-sm" style="color:#0F1E3A;">PT BPD Kaltim Kaltara (Bankaltimtara) · Samarinda</p>
+        </div>
+        <span class="neo-tag neo-tag-yellow">1 Jun – 1 Jul 2025</span>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <ul class="md:col-span-2 space-y-3 text-sm font-semibold leading-relaxed" style="color:#4A4A4A;">
+          <li class="flex items-start gap-2"><span style="color:#0F1E3A; font-weight:900;">✓</span>
+            <span>Merancang otomatisasi pengolahan &amp; rekapitulasi data keuangan lintas periode dengan formula lanjutan Excel dan Macro VBA — memangkas waktu pengerjaan laporan <strong style="color:#0F1E3A;">92% (dari 2 jam menjadi 10 menit)</strong>.</span></li>
+          <li class="flex items-start gap-2"><span style="color:#0F1E3A; font-weight:900;">✓</span>
+            <span>Melaksanakan verifikasi &amp; rekonsiliasi harian dokumen bukti transaksi fisik terhadap laporan sistem perbankan untuk memastikan akurasi pencatatan dan kepatuhan pengendalian internal.</span></li>
+          <li class="flex items-start gap-2"><span style="color:#0F1E3A; font-weight:900;">✓</span>
+            <span>Mengidentifikasi selisih data transaksi dan menyusun rekapitulasi penyesuaian terstruktur untuk mendukung ketepatan waktu pelaporan operasional departemen.</span></li>
+        </ul>
+        <div class="flex md:flex-col gap-4">
+          <div class="stat-box flex-1" style="background:#D4FF4F;">
+            <div class="stat-number">92%</div>
+            <p class="font-outfit font-bold text-xs uppercase tracking-wide mt-1" style="color:#4A6040;">Waktu Laporan Dipangkas</p>
+          </div>
+          <div class="stat-box flex-1">
+            <div class="stat-number" style="font-size:1.6rem;">2j → 10m</div>
+            <p class="font-outfit font-bold text-xs uppercase tracking-wide mt-1" style="color:#7A7060;">Rekap Laporan</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-2 mt-5">
+        <span class="neo-tag">Excel Advanced</span>
+        <span class="neo-tag">Macro VBA</span>
+        <span class="neo-tag">Rekonsiliasi</span>
+        <span class="neo-tag">Perbankan Syariah</span>
+        <span class="neo-tag">Internal Control</span>
+      </div>
+      <div class="doc-gallery-wrap">
+        <div class="doc-gallery-head">
+          <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;">📸 Dokumentasi Magang</p>
+        </div>
+        <div class="doc-gallery cols-4" data-folder="assets/dokumentasi/magang-bankaltimtara" data-count="4"
+             data-title="Magang Bankaltimtara"></div>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Pendidikan -->
+      <div class="reveal reveal-delay-1">
+        <p class="font-outfit font-black text-xs uppercase tracking-wider mb-4" style="color:#0F1E3A;">🎓 Pendidikan</p>
+        <div class="p-6 rounded-2xl h-full" style="background:#F5F0E8; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;">
+          <h3 class="font-outfit font-black text-xl mb-1">D3 Akuntansi — A.Md.Ak.</h3>
+          <p class="font-bold text-sm mb-1" style="color:#0F1E3A;">Politeknik Negeri Samarinda (POLNES)</p>
+          <p class="font-semibold text-xs mb-4" style="color:#7A7060;">2023 – 2026 · Yudisium 20 Agustus 2026</p>
+          <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;">
+            <strong style="color:#0F1E3A;">Tugas Akhir:</strong> Sistem Informasi Akuntansi Pencatatan Transaksi, Pengelolaan Persediaan, dan Laporan Keuangan pada Toko Agen Sosis Azizah Berbasis Macro Microsoft Excel.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="neo-tag neo-tag-lime">IPK 3.59</span>
+            <span class="neo-tag">Kompeten LSP</span>
+            <span class="neo-tag">TOEFL 410</span>
+          </div>
+          <div class="doc-gallery-wrap">
+            <div class="doc-gallery-head">
+              <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;">📸 Dokumentasi</p>
+            </div>
+            <div class="doc-gallery" data-folder="assets/dokumentasi/pendidikan-polnes" data-count="3"
+                 data-title="Pendidikan POLNES"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Freelance -->
+      <div class="reveal reveal-delay-2">
+        <p class="font-outfit font-black text-xs uppercase tracking-wider mb-4" style="color:#0F1E3A;">⚡ Freelance Experience</p>
+        <div class="p-6 rounded-2xl h-full" style="background:#F5F0E8; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;">
+          <h3 class="font-outfit font-black text-xl mb-1">Independent Developer</h3>
+          <p class="font-bold text-sm mb-1" style="color:#0F1E3A;">Freelance Projects</p>
+          <p class="font-semibold text-xs mb-4" style="color:#7A7060;">2025 – Sekarang</p>
+          <ul class="space-y-2 text-sm font-semibold" style="color:#4A4A4A;">
+            <li class="flex items-start gap-2"><span style="color:#0F1E3A; font-weight:900;">✓</span> Aplikasi Kasir (POS) &amp; Pelaporan Keuangan Android</li>
+            <li class="flex items-start gap-2"><span style="color:#0F1E3A; font-weight:900;">✓</span> Aplikasi Logistik Persediaan FIFO</li>
+            <li class="flex items-start gap-2"><span style="color:#0F1E3A; font-weight:900;">✓</span> Sistem Informasi Akademik &amp; Portal PPDB Yayasan</li>
+            <li class="flex items-start gap-2"><span style="color:#0F1E3A; font-weight:900;">✓</span> Quiz Game Edukasi Interaktif</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== SERTIFIKAT ================== -->
+<section id="sertifikat" class="py-20 px-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex justify-center mb-4 reveal">
+      <span class="section-mark">🏆 Sertifikat</span>
+    </div>
+    <h2 class="font-outfit font-black text-center mb-2 reveal reveal-delay-1" style="font-size:clamp(1.8rem,3.5vw,2.6rem);">
+      Penghargaan &amp; <span class="neo-highlight">Sertifikasi</span>
+    </h2>
+    <p class="text-center font-semibold mb-12 reveal reveal-delay-2" style="color:#7A7060;">
+      Klik gambar untuk memperbesar
+    </p>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <!-- Ijazah -->
+      <div class="cert-card reveal reveal-delay-1" role="button" tabindex="0"
+           onclick="openLightbox('assets/cert/ijazah-d3-akuntansi.jpg','Ijazah D3 Akuntansi — A.Md.Ak.')"
+           onkeydown="if(event.key==='Enter')openLightbox('assets/cert/ijazah-d3-akuntansi.jpg','Ijazah D3 Akuntansi — A.Md.Ak.')"
+           aria-label="Lihat ijazah D3 Akuntansi">
+        <img src="assets/cert/ijazah-d3-akuntansi.jpg" alt="Ijazah D3 Akuntansi Riki Rivaldi" loading="lazy" />
+        <div class="p-4">
+          <span class="neo-tag neo-tag-lime mb-2">Ijazah</span>
+          <p class="font-outfit font-black text-sm mt-2">Ahli Madya Akuntansi (A.Md.Ak.)</p>
+          <p class="text-xs font-semibold mt-1" style="color:#7A7060;">Politeknik Negeri Samarinda · 17 Okt 2026</p>
+        </div>
+      </div>
+
+      <!-- LSP -->
+      <div class="cert-card reveal reveal-delay-2" role="button" tabindex="0"
+           onclick="openLightbox('assets/cert/sk-lsp-teknisi-akuntansi-madya.jpg','SK Lulus Uji Kompetensi — Teknisi Akuntansi Madya')"
+           onkeydown="if(event.key==='Enter')openLightbox('assets/cert/sk-lsp-teknisi-akuntansi-madya.jpg','SK Lulus Uji Kompetensi — Teknisi Akuntansi Madya')"
+           aria-label="Lihat surat keterangan uji kompetensi LSP">
+        <img class="portrait" src="assets/cert/sk-lsp-teknisi-akuntansi-madya.jpg" alt="Surat Keterangan Lulus Uji Kompetensi LSP POLNES" loading="lazy" />
+        <div class="p-4">
+          <span class="neo-tag neo-tag-yellow">Kompeten</span>
+          <p class="font-outfit font-black text-sm mt-2">Uji Kompetensi — Teknisi Akuntansi Madya</p>
+          <p class="text-xs font-semibold mt-1" style="color:#7A7060;">LSP Politeknik Negeri Samarinda · 12 Okt 2026</p>
+        </div>
+      </div>
+
+      <!-- HKI -->
+      <div class="cert-card reveal reveal-delay-3" role="button" tabindex="0"
+           onclick="openLightboxGroup([{src:'assets/cert/hki-surat-pencatatan-ciptaan.jpg',cap:'Surat Pencatatan Ciptaan — No. 001542654'},{src:'assets/cert/hki-lampiran-pencipta.jpg',cap:'Lampiran Pencipta'}],0)"
+           onkeydown="if(event.key==='Enter')this.click()"
+           aria-label="Lihat surat pencatatan ciptaan HKI">
+        <img class="portrait" src="assets/cert/hki-surat-pencatatan-ciptaan.jpg" alt="Surat Pencatatan Ciptaan HKI" loading="lazy" />
+        <div class="p-4">
+          <span class="neo-tag neo-tag-navy">HKI</span>
+          <p class="font-outfit font-black text-sm mt-2">Surat Pencatatan Ciptaan — Program Komputer</p>
+          <p class="text-xs font-semibold mt-1" style="color:#7A7060;">DJKI Kementerian Hukum RI · 14 Okt 2026</p>
+        </div>
+      </div>
+
+      <!-- TOEFL -->
+      <div class="cert-card reveal reveal-delay-1" role="button" tabindex="0"
+           onclick="openLightbox('assets/cert/toefl-prediction.jpg','TOEFL Prediction Test — Skor 410')"
+           onkeydown="if(event.key==='Enter')openLightbox('assets/cert/toefl-prediction.jpg','TOEFL Prediction Test — Skor 410')"
+           aria-label="Lihat sertifikat TOEFL Prediction">
+        <img src="assets/cert/toefl-prediction.jpg" alt="Sertifikat TOEFL Prediction Riki Rivaldi" loading="lazy" />
+        <div class="p-4">
+          <span class="neo-tag">Skor 410</span>
+          <p class="font-outfit font-black text-sm mt-2">TOEFL Prediction Test</p>
+          <p class="text-xs font-semibold mt-1" style="color:#7A7060;">UPA Bahasa POLNES · 8 Agu 2026</p>
+        </div>
+      </div>
+
+      <div class="cert-card reveal reveal-delay-2"
+           role="button" tabindex="0"
+           onclick="openLightbox('assets/cert/sertif-1.png','Sertifikat Sekolah Pasar Modal — IDX')"
+           onkeydown="if(event.key==='Enter')openLightbox('assets/cert/sertif-1.png','Sertifikat Sekolah Pasar Modal — IDX')"
+           aria-label="Lihat sertifikat Sekolah Pasar Modal">
+        <img src="assets/cert/sertif-1.png" alt="Sertifikat Sekolah Pasar Modal Riki Rivaldi" loading="lazy" />
+        <div class="p-4">
+          <span class="neo-tag">Pasar Modal</span>
+          <p class="font-outfit font-black text-sm mt-2">Sekolah Pasar Modal</p>
+          <p class="text-xs font-semibold mt-1" style="color:#7A7060;">Bursa Efek Indonesia (IDX) · 2023</p>
+        </div>
+      </div>
+
+      <div class="cert-card reveal reveal-delay-3"
+           role="button" tabindex="0"
+           onclick="openLightbox('assets/cert/sertif-2.png','Sertifikat Seminar')"
+           onkeydown="if(event.key==='Enter')openLightbox('assets/cert/sertif-2.png','Sertifikat Seminar')"
+           aria-label="Lihat sertifikat seminar">
+        <img src="assets/cert/sertif-2.png" alt="Sertifikat Seminar Riki Rivaldi" loading="lazy" />
+        <div class="p-4">
+          <span class="neo-tag">Seminar</span>
+          <p class="font-outfit font-black text-sm mt-2">Peserta Seminar — Accounting Days 2023</p>
+          <p class="text-xs font-semibold mt-1" style="color:#7A7060;">HMJ Akuntansi POLNES · 2023</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== KONTAK ================== -->
+<section id="kontak" class="py-20 px-4" style="background:#0F1E3A; border-top:3px solid #0D0D0D;">
+  <div class="max-w-4xl mx-auto">
+    <div class="flex justify-center mb-4 reveal">
+      <span class="section-mark" style="background:#D4FF4F; color:#0D0D0D; border:2px solid #0D0D0D;">✉️ Kontak</span>
+    </div>
+    <h2 class="font-outfit font-black text-center mb-4 reveal reveal-delay-1" style="font-size:clamp(1.8rem,3.5vw,2.6rem); color:#fff;">
+      Mari <span style="background:#D4FF4F; color:#0D0D0D; padding:0 8px; border-radius:8px; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D; display:inline-block; transform:rotate(-1deg);">Terhubung</span>
+    </h2>
+    <p class="text-center font-semibold mb-12 reveal reveal-delay-2" style="color:#A7B6D0; max-width:480px; margin:0 auto 48px;">
+      Apakah Anda seorang HRD, klien, atau kolaborator? Kirimkan pesan Anda.
+    </p>
+
+    <div class="grid md:grid-cols-5 gap-8">
+      <!-- Form -->
+      <div class="md:col-span-3 reveal reveal-delay-1">
+        <div class="p-7 rounded-2xl" style="background:#fff; border:3px solid #0D0D0D; box-shadow:8px 8px 0 #0D0D0D;">
+          <h3 class="font-outfit font-black text-xl mb-6">Kirim Pesan</h3>
+          <form id="contact-form" novalidate>
+            <div class="space-y-5">
+              <div class="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label class="neo-label" for="c-name">Nama Lengkap</label>
+                  <input class="neo-input" id="c-name" type="text" placeholder="Nama Anda" required autocomplete="name" />
+                </div>
+                <div>
+                  <label class="neo-label" for="c-email">Email</label>
+                  <input class="neo-input" id="c-email" type="email" placeholder="email@perusahaan.com" required autocomplete="email" />
+                </div>
+              </div>
+              <div>
+                <label class="neo-label" for="c-subject">Subjek</label>
+                <input class="neo-input" id="c-subject" type="text" placeholder="Peluang Kerja / Kolaborasi / Pertanyaan" required />
+              </div>
+              <div>
+                <label class="neo-label" for="c-message">Pesan</label>
+                <textarea class="neo-input" id="c-message" placeholder="Tuliskan pesan Anda di sini..." required rows="5"></textarea>
+              </div>
+              <button type="submit"
+                      class="w-full font-outfit font-black text-base py-4 rounded-xl btn-press"
+                      style="background:#0F1E3A; color:#D4FF4F; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;">
+                Kirim via Email →
+              </button>
+              <p id="form-msg" style="display:none; color:#0F1E3A; font-weight:700; font-size:0.85rem; text-align:center;">
+                ✓ Berhasil! Anda diarahkan ke aplikasi email.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Info kontak -->
+      <div class="md:col-span-2 space-y-4 reveal reveal-delay-2">
+        <h3 class="font-outfit font-black text-lg" style="color:#fff;">Informasi Kontak</h3>
+
+        <a href="mailto:rikyrivaldi369@gmail.com" class="social-item" aria-label="Email Riki Rivaldi">
+          <span style="font-size:1.4rem;">✉️</span>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider" style="color:#7A7060;">Email</p>
+            <p class="text-sm font-bold">rikyrivaldi369@gmail.com</p>
+          </div>
+        </a>
+
+        <a href="https://wa.me/6282259871192?text=Halo%20Riki%2C%20saya%20tertarik%20menghubungi%20Anda%20dari%20portofolio." target="_blank" rel="noopener noreferrer" class="social-item" aria-label="WhatsApp Riki Rivaldi">
+          <span style="font-size:1.4rem;">💬</span>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider" style="color:#7A7060;">WhatsApp</p>
+            <p class="text-sm font-bold">082259871192</p>
+          </div>
+        </a>
+
+        <a href="https://id.jobstreet.com/id/profiles/riki-rivaldi-zv476s4dd3" target="_blank" rel="noopener noreferrer" class="social-item" aria-label="Jobstreet Riki Rivaldi">
+          <span style="font-size:1.4rem;">💼</span>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider" style="color:#7A7060;">Jobstreet</p>
+            <p class="text-sm font-bold">Lihat Profil Lengkap</p>
+          </div>
+        </a>
+
+        <div class="p-5 rounded-xl" style="background:rgba(212,255,79,0.1); border:2px solid #D4FF4F; box-shadow:3px 3px 0 #D4FF4F;">
+          <p class="font-outfit font-black text-sm mb-1" style="color:#D4FF4F;">🟢 Terbuka untuk Peluang</p>
+          <p class="text-xs font-semibold" style="color:#A7B6D0;">
+            Sedang mencari posisi <strong style="color:#D4FF4F;">Staf Akuntansi / Keuangan</strong>, Accounting &amp; Financial System Specialist, atau System Developer. Fresh graduate A.Md.Ak. siap bekerja!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== FOOTER ================== -->
+<footer style="background:#0D0D0D; border-top:3px solid #0D0D0D; padding:24px 0;">
+  <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg flex items-center justify-center font-outfit font-black text-sm"
+           style="background:#D4FF4F; border:2px solid rgba(255,255,255,0.2);">R!</div>
+      <span class="font-outfit font-black" style="color:#fff;">RIKI<span style="color:#D4FF4F;">.DEV</span></span>
+    </div>
+    <p class="text-xs font-semibold" style="color:#4A4A4A;">
+      © 2026 Riki Rivaldi, A.Md.Ak. · D3 Akuntansi POLNES · Samarinda, Kalimantan Timur
+    </p>
+  </div>
+</footer>
+
+<!-- ================== LIGHTBOX ================== -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Tampilan penuh gambar" onclick="closeLightbox(event)">
+  <button id="lightbox-close" onclick="closeLightbox()" aria-label="Tutup">✕</button>
+  <button id="lb-prev" class="lb-nav" onclick="lbStep(-1)" aria-label="Foto sebelumnya">‹</button>
+  <img id="lightbox-img" src="" alt="" />
+  <button id="lb-next" class="lb-nav" onclick="lbStep(1)" aria-label="Foto berikutnya">›</button>
+  <p id="lb-caption"></p>
+</div>
+
+<!-- ================== BACK TO TOP ================== -->
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Kembali ke atas">↑</button>
+
+<!-- ================== SCRIPTS ================== -->
+<style>
+  @keyframes pulse-dot {
+    0%, 100% { opacity:1; transform:scale(1); }
+    50% { opacity:0.5; transform:scale(0.75); }
+  }
+</style>
+
+<script>
+  // ── SCROLL REVEAL ──────────────────────────────
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // ── SKILL BARS ─────────────────────────────────
+  const skillObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.transform = `scaleX(${bar.dataset.width})`;
+        });
+        skillObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.skill-bar-bg').forEach(bg => {
+    if (bg.querySelector('.skill-bar-fill')) skillObs.observe(bg.closest('div'));
+  });
+  // Observe skill sections
+  document.querySelectorAll('[class*="space-y-4"]').forEach(sec => skillObs.observe(sec));
+
+  // ── SCROLL PROGRESS + BACK TO TOP ──────────────
+  const prog = document.getElementById('scroll-progress');
+  const btt  = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+    prog.style.width = pct + '%';
+    btt.classList.toggle('visible', window.scrollY > 500);
+  }, { passive: true });
+
+  // ── HAMBURGER MENU ─────────────────────────────
+  const ham = document.getElementById('hamburger');
+  const mob = document.getElementById('mobile-menu');
+  const cls = document.getElementById('close-menu');
+
+  function openMenu() { mob.classList.add('open'); ham.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+  function closeMenu() { mob.classList.remove('open'); ham.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+
+  ham.addEventListener('click', openMenu);
+  cls.addEventListener('click', closeMenu);
+  document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key==='Escape') closeMenu(); });
+
+  // ── LIGHTBOX (tunggal + galeri) ────────────────
+  let lbItems = [], lbIndex = 0;
+  function lbRender() {
+    const it = lbItems[lbIndex];
+    const img = document.getElementById('lightbox-img');
+    img.src = it.src;
+    img.alt = it.cap || '';
+    const multi = lbItems.length > 1;
+    document.getElementById('lb-caption').textContent =
+      (it.cap || '') + (multi ? `  (${lbIndex + 1}/${lbItems.length})` : '');
+    document.getElementById('lightbox').classList.toggle('has-gallery', multi);
+  }
+  function openLightboxGroup(items, start) {
+    lbItems = items; lbIndex = start || 0;
+    lbRender();
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('lightbox-close').focus();
+  }
+  function openLightbox(src, alt) { openLightboxGroup([{ src, cap: alt }], 0); }
+  function lbStep(d) {
+    if (lbItems.length < 2) return;
+    lbIndex = (lbIndex + d + lbItems.length) % lbItems.length;
+    lbRender();
+  }
+  function closeLightbox(e) {
+    if (!e || e.target === document.getElementById('lightbox') || e.target === document.getElementById('lightbox-close')) {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox({ target: document.getElementById('lightbox') });
+    if (e.key === 'ArrowLeft') lbStep(-1);
+    if (e.key === 'ArrowRight') lbStep(1);
+  });
+
+  // ── GALERI FOTO DOKUMENTASI ────────────────────
+  // Taruh foto di folder data-folder dengan nama foto-1.jpg, foto-2.jpg, dst.
+  // SHOW_EMPTY_SLOTS = false → slot kosong disembunyikan (gunakan setelah semua foto lengkap).
+  const SHOW_EMPTY_SLOTS = true;
+  const IMG_EXTS = ['jpg', 'jpeg', 'png', 'webp'];
+
+  function loadFirst(base, cb) {
+    let i = 0;
+    const tryNext = () => {
+      if (i >= IMG_EXTS.length) return cb(null);
+      const src = `${base}.${IMG_EXTS[i++]}`;
+      const im = new Image();
+      im.onload = () => cb(src);
+      im.onerror = tryNext;
+      im.src = src;
+    };
+    tryNext();
+  }
+
+  document.querySelectorAll('.doc-gallery').forEach(gal => {
+    const folder = gal.dataset.folder;
+    const count = parseInt(gal.dataset.count || '3', 10);
+    const title = gal.dataset.title || 'Dokumentasi';
+    const caps = (gal.dataset.captions || '').split('|');
+    const found = [];
+    let pending = count;
+
+    for (let n = 1; n <= count; n++) {
+      const slot = document.createElement('div');
+      slot.className = 'doc-slot empty';
+      slot.innerHTML = `<span class="doc-ico">📷</span><span class="doc-txt">Foto ${n}</span><span class="doc-file">foto-${n}.jpg</span>`;
+      slot.title = `Tambahkan: ${folder}/foto-${n}.jpg`;
+      gal.appendChild(slot);
+
+      loadFirst(`${folder}/foto-${n}`, src => {
+        if (src) {
+          const cap = caps[n - 1] ? caps[n - 1].trim() : `${title} — Foto ${n}`;
+          slot.className = 'doc-slot filled';
+          slot.setAttribute('role', 'button');
+          slot.setAttribute('tabindex', '0');
+          slot.title = cap;
+          slot.innerHTML = `<img src="${src}" alt="${cap}" loading="lazy">`;
+          found.push({ n, src, cap, slot });
+        } else if (!SHOW_EMPTY_SLOTS) {
+          slot.style.display = 'none';
+        }
+        if (--pending === 0) {
+          found.sort((a, b) => a.n - b.n);
+          const items = found.map(f => ({ src: f.src, cap: f.cap }));
+          found.forEach((f, idx) => {
+            const open = () => openLightboxGroup(items, idx);
+            f.slot.addEventListener('click', open);
+            f.slot.addEventListener('keydown', e => { if (e.key === 'Enter') open(); });
+          });
+          const head = gal.parentElement.querySelector('.doc-gallery-head');
+          if (head) {
+            const badge = document.createElement('span');
+            badge.className = 'doc-count';
+            badge.textContent = `${found.length}/${count} foto`;
+            head.appendChild(badge);
+          }
+          if (!SHOW_EMPTY_SLOTS && found.length === 0) gal.parentElement.style.display = 'none';
+        }
+      });
+    }
+  });
+
+  // Cover / thumbnail proyek: assets/dokumentasi/<folder>/cover.jpg
+  document.querySelectorAll('[data-cover]').forEach(area => {
+    loadFirst(`${area.dataset.cover}/cover`, src => {
+      if (!src) return;
+      const img = document.createElement('img');
+      img.className = 'cover-img';
+      img.src = src;
+      img.alt = 'Cover proyek';
+      area.insertBefore(img, area.firstChild);
+    });
+  });
+
+  // ── CONTACT FORM ───────────────────────────────
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name    = document.getElementById('c-name').value.trim();
+    const email   = document.getElementById('c-email').value.trim();
+    const subject = document.getElementById('c-subject').value.trim();
+    const message = document.getElementById('c-message').value.trim();
+    if (!name || !email || !subject || !message) { alert('Mohon lengkapi semua field.'); return; }
+    const body = `Halo Riki,\n\nSaya ${name} (${email}).\n\n${message}\n\n— Dikirim dari Portofolio Website`;
+    window.location.href = `mailto:rikyrivaldi369@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const msg = document.getElementById('form-msg');
+    msg.style.display = 'block';
+    setTimeout(() => { msg.style.display = 'none'; }, 5000);
+  });
+
+  // ── ACTIVE NAV HIGHLIGHT ───────────────────────
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('header nav a');
+  const sectionObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(a => {
+          a.style.color = a.getAttribute('href') === `#${id}` ? '#0F1E3A' : '';
+          a.style.fontWeight = a.getAttribute('href') === `#${id}` ? '900' : '';
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => sectionObs.observe(s));
+</script>
+</body>
+</html>
