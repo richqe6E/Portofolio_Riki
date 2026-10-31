@@ -18,7 +18,7 @@ proyek-hki-polnes-loa-lepu      | Proyek HKI - Aplikasi PO-lne-S Mikro Loa Lepu|
 proyek-sia-vba-sosis-azizah     | Proyek - SIA Excel VBA (Tugas Akhir)         | 3
 proyek-pos-android              | Proyek - Aplikasi POS Android                | 3
 proyek-sia-yayasan-pkm          | Proyek - SI Akademik Yayasan (PKM-PM)        | 3
-proyek-quiz-game                | Proyek - Quiz Game Edukasi                   | 3
+proyek-sistem-informasi-logistik | Proyek - Sistem Informasi Logistik          | 3
 
 Menambah jumlah slot / keterangan foto:
   Di index.html, cari data-folder="assets/dokumentasi/<folder>" lalu ubah
