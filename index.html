@@ -1021,7 +1021,7 @@
               <p class="font-outfit font-black text-sm" style="color:#D4FF4F;">Hak Cipta Terdaftar</p>
               <p class="text-xs font-bold mt-1" style="color:#A7B6D0;">No. Pencatatan 001542654</p>
             </div>
-            <div class="absolute top-3 left-3">
+            <div class="absolute top-3 left-3 z-10">
               <span class="neo-tag neo-tag-lime">HKI · DJKI</span>
             </div>
           </div>
@@ -1682,10 +1682,14 @@
   document.querySelectorAll('[data-cover]').forEach(area => {
     loadFirst(`${area.dataset.cover}/cover`, src => {
       if (!src) return;
+      const placeholder = area.querySelector('.text-center');
+      if (placeholder) placeholder.style.display = 'none';
       const img = document.createElement('img');
-      img.className = 'cover-img';
+      img.className = 'cover-img cursor-pointer';
       img.src = src;
       img.alt = 'Cover proyek';
+      img.title = 'Klik untuk memperbesar gambar sampul';
+      img.onclick = () => openLightbox(src, 'Mockup Antarmuka Aplikasi PO-lne-S Mikro Loa Lepu (Layar Kasir & Dashboard)');
       area.insertBefore(img, area.firstChild);
     });
   });
