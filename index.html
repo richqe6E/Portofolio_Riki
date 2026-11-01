@@ -546,7 +546,44 @@
 
     /* Cert card untuk dokumen portrait */
     .cert-card img.portrait { object-position: top center; }
+
+    /* ====================================================
+       LANGUAGE SWITCHER NEUBRUTALIST
+       ==================================================== */
+    .lang-switch {
+      display: inline-flex;
+      background: #F5F0E8;
+      border: 2px solid #0D0D0D;
+      border-radius: 12px;
+      padding: 2px;
+      box-shadow: 3px 3px 0 0 #0D0D0D;
+    }
+    .lang-btn {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      padding: 4px 9px;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      color: #7A7060;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      line-height: 1.2;
+    }
+    .lang-btn:hover {
+      color: #0D0D0D;
+    }
+    .lang-btn.active {
+      background: #D4FF4F;
+      color: #0F1E3A;
+      border-color: #0D0D0D;
+      box-shadow: 2px 2px 0 0 #0D0D0D;
+    }
   </style>
+  <!-- i18n Bilingual Engine -->
+  <script src="assets/js/i18n.js"></script>
 </head>
 <body>
 
@@ -567,19 +604,26 @@
 
     <!-- Desktop Links -->
     <nav class="hidden md:flex items-center gap-7 font-outfit font-extrabold text-sm" style="color:#0D0D0D;">
-      <a href="#tentang" class="hover:text-neo-navyMid transition-colors" style="--hover:#1E2F4F;">Tentang</a>
-      <a href="#keahlian" class="hover:text-neo-navyMid transition-colors">Keahlian</a>
-      <a href="#proyek" class="hover:text-neo-navyMid transition-colors">Proyek</a>
-      <a href="#pengalaman" class="hover:text-neo-navyMid transition-colors">Pengalaman</a>
-      <a href="#sertifikat" class="hover:text-neo-navyMid transition-colors">Sertifikat</a>
-      <a href="#kontak" class="hover:text-neo-navyMid transition-colors">Kontak</a>
+      <a href="#tentang" class="hover:text-neo-navyMid transition-colors" style="--hover:#1E2F4F;" data-i18n="navAbout">Tentang</a>
+      <a href="#keahlian" class="hover:text-neo-navyMid transition-colors" data-i18n="navSkills">Keahlian</a>
+      <a href="#proyek" class="hover:text-neo-navyMid transition-colors" data-i18n="navProjects">Proyek</a>
+      <a href="#pengalaman" class="hover:text-neo-navyMid transition-colors" data-i18n="navExperience">Pengalaman</a>
+      <a href="#sertifikat" class="hover:text-neo-navyMid transition-colors" data-i18n="navCertificates">Sertifikat</a>
+      <a href="#kontak" class="hover:text-neo-navyMid transition-colors" data-i18n="navContact">Kontak</a>
     </nav>
 
     <div class="flex items-center gap-3">
+      <!-- Language Switcher Desktop -->
+      <div class="lang-switch" role="group" aria-label="Pilih Bahasa / Choose Language">
+        <button type="button" class="lang-btn active" data-lang="id" aria-pressed="true" title="Bahasa Indonesia">ID</button>
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" title="English">EN</button>
+      </div>
+
       <!-- CTA Desktop -->
       <a href="#kontak"
          class="hidden md:inline-flex items-center gap-2 font-outfit font-black text-sm px-5 py-2.5 rounded-xl btn-press"
-         style="background:#0F1E3A; color:#D4FF4F; border:2px solid #0D0D0D; box-shadow:4px 4px 0 #0D0D0D;">
+         style="background:#0F1E3A; color:#D4FF4F; border:2px solid #0D0D0D; box-shadow:4px 4px 0 #0D0D0D;"
+         data-i18n="navCta">
         Hubungi Saya →
       </a>
       <!-- Hamburger -->
@@ -598,26 +642,34 @@
 <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu navigasi">
   <div class="flex items-center justify-between mb-6">
     <span class="font-outfit font-black text-xl">RIKI RIVALDI</span>
-    <button id="close-menu" class="btn-press p-2 rounded-lg"
-            style="background:#D4FF4F; border:2px solid #0D0D0D; box-shadow:2px 2px 0 #0D0D0D;"
-            aria-label="Tutup menu">
-      <svg width="20" height="20" fill="none" stroke="#0D0D0D" stroke-width="2.5" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-      </svg>
-    </button>
+    <div class="flex items-center gap-2">
+      <!-- Language Switcher Mobile -->
+      <div class="lang-switch" role="group" aria-label="Pilih Bahasa / Choose Language">
+        <button type="button" class="lang-btn active" data-lang="id" aria-pressed="true">ID</button>
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button id="close-menu" class="btn-press p-2 rounded-lg"
+              style="background:#D4FF4F; border:2px solid #0D0D0D; box-shadow:2px 2px 0 #0D0D0D;"
+              aria-label="Tutup menu">
+        <svg width="20" height="20" fill="none" stroke="#0D0D0D" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
   </div>
-  <a href="#tentang" class="mobile-nav-link">Tentang</a>
-  <a href="#keahlian" class="mobile-nav-link">Keahlian</a>
-  <a href="#proyek" class="mobile-nav-link">Proyek</a>
-  <a href="#pengalaman" class="mobile-nav-link">Pengalaman</a>
-  <a href="#sertifikat" class="mobile-nav-link">Sertifikat</a>
-  <a href="#kontak" class="mobile-nav-link">Kontak</a>
+  <a href="#tentang" class="mobile-nav-link" data-i18n="navAbout">Tentang</a>
+  <a href="#keahlian" class="mobile-nav-link" data-i18n="navSkills">Keahlian</a>
+  <a href="#proyek" class="mobile-nav-link" data-i18n="navProjects">Proyek</a>
+  <a href="#pengalaman" class="mobile-nav-link" data-i18n="navExperience">Pengalaman</a>
+  <a href="#sertifikat" class="mobile-nav-link" data-i18n="navCertificates">Sertifikat</a>
+  <a href="#kontak" class="mobile-nav-link" data-i18n="navContact">Kontak</a>
   <a href="mailto:rikyrivaldi369@gmail.com" class="mobile-nav-link" style="border-bottom:none;">
     rikyrivaldi369@gmail.com
   </a>
   <div class="mt-auto pt-6">
     <a href="#kontak" class="block text-center font-outfit font-black text-base py-4 rounded-xl btn-press"
-       style="background:#0F1E3A; color:#D4FF4F; border:3px solid #0D0D0D; box-shadow:5px 5px 0 #0D0D0D;">
+       style="background:#0F1E3A; color:#D4FF4F; border:3px solid #0D0D0D; box-shadow:5px 5px 0 #0D0D0D;"
+       data-i18n="mobileCta">
       Hubungi Saya
     </a>
   </div>
@@ -649,22 +701,22 @@
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-outfit font-black text-xs uppercase tracking-wider"
            style="background:#A7B6D0; border:2px solid #0D0D0D; box-shadow:2px 2px 0 #0D0D0D;">
         <span style="width:8px;height:8px;border-radius:50%;background:#D4FF4F;border:1px solid #0D0D0D;animation:pulse-dot 2s infinite;" aria-hidden="true"></span>
-        Terbuka untuk Peluang Karier &amp; Freelance
+        <span data-i18n="heroBadge">Terbuka untuk Peluang Karier &amp; Freelance</span>
       </div>
 
       <!-- Headline -->
       <div>
         <h1 class="font-outfit font-black tracking-tight leading-[1.05]" style="font-size:clamp(2.8rem,6vw,4.5rem); color:#0D0D0D;">
-          Halo, Saya<br>
+          <span data-i18n="heroGreeting">Halo, Saya</span><br>
           <span class="neo-highlight" style="font-size:clamp(2.8rem,6vw,4.5rem);">Riki Rivaldi</span>
         </h1>
-        <p class="font-outfit font-bold mt-3" style="font-size:clamp(1.1rem,2.5vw,1.5rem); color:#0F1E3A;">
+        <p class="font-outfit font-bold mt-3" style="font-size:clamp(1.1rem,2.5vw,1.5rem); color:#0F1E3A;" data-i18n="heroRole">
           Accounting &amp; Financial System Specialist
         </p>
       </div>
 
       <!-- Body copy -->
-      <p class="text-base md:text-lg font-semibold leading-relaxed max-w-xl" style="color:#4A4A4A;">
+      <p class="text-base md:text-lg font-semibold leading-relaxed max-w-xl" style="color:#4A4A4A;" data-i18n="heroBio">
         <strong style="color:#0F1E3A;">Ahli Madya Akuntansi (A.Md.Ak.)</strong> lulusan <strong style="color:#0F1E3A;">Politeknik Negeri Samarinda</strong> yang mengubah proses akuntansi manual menjadi sistem terotomatisasi dengan pengembangan Sistem Informasi Akuntansi.
       </p>
 
@@ -673,14 +725,15 @@
         <a href="#kontak"
            class="inline-flex items-center gap-2 font-outfit font-black text-base px-8 py-4 rounded-xl btn-press"
            style="background:#0F1E3A; color:#D4FF4F; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;">
-          Hubungi Saya
+          <span data-i18n="heroContactBtn">Hubungi Saya</span>
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
           </svg>
         </a>
         <a href="https://id.jobstreet.com/id/profiles/riki-rivaldi-zv476s4dd3" target="_blank" rel="noopener noreferrer"
            class="inline-flex items-center gap-2 font-outfit font-black text-base px-8 py-4 rounded-xl btn-press"
-           style="background:#fff; color:#0D0D0D; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;">
+           style="background:#fff; color:#0D0D0D; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;"
+           data-i18n="heroJobstreetBtn">
           Jobstreet Profile
         </a>
       </div>
@@ -689,12 +742,12 @@
       <div class="flex flex-wrap items-center gap-6 pt-4" style="border-top: 2px dashed rgba(13,13,13,0.25);">
         <div>
           <span class="font-outfit font-black text-3xl" style="color:#0F1E3A;">3.59</span>
-          <p class="font-sans text-xs font-bold uppercase tracking-wider" style="color:#7A7060;">IPK</p>
+          <p class="font-sans text-xs font-bold uppercase tracking-wider" style="color:#7A7060;" data-i18n="heroStatGpaLabel">IPK</p>
         </div>
         <div style="border-left:2px solid #0D0D0D; height:32px;"></div>
         <div>
           <span class="font-outfit font-black text-3xl" style="color:#0F1E3A;">5+</span>
-          <p class="font-sans text-xs font-bold uppercase tracking-wider" style="color:#7A7060;">Proyek Selesai</p>
+          <p class="font-sans text-xs font-bold uppercase tracking-wider" style="color:#7A7060;" data-i18n="heroStatProjectsLabel">Proyek Selesai</p>
         </div>
       </div>
     </div>
@@ -719,7 +772,8 @@
         <!-- Name tag overlay -->
         <div class="absolute bottom-4 left-4 right-4">
           <div class="inline-flex items-center gap-2 px-3 py-2 rounded-xl font-outfit font-black text-sm"
-               style="background:#0F1E3A; color:#D4FF4F; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D;">
+               style="background:#0F1E3A; color:#D4FF4F; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D;"
+               data-i18n="heroLocation">
             📍 Samarinda, Kalimantan Timur
           </div>
         </div>
@@ -734,17 +788,17 @@
   <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-around gap-6 text-center">
     <div>
       <span class="font-outfit font-black text-3xl" style="color:#D4FF4F;">A.Md.Ak.</span>
-      <p class="font-sans text-xs font-bold uppercase tracking-wide" style="color:#A7B6D0;">Ahli Madya Akuntansi · D3</p>
+      <p class="font-sans text-xs font-bold uppercase tracking-wide" style="color:#A7B6D0;" data-i18n="bannerDegreeDesc">Ahli Madya Akuntansi · D3</p>
     </div>
     <div style="border-left:3px solid rgba(167,182,208,0.3); height:36px;" class="hidden md:block"></div>
     <div>
       <span class="font-outfit font-black text-3xl" style="color:#D4FF4F;">POLNES</span>
-      <p class="font-sans text-xs font-bold uppercase tracking-wide" style="color:#A7B6D0;">Politeknik Negeri Samarinda · 2023-2026</p>
+      <p class="font-sans text-xs font-bold uppercase tracking-wide" style="color:#A7B6D0;" data-i18n="bannerPolnesDesc">Politeknik Negeri Samarinda · 2023-2026</p>
     </div>
     <div style="border-left:3px solid rgba(167,182,208,0.3); height:36px;" class="hidden md:block"></div>
     <div>
       <span class="font-outfit font-black text-3xl" style="color:#D4FF4F;">Fresh Grad</span>
-      <p class="font-sans text-xs font-bold uppercase tracking-wide" style="color:#A7B6D0;">Siap Bekerja · 2026</p>
+      <p class="font-sans text-xs font-bold uppercase tracking-wide" style="color:#A7B6D0;" data-i18n="bannerStatusDesc">Siap Bekerja · 2026</p>
     </div>
   </div>
 </div>
@@ -753,25 +807,25 @@
 <section id="tentang" class="py-20 px-4">
   <div class="max-w-5xl mx-auto">
     <div class="flex justify-center mb-10 reveal">
-      <span class="section-mark">★ Tentang Saya</span>
+      <span class="section-mark" data-i18n="aboutSectionMark">★ Tentang Saya</span>
     </div>
 
     <div class="grid md:grid-cols-2 gap-10 items-start">
       <div class="reveal reveal-delay-1">
-        <h2 class="font-outfit font-black mb-5" style="font-size:clamp(1.8rem,3.5vw,2.8rem); line-height:1.1; color:#0D0D0D;">
+        <h2 class="font-outfit font-black mb-5" style="font-size:clamp(1.8rem,3.5vw,2.8rem); line-height:1.1; color:#0D0D0D;" data-i18n="aboutHeading">
           Menjembatani <span class="neo-highlight-navy">Keuangan</span> &amp; <span class="neo-highlight">Teknologi</span>
         </h2>
-        <p class="text-base font-semibold leading-relaxed mb-4" style="color:#4A4A4A;">
+        <p class="text-base font-semibold leading-relaxed mb-4" style="color:#4A4A4A;" data-i18n="aboutP1">
           Lulusan D3 Akuntansi <strong style="color:#0F1E3A;">Politeknik Negeri Samarinda (POLNES)</strong> bergelar Ahli Madya Akuntansi (A.Md.Ak.), dengan spesialisasi pada pengelolaan siklus akuntansi, pengendalian internal persediaan, serta penyusunan laporan keuangan berbasis SAK EMKM.
         </p>
-        <p class="text-base font-semibold leading-relaxed mb-6" style="color:#4A4A4A;">
+        <p class="text-base font-semibold leading-relaxed mb-6" style="color:#4A4A4A;" data-i18n="aboutP2">
           Unggul dalam merancang Sistem Informasi Akuntansi (SIA) berbasis Excel Macro VBA, mengembangkan aplikasi kasir (Point of Sale), serta memanfaatkan teknologi &amp; AI untuk mengotomatisasi pengolahan data keuangan.
         </p>
 
         <!-- Tujuan karier box -->
         <div class="p-5 rounded-2xl" style="background:#fff; border:3px solid #0D0D0D; box-shadow:5px 5px 0 #0D0D0D;">
-          <p class="font-outfit font-black text-xs uppercase tracking-wider mb-2" style="color:#0F1E3A;">🎯 Tujuan Karier</p>
-          <p class="text-sm font-semibold leading-relaxed" style="color:#4A4A4A;">
+          <p class="font-outfit font-black text-xs uppercase tracking-wider mb-2" style="color:#0F1E3A;" data-i18n="aboutCareerGoalTitle">🎯 Tujuan Karier</p>
+          <p class="text-sm font-semibold leading-relaxed" style="color:#4A4A4A;" data-i18n="aboutCareerGoalDesc">
             Mengembangkan karier sebagai <strong style="color:#0F1E3A;">Accounting &amp; Financial System Specialist</strong> atau Staf Akuntansi/Keuangan yang menjembatani tata kelola keuangan dan transformasi digital.
           </p>
         </div>
@@ -782,24 +836,24 @@
         <div class="grid grid-cols-2 gap-4">
           <div class="stat-box">
             <div class="stat-number">3.59</div>
-            <p class="font-outfit font-bold text-xs uppercase tracking-wide mt-1" style="color:#7A7060;">IPK</p>
+            <p class="font-outfit font-bold text-xs uppercase tracking-wide mt-1" style="color:#7A7060;" data-i18n="aboutGpaLabel">IPK</p>
           </div>
           <div class="stat-box">
             <div class="stat-number">5+</div>
-            <p class="font-outfit font-bold text-xs uppercase tracking-wide mt-1" style="color:#7A7060;">Proyek</p>
+            <p class="font-outfit font-bold text-xs uppercase tracking-wide mt-1" style="color:#7A7060;" data-i18n="aboutProjectsLabel">Proyek</p>
           </div>
         </div>
 
         <!-- Bidang minat -->
         <div class="p-5 rounded-2xl" style="background:#fff; border:3px solid #0D0D0D; box-shadow:5px 5px 0 #0D0D0D;">
-          <p class="font-outfit font-black text-xs uppercase tracking-wider mb-3" style="color:#0F1E3A;">Bidang Minat</p>
+          <p class="font-outfit font-black text-xs uppercase tracking-wider mb-3" style="color:#0F1E3A;" data-i18n="aboutInterestsTitle">Bidang Minat</p>
           <div class="flex flex-wrap gap-2">
             <span class="neo-tag">Accounting Information Systems</span>
             <span class="neo-tag">Financial Reporting</span>
             <span class="neo-tag">Business Process Automation</span>
             <span class="neo-tag">Finance &amp; Accounting Automation Specialist</span>
             <span class="neo-tag">Consultant Software Akuntansi (ERP/SaaS Implementor)</span>
-            <span class="neo-tag">Staf Akuntansi</span>
+            <span class="neo-tag" data-i18n="aboutTagAccountingStaff">Staf Akuntansi</span>
           </div>
         </div>
       </div>
@@ -811,9 +865,9 @@
 <section id="keahlian" class="py-20 px-4" style="background:#fff; border-top:3px solid #0D0D0D; border-bottom:3px solid #0D0D0D;">
   <div class="max-w-5xl mx-auto">
     <div class="flex justify-center mb-4 reveal">
-      <span class="section-mark">⚡ Keahlian</span>
+      <span class="section-mark" data-i18n="skillsSectionMark">⚡ Keahlian</span>
     </div>
-    <h2 class="font-outfit font-black text-center mb-12 reveal reveal-delay-1" style="font-size:clamp(1.8rem,3.5vw,2.6rem);">
+    <h2 class="font-outfit font-black text-center mb-12 reveal reveal-delay-1" style="font-size:clamp(1.8rem,3.5vw,2.6rem);" data-i18n="skillsHeading">
       Skills &amp; <span class="neo-highlight">Kompetensi</span>
     </h2>
 
@@ -829,35 +883,35 @@
         <div class="space-y-4">
           <div>
             <div class="flex justify-between mb-1.5">
-              <span class="text-xs font-bold" style="color:#4A4A4A;">Laporan Keuangan (SAK EMKM)</span>
+              <span class="text-xs font-bold" style="color:#4A4A4A;" data-i18n="skillAcc1">Laporan Keuangan (SAK EMKM)</span>
               <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">90%</span>
             </div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.90"></div></div>
           </div>
           <div>
             <div class="flex justify-between mb-1.5">
-              <span class="text-xs font-bold" style="color:#4A4A4A;">Siklus Akuntansi Terapan</span>
+              <span class="text-xs font-bold" style="color:#4A4A4A;" data-i18n="skillAcc2">Siklus Akuntansi Terapan</span>
               <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">85%</span>
             </div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.85"></div></div>
           </div>
           <div>
             <div class="flex justify-between mb-1.5">
-              <span class="text-xs font-bold" style="color:#4A4A4A;">Pengendalian Internal Persediaan (FIFO)</span>
+              <span class="text-xs font-bold" style="color:#4A4A4A;" data-i18n="skillAcc3">Pengendalian Internal Persediaan (FIFO)</span>
               <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">88%</span>
             </div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.88"></div></div>
           </div>
           <div>
             <div class="flex justify-between mb-1.5">
-              <span class="text-xs font-bold" style="color:#4A4A4A;">Rekonsiliasi &amp; Verifikasi Transaksi</span>
+              <span class="text-xs font-bold" style="color:#4A4A4A;" data-i18n="skillAcc4">Rekonsiliasi &amp; Verifikasi Transaksi</span>
               <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">85%</span>
             </div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.85"></div></div>
           </div>
           <div>
             <div class="flex justify-between mb-1.5">
-              <span class="text-xs font-bold" style="color:#4A4A4A;">Administrasi Kas &amp; Piutang</span>
+              <span class="text-xs font-bold" style="color:#4A4A4A;" data-i18n="skillAcc5">Administrasi Kas &amp; Piutang</span>
               <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">82%</span>
             </div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.82"></div></div>
@@ -875,28 +929,28 @@
         <div class="space-y-4">
           <div>
             <div class="flex justify-between mb-1.5">
-              <span class="text-xs font-bold" style="color:#4A4A4A;">Microsoft Excel Advanced (Formula &amp; PivotTable)</span>
+              <span class="text-xs font-bold" style="color:#4A4A4A;" data-i18n="skillExcel1">Microsoft Excel Advanced (Formula &amp; PivotTable)</span>
               <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">92%</span>
             </div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.92"></div></div>
           </div>
           <div>
             <div class="flex justify-between mb-1.5">
-              <span class="text-xs font-bold" style="color:#4A4A4A;">Macro VBA &amp; UserForms</span>
+              <span class="text-xs font-bold" style="color:#4A4A4A;" data-i18n="skillExcel2">Macro VBA &amp; UserForms</span>
               <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">85%</span>
             </div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.85"></div></div>
           </div>
           <div>
             <div class="flex justify-between mb-1.5">
-              <span class="text-xs font-bold" style="color:#4A4A4A;">Dashboarding Dinamis</span>
+              <span class="text-xs font-bold" style="color:#4A4A4A;" data-i18n="skillExcel3">Dashboarding Dinamis</span>
               <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">88%</span>
             </div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.88"></div></div>
           </div>
           <div>
             <div class="flex justify-between mb-1.5">
-              <span class="text-xs font-bold" style="color:#4A4A4A;">Google Apps Script (GAS)</span>
+              <span class="text-xs font-bold" style="color:#4A4A4A;" data-i18n="skillExcel4">Google Apps Script (GAS)</span>
               <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">78%</span>
             </div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.78"></div></div>
@@ -914,28 +968,28 @@
         <div class="space-y-4">
           <div>
             <div class="flex justify-between mb-1.5">
-              <span class="text-xs font-bold" style="color:#4A4A4A;">JavaScript (ES6+)</span>
+              <span class="text-xs font-bold" style="color:#4A4A4A;" data-i18n="skillWeb1">JavaScript (ES6+)</span>
               <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">80%</span>
             </div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.80"></div></div>
           </div>
           <div>
             <div class="flex justify-between mb-1.5">
-              <span class="text-xs font-bold" style="color:#4A4A4A;">HTML5 &amp; Tailwind CSS</span>
+              <span class="text-xs font-bold" style="color:#4A4A4A;" data-i18n="skillWeb2">HTML5 &amp; Tailwind CSS</span>
               <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">88%</span>
             </div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.88"></div></div>
           </div>
           <div>
             <div class="flex justify-between mb-1.5">
-              <span class="text-xs font-bold" style="color:#4A4A4A;">Supabase / REST API</span>
+              <span class="text-xs font-bold" style="color:#4A4A4A;" data-i18n="skillWeb3">Supabase / REST API</span>
               <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">72%</span>
             </div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.72"></div></div>
           </div>
           <div>
             <div class="flex justify-between mb-1.5">
-              <span class="text-xs font-bold" style="color:#4A4A4A;">Git / CLI / Vercel</span>
+              <span class="text-xs font-bold" style="color:#4A4A4A;" data-i18n="skillWeb4">Git / CLI / Vercel</span>
               <span class="font-outfit font-black text-xs" style="color:#0F1E3A;">75%</span>
             </div>
             <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.75"></div></div>
@@ -974,13 +1028,13 @@
           <h3 class="font-outfit font-black text-base" style="color:#fff;">Soft Skills</h3>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="neo-tag neo-tag-lime">Analytical Problem Solving</span>
-          <span class="neo-tag neo-tag-lime">Logika &amp; Perancangan Sistem</span>
-          <span class="neo-tag neo-tag-lime">Data-Driven Decision Making</span>
-          <span class="neo-tag neo-tag-lime">Ketelitian &amp; Akurasi Tinggi</span>
-          <span class="neo-tag neo-tag-lime">Public Speaking</span>
-          <span class="neo-tag neo-tag-lime">Manajemen Waktu</span>
-          <span class="neo-tag neo-tag-lime">Kerja Tim</span>
+          <span class="neo-tag neo-tag-lime" data-i18n="softSkill1">Analytical Problem Solving</span>
+          <span class="neo-tag neo-tag-lime" data-i18n="softSkill2">Logika &amp; Perancangan Sistem</span>
+          <span class="neo-tag neo-tag-lime" data-i18n="softSkill3">Data-Driven Decision Making</span>
+          <span class="neo-tag neo-tag-lime" data-i18n="softSkill4">Ketelitian &amp; Akurasi Tinggi</span>
+          <span class="neo-tag neo-tag-lime" data-i18n="softSkill5">Public Speaking</span>
+          <span class="neo-tag neo-tag-lime" data-i18n="softSkill6">Manajemen Waktu</span>
+          <span class="neo-tag neo-tag-lime" data-i18n="softSkill7">Kerja Tim</span>
         </div>
       </div>
     </div>
@@ -999,12 +1053,12 @@
 <section id="proyek" class="py-20 px-4">
   <div class="max-w-5xl mx-auto">
     <div class="flex justify-center mb-4 reveal">
-      <span class="section-mark">📁 Proyek</span>
+      <span class="section-mark" data-i18n="projectsSectionMark">📁 Proyek</span>
     </div>
-    <h2 class="font-outfit font-black text-center mb-4 reveal reveal-delay-1" style="font-size:clamp(1.8rem,3.5vw,2.6rem);">
+    <h2 class="font-outfit font-black text-center mb-4 reveal reveal-delay-1" style="font-size:clamp(1.8rem,3.5vw,2.6rem);" data-i18n="projectsHeading">
       Pengembangan Sistem &amp; <span class="neo-highlight">Implementasi</span>
     </h2>
-    <p class="text-center font-semibold mb-12 reveal reveal-delay-2" style="color:#7A7060; max-width:540px; margin:0 auto 48px;">
+    <p class="text-center font-semibold mb-12 reveal reveal-delay-2" style="color:#7A7060; max-width:540px; margin:0 auto 48px;" data-i18n="projectsSubheading">
       Proyek nyata yang menggabungkan keahlian akuntansi dengan pengembangan sistem digital.
     </p>
 
@@ -1018,40 +1072,42 @@
                style="background:linear-gradient(135deg,#0F1E3A,#1E2F4F); aspect-ratio:auto; min-height:220px;">
             <div class="text-center">
               <div class="text-5xl mb-2">©️</div>
-              <p class="font-outfit font-black text-sm" style="color:#D4FF4F;">Hak Cipta Terdaftar</p>
-              <p class="text-xs font-bold mt-1" style="color:#A7B6D0;">No. Pencatatan 001542654</p>
+              <p class="font-outfit font-black text-sm" style="color:#D4FF4F;" data-i18n="projHkiCoverTitle">Hak Cipta Terdaftar</p>
+              <p class="text-xs font-bold mt-1" style="color:#A7B6D0;" data-i18n="projHkiCoverSub">No. Pencatatan 001542654</p>
             </div>
             <div class="absolute top-3 left-3 z-10">
-              <span class="neo-tag neo-tag-lime">HKI · DJKI</span>
+              <span class="neo-tag neo-tag-lime" data-i18n="projHkiBadge">HKI · DJKI</span>
             </div>
           </div>
           <div class="p-6 md:col-span-3">
-            <p class="font-outfit font-black text-xs uppercase tracking-wider mb-1" style="color:#0F1E3A;">2026 · Program Komputer</p>
-            <h3 class="font-outfit font-black text-xl mb-3">Aplikasi PO-lne-S Mikro Loa Lepu</h3>
-            <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;">
+            <p class="font-outfit font-black text-xs uppercase tracking-wider mb-1" style="color:#0F1E3A;" data-i18n="projHkiYear">2026 · Program Komputer</p>
+            <h3 class="font-outfit font-black text-xl mb-3" data-i18n="projHkiTitle">Aplikasi PO-lne-S Mikro Loa Lepu</h3>
+            <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;" data-i18n="projHkiDesc">
               Program komputer yang resmi tercatat sebagai Ciptaan oleh Direktorat Jenderal Kekayaan Intelektual, Kementerian Hukum RI. Pertama kali diumumkan 6 September 2026 di Kab. Kutai Kartanegara dan dilindungi selama 50 tahun.
             </p>
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="neo-tag neo-tag-yellow">EC002026199600</span>
-              <span class="neo-tag">Program Komputer</span>
-              <span class="neo-tag">Usaha Mikro</span>
-              <span class="neo-tag">Kutai Kartanegara</span>
+              <span class="neo-tag" data-i18n="projHkiTag1">Program Komputer</span>
+              <span class="neo-tag" data-i18n="projHkiTag2">Usaha Mikro</span>
+              <span class="neo-tag" data-i18n="projHkiTag3">Kutai Kartanegara</span>
             </div>
             <div class="flex flex-wrap gap-3">
               <button type="button" class="font-outfit font-black text-xs px-4 py-2 rounded-lg btn-press"
                       style="background:#D4FF4F; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D;"
-                      onclick="openLightboxGroup([{src:'assets/cert/hki-surat-pencatatan-ciptaan.jpg',cap:'Surat Pencatatan Ciptaan'},{src:'assets/cert/hki-lampiran-pencipta.jpg',cap:'Lampiran Pencipta'}],0)">
+                      onclick="openLightboxGroup([{src:'assets/cert/hki-surat-pencatatan-ciptaan.jpg',cap:'Surat Pencatatan Ciptaan'},{src:'assets/cert/hki-lampiran-pencipta.jpg',cap:'Lampiran Pencipta'}],0)"
+                      data-i18n="projHkiViewCert">
                 Lihat Sertifikat HKI →
               </button>
               <a href="assets/docs/HKI-SuratCiptaan-EC002026199600.pdf" target="_blank" rel="noopener"
                  class="font-outfit font-black text-xs px-4 py-2 rounded-lg btn-press"
-                 style="background:#fff; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D;">
+                 style="background:#fff; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D;"
+                 data-i18n="projHkiDownloadPdf">
                 Unduh PDF
               </a>
             </div>
             <div class="doc-gallery-wrap">
               <div class="doc-gallery-head">
-                <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;">📸 Dokumentasi</p>
+                <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;" data-i18n="docGalleryLabel">📸 Dokumentasi</p>
               </div>
               <div class="doc-gallery" data-folder="assets/dokumentasi/proyek-hki-polnes-loa-lepu" data-count="3"
                    data-title="PO-lne-S Mikro Loa Lepu"
@@ -1066,17 +1122,17 @@
         <div class="project-thumb-area" data-cover="assets/dokumentasi/proyek-sia-vba-sosis-azizah" style="background:linear-gradient(135deg,#C8E8FF,#A7B6D0);">
           <div class="text-center">
             <div class="text-5xl mb-2">📊</div>
-            <p class="font-outfit font-black text-sm" style="color:#0F1E3A;">Screenshot Menyusul</p>
+            <p class="font-outfit font-black text-sm" style="color:#0F1E3A;" data-i18n="screenshotPending">Screenshot Menyusul</p>
           </div>
           <div class="absolute top-3 left-3 z-10">
-            <span class="neo-tag neo-tag-navy">Tugas Akhir</span>
+            <span class="neo-tag neo-tag-navy" data-i18n="proj1Badge">Tugas Akhir</span>
           </div>
         </div>
         <div class="p-6">
           <p class="font-outfit font-black text-xs uppercase tracking-wider mb-1" style="color:#0F1E3A;">2026</p>
-          <h3 class="font-outfit font-black text-xl mb-1">SIA Berbasis Excel Macro VBA</h3>
-          <p class="font-semibold text-sm mb-3" style="color:#7A7060;">Studi Kasus: Toko Agen Sosis Azizah</p>
-          <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;">
+          <h3 class="font-outfit font-black text-xl mb-1" data-i18n="proj1Title">SIA Berbasis Excel Macro VBA</h3>
+          <p class="font-semibold text-sm mb-3" style="color:#7A7060;" data-i18n="proj1Subtitle">Studi Kasus: Toko Agen Sosis Azizah</p>
+          <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;" data-i18n="proj1Desc">
             Aplikasi akuntansi terotomatisasi pengganti pencatatan manual - modul transaksi penjualan/pembelian, kartu persediaan otomatis, dan laporan keuangan sesuai standar SAK EMKM.
           </p>
           <div class="flex flex-wrap gap-2 mb-4">
@@ -1085,10 +1141,10 @@
             <span class="neo-tag">SAK EMKM</span>
             <span class="neo-tag">FIFO</span>
           </div>
-          <p class="text-xs font-bold" style="color:#A7B6D0;">Perancang Sistem Informasi Akuntansi</p>
+          <p class="text-xs font-bold" style="color:#A7B6D0;" data-i18n="proj1Role">Perancang Sistem Informasi Akuntansi</p>
           <div class="doc-gallery-wrap">
             <div class="doc-gallery-head">
-              <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;">📸 Dokumentasi</p>
+              <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;" data-i18n="docGalleryLabel">📸 Dokumentasi</p>
             </div>
             <div class="doc-gallery" data-folder="assets/dokumentasi/proyek-sia-vba-sosis-azizah" data-count="3"
                  data-title="SIA Excel VBA - Toko Agen Sosis Azizah"
@@ -1102,17 +1158,17 @@
         <div class="project-thumb-area" data-cover="assets/dokumentasi/proyek-pos-android" style="background:linear-gradient(135deg,#FFE566,#D4FF4F);">
           <div class="text-center">
             <div class="text-5xl mb-2">🛒</div>
-            <p class="font-outfit font-black text-sm" style="color:#4A4A4A;">Screenshot Menyusul</p>
+            <p class="font-outfit font-black text-sm" style="color:#4A4A4A;" data-i18n="screenshotPending">Screenshot Menyusul</p>
           </div>
           <div class="absolute top-3 left-3 z-10">
-            <span class="neo-tag neo-tag-lime">Freelance</span>
+            <span class="neo-tag neo-tag-lime" data-i18n="proj2Badge">Freelance</span>
           </div>
         </div>
         <div class="p-6">
           <p class="font-outfit font-black text-xs uppercase tracking-wider mb-1" style="color:#0F1E3A;">2026</p>
-          <h3 class="font-outfit font-black text-xl mb-1">Aplikasi POS &amp; Pelaporan Keuangan</h3>
-          <p class="font-semibold text-sm mb-3" style="color:#7A7060;">Point of Sale Android · Offline-first</p>
-          <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;">
+          <h3 class="font-outfit font-black text-xl mb-1" data-i18n="proj2Title">Aplikasi POS &amp; Pelaporan Keuangan</h3>
+          <p class="font-semibold text-sm mb-3" style="color:#7A7060;" data-i18n="proj2Subtitle">Point of Sale Android · Offline-first</p>
+          <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;" data-i18n="proj2Desc">
             Aplikasi kasir untuk ritel dengan modul Transaksi Kasir, Manajemen Produk &amp; Stok, Buku Kas, Kontrol Utang/Piutang, serta Laporan Laba Rugi, Laporan Transaksi &amp; Laporan Persediaan otomatis berstandar SAK EMKM.
           </p>
           <div class="flex flex-wrap gap-2 mb-4">
@@ -1121,10 +1177,10 @@
             <span class="neo-tag">SAK EMKM</span>
             <span class="neo-tag">Utang/Piutang</span>
           </div>
-          <p class="text-xs font-bold" style="color:#A7B6D0;">System Developer &amp; Accounting Logic Designer</p>
+          <p class="text-xs font-bold" style="color:#A7B6D0;" data-i18n="proj2Role">System Developer &amp; Accounting Logic Designer</p>
           <div class="doc-gallery-wrap">
             <div class="doc-gallery-head">
-              <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;">📸 Dokumentasi</p>
+              <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;" data-i18n="docGalleryLabel">📸 Dokumentasi</p>
             </div>
             <div class="doc-gallery cols-4" data-folder="assets/dokumentasi/proyek-pos-android" data-count="4"
                  data-title="Aplikasi POS Android"
@@ -1138,17 +1194,17 @@
         <div class="project-thumb-area" data-cover="assets/dokumentasi/proyek-sia-yayasan-pkm" style="background:linear-gradient(135deg,#A7B6D0,#C8E8FF);">
           <div class="text-center">
             <div class="text-5xl mb-2">🏫</div>
-            <p class="font-outfit font-black text-sm" style="color:#0F1E3A;">Screenshot Menyusul</p>
+            <p class="font-outfit font-black text-sm" style="color:#0F1E3A;" data-i18n="screenshotPending">Screenshot Menyusul</p>
           </div>
           <div class="absolute top-3 left-3 z-10">
-            <span class="neo-tag neo-tag-navy">PKM-PM POLNES</span>
+            <span class="neo-tag neo-tag-navy" data-i18n="proj3Badge">PKM-PM POLNES</span>
           </div>
         </div>
         <div class="p-6">
           <p class="font-outfit font-black text-xs uppercase tracking-wider mb-1" style="color:#0F1E3A;">2026</p>
-          <h3 class="font-outfit font-black text-xl mb-1">Sistem Informasi Akademik &amp; Website Yayasan</h3>
-          <p class="font-semibold text-sm mb-3" style="color:#7A7060;">Yayasan At-Tarbiyyah Wijaya Kusuma</p>
-          <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;">
+          <h3 class="font-outfit font-black text-xl mb-1" data-i18n="proj3Title">Sistem Informasi Akademik &amp; Website Yayasan</h3>
+          <p class="font-semibold text-sm mb-3" style="color:#7A7060;" data-i18n="proj3Subtitle">Yayasan At-Tarbiyyah Wijaya Kusuma</p>
+          <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;" data-i18n="proj3Desc">
             Digitalisasi administrasi akademik yayasan - PPDB Online, Portal Admin, Portal Siswa, serta manajemen halaman Profil, Berita, dan Galeri yang terintegrasi.
           </p>
           <div class="flex flex-wrap gap-2 mb-4">
@@ -1157,17 +1213,18 @@
             <span class="neo-tag">JavaScript</span>
             <span class="neo-tag">Supabase</span>
           </div>
-          <p class="text-xs font-bold mb-4" style="color:#A7B6D0;">Tim Pengembang Sistem - Program PKM-PM</p>
+          <p class="text-xs font-bold mb-4" style="color:#A7B6D0;" data-i18n="proj3Role">Tim Pengembang Sistem - Program PKM-PM</p>
           <div class="mb-4">
             <a href="https://siyayasan.vercel.app/index.html" target="_blank" rel="noopener"
                class="inline-flex items-center gap-1.5 font-outfit font-black text-xs px-4 py-2 rounded-lg btn-press"
-               style="background:#D4FF4F; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D; color:#0D0D0D;">
+               style="background:#D4FF4F; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D; color:#0D0D0D;"
+               data-i18n="proj3LiveDemo">
               Kunjungi Website (Live Demo) →
             </a>
           </div>
           <div class="doc-gallery-wrap">
             <div class="doc-gallery-head">
-              <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;">📸 Dokumentasi</p>
+              <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;" data-i18n="docGalleryLabel">📸 Dokumentasi</p>
             </div>
             <div class="doc-gallery" data-folder="assets/dokumentasi/proyek-sia-yayasan-pkm" data-count="3"
                  data-title="SI Akademik Yayasan At-Tarbiyyah Wijaya Kusuma"
@@ -1181,29 +1238,29 @@
         <div class="project-thumb-area" data-cover="assets/dokumentasi/proyek-sistem-informasi-logistik" style="background:linear-gradient(135deg,#D4FF4F,#FFE566);">
           <div class="text-center">
             <div class="text-5xl mb-2">📦</div>
-            <p class="font-outfit font-black text-sm" style="color:#4A4A4A;">Screenshot Menyusul</p>
+            <p class="font-outfit font-black text-sm" style="color:#4A4A4A;" data-i18n="screenshotPending">Screenshot Menyusul</p>
           </div>
           <div class="absolute top-3 left-3 z-10">
-            <span class="neo-tag neo-tag-lime">Freelance</span>
+            <span class="neo-tag neo-tag-lime" data-i18n="proj4Badge">Freelance</span>
           </div>
         </div>
         <div class="p-6">
-          <p class="font-outfit font-black text-xs uppercase tracking-wider mb-1" style="color:#0F1E3A;">2026 · Aplikasi Offline</p>
-          <h3 class="font-outfit font-black text-xl mb-1">Sistem Informasi Logistik</h3>
-          <p class="font-semibold text-sm mb-3" style="color:#7A7060;">Aplikasi Manajemen Arus Barang &amp; Kas Usaha</p>
-          <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;">
+          <p class="font-outfit font-black text-xs uppercase tracking-wider mb-1" style="color:#0F1E3A;" data-i18n="proj4Year">2026 · Aplikasi Offline</p>
+          <h3 class="font-outfit font-black text-xl mb-1" data-i18n="proj4Title">Sistem Informasi Logistik</h3>
+          <p class="font-semibold text-sm mb-3" style="color:#7A7060;" data-i18n="proj4Subtitle">Aplikasi Manajemen Arus Barang &amp; Kas Usaha</p>
+          <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;" data-i18n="proj4Desc">
             Aplikasi offline user-friendly untuk mengatur alur keluar masuk barang, menghasilkan laporan arus barang dan arus kas di lingkungan usaha, dengan fokus pengelolaan persediaan menggunakan metode rata-rata (Average Method).
           </p>
           <div class="flex flex-wrap gap-2 mb-4">
-            <span class="neo-tag">Aplikasi Offline</span>
-            <span class="neo-tag">Metode Rata-Rata</span>
-            <span class="neo-tag">Arus Kas</span>
+            <span class="neo-tag" data-i18n="proj4TagOffline">Aplikasi Offline</span>
+            <span class="neo-tag" data-i18n="proj4TagAverage">Metode Rata-Rata</span>
+            <span class="neo-tag" data-i18n="proj4TagCashFlow">Arus Kas</span>
             <span class="neo-tag">User-Friendly</span>
           </div>
-          <p class="text-xs font-bold" style="color:#A7B6D0;">Freelance Developer &amp; System Designer</p>
+          <p class="text-xs font-bold" style="color:#A7B6D0;" data-i18n="proj4Role">Freelance Developer &amp; System Designer</p>
           <div class="doc-gallery-wrap">
             <div class="doc-gallery-head">
-              <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;">📸 Dokumentasi</p>
+              <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;" data-i18n="docGalleryLabel">📸 Dokumentasi</p>
             </div>
             <div class="doc-gallery cols-4" data-folder="assets/dokumentasi/proyek-sistem-informasi-logistik" data-count="4"
                  data-title="Sistem Informasi Logistik"
@@ -1220,62 +1277,64 @@
 <section id="pengalaman" class="py-20 px-4" style="background:#fff; border-top:3px solid #0D0D0D; border-bottom:3px solid #0D0D0D;">
   <div class="max-w-5xl mx-auto">
     <div class="flex justify-center mb-4 reveal">
-      <span class="section-mark">💼 Pengalaman</span>
+      <span class="section-mark" data-i18n="expSectionMark">💼 Pengalaman</span>
     </div>
-    <h2 class="font-outfit font-black text-center mb-12 reveal reveal-delay-1" style="font-size:clamp(1.8rem,3.5vw,2.6rem);">
+    <h2 class="font-outfit font-black text-center mb-12 reveal reveal-delay-1" style="font-size:clamp(1.8rem,3.5vw,2.6rem);" data-i18n="expHeading">
       Pendidikan &amp; <span class="neo-highlight">Pengalaman</span>
     </h2>
 
     <!-- Magang -->
-    <p class="font-outfit font-black text-xs uppercase tracking-wider mb-4 reveal" style="color:#0F1E3A;">🏦 Pengalaman Kerja</p>
+    <p class="font-outfit font-black text-xs uppercase tracking-wider mb-4 reveal" style="color:#0F1E3A;" data-i18n="expWorkTitle">🏦 Pengalaman Kerja</p>
     <div class="p-6 md:p-8 rounded-2xl mb-10 reveal reveal-delay-1" style="background:#F5F0E8; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;">
       <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
         <div>
-          <h3 class="font-outfit font-black text-xl md:text-2xl mb-1">Staf Magang - Financing Recovery &amp; Operasional Syariah</h3>
-          <p class="font-bold text-sm" style="color:#0F1E3A;">PT BPD Kaltim Kaltara (Bankaltimtara) · Samarinda</p>
+          <h3 class="font-outfit font-black text-xl md:text-2xl mb-1" data-i18n="expInternRole">Staf Magang - Financing Recovery &amp; Operasional Syariah</h3>
+          <p class="font-bold text-sm" style="color:#0F1E3A;" data-i18n="expInternCompany">PT BPD Kaltim Kaltara (Bankaltimtara) · Samarinda</p>
         </div>
-        <span class="neo-tag neo-tag-yellow">1 Jun - 1 Jul 2025</span>
+        <span class="neo-tag neo-tag-yellow" data-i18n="expInternPeriod">1 Jun - 1 Jul 2025</span>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
         <ul class="md:col-span-2 space-y-3 text-sm font-semibold leading-relaxed" style="color:#4A4A4A;">
           <li class="flex items-start gap-2"><span style="color:#0F1E3A; font-weight:900;">✓</span>
-            <span>Merancang otomatisasi pengolahan &amp; rekapitulasi data keuangan lintas periode dengan formula lanjutan Excel dan Macro VBA - memangkas waktu pengerjaan laporan <strong style="color:#0F1E3A;">92% (dari 2 jam menjadi 10 menit)</strong>.</span></li>
+            <span data-i18n="expInternB1">Merancang otomatisasi pengolahan &amp; rekapitulasi data keuangan lintas periode dengan formula lanjutan Excel dan Macro VBA - memangkas waktu pengerjaan laporan <strong style="color:#0F1E3A;">92% (dari 2 jam menjadi 10 menit)</strong>.</span></li>
           <li class="flex items-start gap-2"><span style="color:#0F1E3A; font-weight:900;">✓</span>
-            <span>Melaksanakan verifikasi &amp; rekonsiliasi harian dokumen bukti transaksi fisik terhadap laporan sistem perbankan untuk memastikan akurasi pencatatan dan kepatuhan pengendalian internal.</span></li>
+            <span data-i18n="expInternB2">Melaksanakan verifikasi &amp; rekonsiliasi harian dokumen bukti transaksi fisik terhadap laporan sistem perbankan untuk memastikan akurasi pencatatan dan kepatuhan pengendalian internal.</span></li>
         </ul>
         <div class="flex md:flex-col gap-4">
           <div class="stat-box flex-1" style="background:#D4FF4F;">
             <div class="stat-number">92%</div>
-            <p class="font-outfit font-bold text-xs uppercase tracking-wide mt-1" style="color:#4A6040;">Waktu Laporan Dipangkas</p>
+            <p class="font-outfit font-bold text-xs uppercase tracking-wide mt-1" style="color:#4A6040;" data-i18n="expInternStat1Label">Waktu Laporan Dipangkas</p>
           </div>
           <div class="stat-box flex-1">
             <div class="stat-number" style="font-size:1.6rem;">2j → 10m</div>
-            <p class="font-outfit font-bold text-xs uppercase tracking-wide mt-1" style="color:#7A7060;">Rekap Laporan</p>
+            <p class="font-outfit font-bold text-xs uppercase tracking-wide mt-1" style="color:#7A7060;" data-i18n="expInternStat2Label">Rekap Laporan</p>
           </div>
         </div>
       </div>
       <div class="flex flex-wrap gap-2 mt-5">
         <span class="neo-tag">Excel Advanced</span>
         <span class="neo-tag">Macro VBA</span>
-        <span class="neo-tag">Rekonsiliasi</span>
-        <span class="neo-tag">Perbankan Syariah</span>
+        <span class="neo-tag" data-i18n="expInternTagRecon">Rekonsiliasi</span>
+        <span class="neo-tag" data-i18n="expInternTagSyariah">Perbankan Syariah</span>
         <span class="neo-tag">Internal Control</span>
       </div>
       <div class="flex flex-wrap gap-3 mt-4">
         <button type="button" class="font-outfit font-black text-xs px-4 py-2 rounded-lg btn-press"
                 style="background:#D4FF4F; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D;"
-                onclick="openLightbox('assets/cert/sertifikat-magang-bankaltimtara.jpg','Sertifikat Magang Bankaltimtara - Divisi Usaha Syariah')">
+                onclick="openLightbox('assets/cert/sertifikat-magang-bankaltimtara.jpg','Sertifikat Magang Bankaltimtara - Divisi Usaha Syariah')"
+                data-i18n="expInternViewCert">
           Lihat Sertifikat Magang →
         </button>
         <a href="assets/docs/Sertifikat-Magang-Bankaltimtara.pdf" target="_blank" rel="noopener"
            class="font-outfit font-black text-xs px-4 py-2 rounded-lg btn-press"
-           style="background:#fff; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D;">
+           style="background:#fff; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D;"
+           data-i18n="expInternDownloadPdf">
           Unduh PDF
         </a>
       </div>
       <div class="doc-gallery-wrap">
         <div class="doc-gallery-head">
-          <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;">📸 Dokumentasi Magang</p>
+          <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;" data-i18n="expInternGalleryTitle">📸 Dokumentasi Magang</p>
         </div>
         <div class="doc-gallery cols-4" data-folder="assets/dokumentasi/magang-bankaltimtara" data-count="4"
              data-title="Magang Bankaltimtara"
@@ -1286,22 +1345,22 @@
     <div class="grid md:grid-cols-2 gap-8">
       <!-- Pendidikan -->
       <div class="reveal reveal-delay-1">
-        <p class="font-outfit font-black text-xs uppercase tracking-wider mb-4" style="color:#0F1E3A;">🎓 Pendidikan</p>
+        <p class="font-outfit font-black text-xs uppercase tracking-wider mb-4" style="color:#0F1E3A;" data-i18n="eduTitle">🎓 Pendidikan</p>
         <div class="p-6 rounded-2xl h-full" style="background:#F5F0E8; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;">
-          <h3 class="font-outfit font-black text-xl mb-1">D3 Akuntansi - A.Md.Ak.</h3>
-          <p class="font-bold text-sm mb-1" style="color:#0F1E3A;">Politeknik Negeri Samarinda (POLNES)</p>
-          <p class="font-semibold text-xs mb-4" style="color:#7A7060;">2023 - 2026 · Yudisium 20 Agustus 2026</p>
-          <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;">
+          <h3 class="font-outfit font-black text-xl mb-1" data-i18n="eduDegree">D3 Akuntansi - A.Md.Ak.</h3>
+          <p class="font-bold text-sm mb-1" style="color:#0F1E3A;" data-i18n="eduCampus">Politeknik Negeri Samarinda (POLNES)</p>
+          <p class="font-semibold text-xs mb-4" style="color:#7A7060;" data-i18n="eduDate">2023 - 2026 · Yudisium 20 Agustus 2026</p>
+          <p class="text-sm font-semibold leading-relaxed mb-4" style="color:#4A4A4A;" data-i18n="eduThesis">
             <strong style="color:#0F1E3A;">Tugas Akhir:</strong> Sistem Informasi Akuntansi Pencatatan Transaksi, Pengelolaan Persediaan, dan Laporan Keuangan pada Toko Agen Sosis Azizah Berbasis Macro Microsoft Excel.
           </p>
           <div class="flex flex-wrap gap-2">
-            <span class="neo-tag neo-tag-lime">IPK 3.59</span>
-            <span class="neo-tag">Kompeten LSP</span>
+            <span class="neo-tag neo-tag-lime" data-i18n="eduTagGpa">IPK 3.59</span>
+            <span class="neo-tag" data-i18n="eduTagLsp">Kompeten LSP</span>
             <span class="neo-tag">TOEFL 410</span>
           </div>
           <div class="doc-gallery-wrap">
             <div class="doc-gallery-head">
-              <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;">📸 Dokumentasi</p>
+              <p class="font-outfit font-black text-xs uppercase tracking-wider" style="color:#0F1E3A;" data-i18n="docGalleryLabel">📸 Dokumentasi</p>
             </div>
             <div class="doc-gallery" data-folder="assets/dokumentasi/pendidikan-polnes" data-count="3"
                  data-title="Pendidikan POLNES"
@@ -1312,15 +1371,15 @@
 
       <!-- Freelance -->
       <div class="reveal reveal-delay-2">
-        <p class="font-outfit font-black text-xs uppercase tracking-wider mb-4" style="color:#0F1E3A;">⚡ Freelance Experience</p>
+        <p class="font-outfit font-black text-xs uppercase tracking-wider mb-4" style="color:#0F1E3A;" data-i18n="freeTitle">⚡ Freelance Experience</p>
         <div class="p-6 rounded-2xl h-full" style="background:#F5F0E8; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;">
-          <h3 class="font-outfit font-black text-xl mb-1">Independent Developer</h3>
-          <p class="font-bold text-sm mb-1" style="color:#0F1E3A;">Freelance Projects</p>
-          <p class="font-semibold text-xs mb-4" style="color:#7A7060;">2025 - Sekarang</p>
+          <h3 class="font-outfit font-black text-xl mb-1" data-i18n="freeRole">Independent Developer</h3>
+          <p class="font-bold text-sm mb-1" style="color:#0F1E3A;" data-i18n="freeCompany">Freelance Projects</p>
+          <p class="font-semibold text-xs mb-4" style="color:#7A7060;" data-i18n="freePeriod">2025 - Sekarang</p>
           <ul class="space-y-2 text-sm font-semibold" style="color:#4A4A4A;">
-            <li class="flex items-start gap-2"><span style="color:#0F1E3A; font-weight:900;">✓</span> Aplikasi Kasir (POS) &amp; Pelaporan Keuangan Android</li>
-            <li class="flex items-start gap-2"><span style="color:#0F1E3A; font-weight:900;">✓</span> Sistem Informasi Logistik &amp; Arus Kas (Metode Rata-Rata)</li>
-            <li class="flex items-start gap-2"><span style="color:#0F1E3A; font-weight:900;">✓</span> Sistem Informasi Akademik &amp; Portal PPDB Yayasan</li>
+            <li class="flex items-start gap-2"><span style="color:#0F1E3A; font-weight:900;">✓</span> <span data-i18n="freeB1">Aplikasi Kasir (POS) &amp; Pelaporan Keuangan Android</span></li>
+            <li class="flex items-start gap-2"><span style="color:#0F1E3A; font-weight:900;">✓</span> <span data-i18n="freeB2">Sistem Informasi Logistik &amp; Arus Kas (Metode Rata-Rata)</span></li>
+            <li class="flex items-start gap-2"><span style="color:#0F1E3A; font-weight:900;">✓</span> <span data-i18n="freeB3">Sistem Informasi Akademik &amp; Portal PPDB Yayasan</span></li>
           </ul>
         </div>
       </div>
@@ -1332,12 +1391,12 @@
 <section id="sertifikat" class="py-20 px-4">
   <div class="max-w-5xl mx-auto">
     <div class="flex justify-center mb-4 reveal">
-      <span class="section-mark">🏆 Sertifikat</span>
+      <span class="section-mark" data-i18n="certSectionMark">🏆 Sertifikat</span>
     </div>
-    <h2 class="font-outfit font-black text-center mb-2 reveal reveal-delay-1" style="font-size:clamp(1.8rem,3.5vw,2.6rem);">
+    <h2 class="font-outfit font-black text-center mb-2 reveal reveal-delay-1" style="font-size:clamp(1.8rem,3.5vw,2.6rem);" data-i18n="certHeading">
       Penghargaan &amp; <span class="neo-highlight">Sertifikasi</span>
     </h2>
-    <p class="text-center font-semibold mb-12 reveal reveal-delay-2" style="color:#7A7060;">
+    <p class="text-center font-semibold mb-12 reveal reveal-delay-2" style="color:#7A7060;" data-i18n="certSubheading">
       Klik gambar untuk memperbesar
     </p>
 
@@ -1349,9 +1408,9 @@
            aria-label="Lihat ijazah D3 Akuntansi">
         <img src="assets/cert/ijazah-d3-akuntansi.jpg" alt="Ijazah D3 Akuntansi Riki Rivaldi" loading="lazy" />
         <div class="p-4">
-          <span class="neo-tag neo-tag-lime mb-2">Ijazah</span>
-          <p class="font-outfit font-black text-sm mt-2">Ahli Madya Akuntansi (A.Md.Ak.)</p>
-          <p class="text-xs font-semibold mt-1" style="color:#7A7060;">Politeknik Negeri Samarinda · 17 Okt 2026</p>
+          <span class="neo-tag neo-tag-lime mb-2" data-i18n="certTagDegree">Ijazah</span>
+          <p class="font-outfit font-black text-sm mt-2" data-i18n="certTitleDegree">Ahli Madya Akuntansi (A.Md.Ak.)</p>
+          <p class="text-xs font-semibold mt-1" style="color:#7A7060;" data-i18n="certDescDegree">Politeknik Negeri Samarinda · 17 Okt 2026</p>
         </div>
       </div>
 
@@ -1362,9 +1421,9 @@
            aria-label="Lihat surat keterangan uji kompetensi LSP">
         <img class="portrait" src="assets/cert/sk-lsp-teknisi-akuntansi-madya.jpg" alt="Surat Keterangan Lulus Uji Kompetensi LSP POLNES" loading="lazy" />
         <div class="p-4">
-          <span class="neo-tag neo-tag-yellow">Kompeten</span>
-          <p class="font-outfit font-black text-sm mt-2">Uji Kompetensi - Teknisi Akuntansi Madya</p>
-          <p class="text-xs font-semibold mt-1" style="color:#7A7060;">LSP Politeknik Negeri Samarinda · 12 Okt 2026</p>
+          <span class="neo-tag neo-tag-yellow" data-i18n="certTagCompetent">Kompeten</span>
+          <p class="font-outfit font-black text-sm mt-2" data-i18n="certTitleLsp">Uji Kompetensi - Teknisi Akuntansi Madya</p>
+          <p class="text-xs font-semibold mt-1" style="color:#7A7060;" data-i18n="certDescLsp">LSP Politeknik Negeri Samarinda · 12 Okt 2026</p>
         </div>
       </div>
 
@@ -1375,9 +1434,9 @@
            aria-label="Lihat surat pencatatan ciptaan HKI">
         <img class="portrait" src="assets/cert/hki-surat-pencatatan-ciptaan.jpg" alt="Surat Pencatatan Ciptaan HKI" loading="lazy" />
         <div class="p-4">
-          <span class="neo-tag neo-tag-navy">HKI</span>
-          <p class="font-outfit font-black text-sm mt-2">Surat Pencatatan Ciptaan - Program Komputer</p>
-          <p class="text-xs font-semibold mt-1" style="color:#7A7060;">DJKI Kementerian Hukum RI · 14 Okt 2026</p>
+          <span class="neo-tag neo-tag-navy" data-i18n="certTagHki">HKI</span>
+          <p class="font-outfit font-black text-sm mt-2" data-i18n="certTitleHki">Surat Pencatatan Ciptaan - Program Komputer</p>
+          <p class="text-xs font-semibold mt-1" style="color:#7A7060;" data-i18n="certDescHki">DJKI Kementerian Hukum RI · 14 Okt 2026</p>
         </div>
       </div>
 
@@ -1388,9 +1447,9 @@
            aria-label="Lihat sertifikat magang Bankaltimtara">
         <img src="assets/cert/sertifikat-magang-bankaltimtara.jpg" alt="Sertifikat Magang Bankaltimtara Riki Rivaldi" loading="lazy" />
         <div class="p-4">
-          <span class="neo-tag neo-tag-lime mb-2">Magang</span>
-          <p class="font-outfit font-black text-sm mt-2">Sertifikat Magang / PKL - Usaha Syariah</p>
-          <p class="text-xs font-semibold mt-1" style="color:#7A7060;">PT BPD Kaltim Kaltara · 7 Agu 2025</p>
+          <span class="neo-tag neo-tag-lime mb-2" data-i18n="certTagIntern">Magang</span>
+          <p class="font-outfit font-black text-sm mt-2" data-i18n="certTitleIntern">Sertifikat Magang / PKL - Usaha Syariah</p>
+          <p class="text-xs font-semibold mt-1" style="color:#7A7060;" data-i18n="certDescIntern">PT BPD Kaltim Kaltara · 7 Agu 2025</p>
         </div>
       </div>
 
@@ -1401,9 +1460,9 @@
            aria-label="Lihat sertifikat TOEFL Prediction">
         <img src="assets/cert/toefl-prediction.jpg" alt="Sertifikat TOEFL Prediction Riki Rivaldi" loading="lazy" />
         <div class="p-4">
-          <span class="neo-tag">Skor 410</span>
-          <p class="font-outfit font-black text-sm mt-2">TOEFL Prediction Test</p>
-          <p class="text-xs font-semibold mt-1" style="color:#7A7060;">UPA Bahasa POLNES · 8 Agu 2026</p>
+          <span class="neo-tag" data-i18n="certTagToefl">Skor 410</span>
+          <p class="font-outfit font-black text-sm mt-2" data-i18n="certTitleToefl">TOEFL Prediction Test</p>
+          <p class="text-xs font-semibold mt-1" style="color:#7A7060;" data-i18n="certDescToefl">UPA Bahasa POLNES · 8 Agu 2026</p>
         </div>
       </div>
 
@@ -1414,9 +1473,9 @@
            aria-label="Lihat sertifikat Sekolah Pasar Modal">
         <img src="assets/cert/sertif-1.png" alt="Sertifikat Sekolah Pasar Modal Riki Rivaldi" loading="lazy" />
         <div class="p-4">
-          <span class="neo-tag">Pasar Modal</span>
-          <p class="font-outfit font-black text-sm mt-2">Sekolah Pasar Modal</p>
-          <p class="text-xs font-semibold mt-1" style="color:#7A7060;">Bursa Efek Indonesia (IDX) · 2023</p>
+          <span class="neo-tag" data-i18n="certTagMarket">Pasar Modal</span>
+          <p class="font-outfit font-black text-sm mt-2" data-i18n="certTitleMarket">Sekolah Pasar Modal</p>
+          <p class="text-xs font-semibold mt-1" style="color:#7A7060;" data-i18n="certDescMarket">Bursa Efek Indonesia (IDX) · 2023</p>
         </div>
       </div>
 
@@ -1427,9 +1486,9 @@
            aria-label="Lihat sertifikat seminar">
         <img src="assets/cert/sertif-2.png" alt="Sertifikat Seminar Riki Rivaldi" loading="lazy" />
         <div class="p-4">
-          <span class="neo-tag">Seminar</span>
-          <p class="font-outfit font-black text-sm mt-2">Peserta Seminar - Accounting Days 2023</p>
-          <p class="text-xs font-semibold mt-1" style="color:#7A7060;">HMJ Akuntansi POLNES · 2023</p>
+          <span class="neo-tag" data-i18n="certTagSeminar">Seminar</span>
+          <p class="font-outfit font-black text-sm mt-2" data-i18n="certTitleSeminar">Peserta Seminar - Accounting Days 2023</p>
+          <p class="text-xs font-semibold mt-1" style="color:#7A7060;" data-i18n="certDescSeminar">HMJ Akuntansi POLNES · 2023</p>
         </div>
       </div>
     </div>
@@ -1440,12 +1499,12 @@
 <section id="kontak" class="py-20 px-4" style="background:#0F1E3A; border-top:3px solid #0D0D0D;">
   <div class="max-w-4xl mx-auto">
     <div class="flex justify-center mb-4 reveal">
-      <span class="section-mark" style="background:#D4FF4F; color:#0D0D0D; border:2px solid #0D0D0D;">✉️ Kontak</span>
+      <span class="section-mark" style="background:#D4FF4F; color:#0D0D0D; border:2px solid #0D0D0D;" data-i18n="contactSectionMark">✉️ Kontak</span>
     </div>
-    <h2 class="font-outfit font-black text-center mb-4 reveal reveal-delay-1" style="font-size:clamp(1.8rem,3.5vw,2.6rem); color:#fff;">
+    <h2 class="font-outfit font-black text-center mb-4 reveal reveal-delay-1" style="font-size:clamp(1.8rem,3.5vw,2.6rem); color:#fff;" data-i18n="contactHeading">
       Mari <span style="background:#D4FF4F; color:#0D0D0D; padding:0 8px; border-radius:8px; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D; display:inline-block; transform:rotate(-1deg);">Terhubung</span>
     </h2>
-    <p class="text-center font-semibold mb-12 reveal reveal-delay-2" style="color:#A7B6D0; max-width:480px; margin:0 auto 48px;">
+    <p class="text-center font-semibold mb-12 reveal reveal-delay-2" style="color:#A7B6D0; max-width:480px; margin:0 auto 48px;" data-i18n="contactSubheading">
       Apakah Anda seorang HRD, klien, atau kolaborator? Kirimkan pesan Anda.
     </p>
 
@@ -1453,33 +1512,34 @@
       <!-- Form -->
       <div class="md:col-span-3 reveal reveal-delay-1">
         <div class="p-7 rounded-2xl" style="background:#fff; border:3px solid #0D0D0D; box-shadow:8px 8px 0 #0D0D0D;">
-          <h3 class="font-outfit font-black text-xl mb-6">Kirim Pesan</h3>
+          <h3 class="font-outfit font-black text-xl mb-6" data-i18n="contactFormTitle">Kirim Pesan</h3>
           <form id="contact-form" novalidate>
             <div class="space-y-5">
               <div class="grid sm:grid-cols-2 gap-5">
                 <div>
-                  <label class="neo-label" for="c-name">Nama Lengkap</label>
-                  <input class="neo-input" id="c-name" type="text" placeholder="Nama Anda" required autocomplete="name" />
+                  <label class="neo-label" for="c-name" data-i18n="contactLabelName">Nama Lengkap</label>
+                  <input class="neo-input" id="c-name" type="text" placeholder="Nama Anda" data-i18n-placeholder="contactPlaceholderName" required autocomplete="name" />
                 </div>
                 <div>
-                  <label class="neo-label" for="c-email">Email</label>
-                  <input class="neo-input" id="c-email" type="email" placeholder="email@perusahaan.com" required autocomplete="email" />
+                  <label class="neo-label" for="c-email" data-i18n="contactLabelEmail">Email</label>
+                  <input class="neo-input" id="c-email" type="email" placeholder="email@perusahaan.com" data-i18n-placeholder="contactPlaceholderEmail" required autocomplete="email" />
                 </div>
               </div>
               <div>
-                <label class="neo-label" for="c-subject">Subjek</label>
-                <input class="neo-input" id="c-subject" type="text" placeholder="Peluang Kerja / Kolaborasi / Pertanyaan" required />
+                <label class="neo-label" for="c-subject" data-i18n="contactLabelSubject">Subjek</label>
+                <input class="neo-input" id="c-subject" type="text" placeholder="Peluang Kerja / Kolaborasi / Pertanyaan" data-i18n-placeholder="contactPlaceholderSubject" required />
               </div>
               <div>
-                <label class="neo-label" for="c-message">Pesan</label>
-                <textarea class="neo-input" id="c-message" placeholder="Tuliskan pesan Anda di sini..." required rows="5"></textarea>
+                <label class="neo-label" for="c-message" data-i18n="contactLabelMessage">Pesan</label>
+                <textarea class="neo-input" id="c-message" placeholder="Tuliskan pesan Anda di sini..." data-i18n-placeholder="contactPlaceholderMessage" required rows="5"></textarea>
               </div>
               <button type="submit"
                       class="w-full font-outfit font-black text-base py-4 rounded-xl btn-press"
-                      style="background:#0F1E3A; color:#D4FF4F; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;">
+                      style="background:#0F1E3A; color:#D4FF4F; border:3px solid #0D0D0D; box-shadow:6px 6px 0 #0D0D0D;"
+                      data-i18n="contactSubmitBtn">
                 Kirim via Email →
               </button>
-              <p id="form-msg" style="display:none; color:#0F1E3A; font-weight:700; font-size:0.85rem; text-align:center;">
+              <p id="form-msg" style="display:none; color:#0F1E3A; font-weight:700; font-size:0.85rem; text-align:center;" data-i18n="contactSuccessMsg">
                 ✓ Berhasil! Anda diarahkan ke aplikasi email.
               </p>
             </div>
@@ -1489,7 +1549,7 @@
 
       <!-- Info kontak -->
       <div class="md:col-span-2 space-y-4 reveal reveal-delay-2">
-        <h3 class="font-outfit font-black text-lg" style="color:#fff;">Informasi Kontak</h3>
+        <h3 class="font-outfit font-black text-lg" style="color:#fff;" data-i18n="contactInfoTitle">Informasi Kontak</h3>
 
         <a href="mailto:rikyrivaldi369@gmail.com" class="social-item" aria-label="Email Riki Rivaldi">
           <span style="font-size:1.4rem;">✉️</span>
@@ -1511,13 +1571,13 @@
           <span style="font-size:1.4rem;">💼</span>
           <div>
             <p class="text-xs font-bold uppercase tracking-wider" style="color:#7A7060;">Jobstreet</p>
-            <p class="text-sm font-bold">Lihat Profil Lengkap</p>
+            <p class="text-sm font-bold" data-i18n="contactJobstreetView">Lihat Profil Lengkap</p>
           </div>
         </a>
 
         <div class="p-5 rounded-xl" style="background:rgba(212,255,79,0.1); border:2px solid #D4FF4F; box-shadow:3px 3px 0 #D4FF4F;">
-          <p class="font-outfit font-black text-sm mb-1" style="color:#D4FF4F;">🟢 Terbuka untuk Peluang</p>
-          <p class="text-xs font-semibold" style="color:#A7B6D0;">
+          <p class="font-outfit font-black text-sm mb-1" style="color:#D4FF4F;" data-i18n="contactOpenTitle">🟢 Terbuka untuk Peluang</p>
+          <p class="text-xs font-semibold" style="color:#A7B6D0;" data-i18n="contactOpenDesc">
             Sedang mencari posisi <strong style="color:#D4FF4F;">Staf Akuntansi / Keuangan</strong> atau Accounting &amp; Financial System Specialist. Fresh graduate A.Md.Ak. siap bekerja!
           </p>
         </div>
@@ -1534,7 +1594,7 @@
            style="background:#D4FF4F; border:2px solid rgba(255,255,255,0.2);">R!</div>
       <span class="font-outfit font-black" style="color:#fff;">RIKI<span style="color:#D4FF4F;"> RIVALDI</span></span>
     </div>
-    <p class="text-xs font-semibold" style="color:#4A4A4A;">
+    <p class="text-xs font-semibold" style="color:#4A4A4A;" data-i18n="footerCopyright">
       © 2026 Riki Rivaldi, A.Md.Ak. · D3 Akuntansi POLNES · Samarinda, Kalimantan Timur
     </p>
   </div>
@@ -1697,9 +1757,11 @@
         }
         if (--pending === 0) {
           found.sort((a, b) => a.n - b.n);
-          const items = found.map(f => ({ src: f.src, cap: f.cap }));
           found.forEach((f, idx) => {
-            const open = () => openLightboxGroup(items, idx);
+            const open = () => {
+              const currentItems = found.map(item => ({ src: item.src, cap: item.slot.title || item.cap }));
+              openLightboxGroup(currentItems, idx);
+            };
             f.slot.addEventListener('click', open);
             f.slot.addEventListener('keydown', e => { if (e.key === 'Enter') open(); });
           });
@@ -1707,7 +1769,8 @@
           if (head) {
             const badge = document.createElement('span');
             badge.className = 'doc-count';
-            badge.textContent = `${found.length}/${count} foto`;
+            const unit = (document.documentElement.lang === 'en') ? 'photos' : 'foto';
+            badge.textContent = `${found.length}/${count} ${unit}`;
             head.appendChild(badge);
           }
           if (!SHOW_EMPTY_SLOTS && found.length === 0) gal.parentElement.style.display = 'none';
