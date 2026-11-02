@@ -1,678 +1,876 @@
 /**
- * design-tour.js - Behind The Scenes: Interactive Multi-Cursor Design Simulation
+ * design-tour.js - Blank Canvas UI/UX Motion Assembly ("Stitch Design Animation")
  * Portofolio Neubrutalist - Riki Rivaldi, A.Md.Ak.
  */
 
 (function () {
   'use strict';
 
-  // Tour Scenes Definition (Scene-by-scene script)
-  const TOUR_SCENES = [
-    {
-      id: 'hero',
-      targetSelector: '#hero',
-      duration: 5200,
-      title: {
-        id: '1/7: Merakit Hero & Identitas Profesional',
-        en: '1/7: Crafting Hero & Professional Identity'
-      },
-      tagText: {
-        id: 'Komponen Hero · Profile & Headline',
-        en: 'Hero Component · Profile & Headline'
-      },
-      cursorActions: [
-        { cursor: 'ui', xRel: 0.25, yRel: 0.22, delay: 400, action: 'click', text: { id: 'Menata Badge Status', en: 'Positioning Badge' } },
-        { cursor: 'riki', xRel: 0.32, yRel: 0.38, delay: 1200, action: 'select', text: { id: 'Verifikasi Gelar A.Md.Ak.', en: 'Verifying A.Md.Ak. Title' } },
-        { cursor: 'ai', xRel: 0.72, yRel: 0.45, delay: 2200, action: 'drag', text: { id: 'Optimalisasi Frame Foto Neubrutalis', en: 'Framing Neubrutalist Photo' } },
-        { cursor: 'riki', xRel: 0.28, yRel: 0.75, delay: 3600, action: 'click', text: { id: 'Sinkronisasi IPK 3.59 POLNES', en: 'Syncing GPA 3.59 POLNES' } }
-      ]
-    },
-    {
-      id: 'tentang',
-      targetSelector: '#tentang',
-      duration: 5000,
-      title: {
-        id: '2/7: Menyelaraskan Keuangan & Rekayasa Sistem',
-        en: '2/7: Bridging Accounting & System Engineering'
-      },
-      tagText: {
-        id: 'Section Tentang Saya · SAK EMKM & Macro VBA',
-        en: 'About Section · SAK EMKM & Macro VBA'
-      },
-      cursorActions: [
-        { cursor: 'riki', xRel: 0.28, yRel: 0.35, delay: 500, action: 'select', text: { id: 'Menyusun Logika Siklus Akuntansi', en: 'Structuring Accounting Cycle Logic' } },
-        { cursor: 'ui', xRel: 0.75, yRel: 0.30, delay: 1500, action: 'click', text: { id: 'Menata Kartu Metrik IPK & Proyek', en: 'Aligning Stat Metric Cards' } },
-        { cursor: 'ai', xRel: 0.32, yRel: 0.72, delay: 2800, action: 'click', text: { id: 'Mengaitkan Tujuan Karier Specialist', en: 'Linking Career Objectives' } },
-        { cursor: 'ui', xRel: 0.75, yRel: 0.70, delay: 3800, action: 'drag', text: { id: 'Penyusunan Tag Bidang Minat', en: 'Tagging Competency Domains' } }
-      ]
-    },
-    {
-      id: 'keahlian',
-      targetSelector: '#keahlian',
-      duration: 5200,
-      title: {
-        id: '3/7: Konfigurasi Skill-Bars & Logika Database',
-        en: '3/7: Configuring Skill Bars & Database Logic'
-      },
-      tagText: {
-        id: 'Grid Keahlian · Accounting, Excel, Web & Tools',
-        en: 'Skills Grid · Accounting, Excel, Web & Tools'
-      },
-      cursorActions: [
-        { cursor: 'riki', xRel: 0.30, yRel: 0.28, delay: 400, action: 'click', text: { id: 'Kalibrasi SAK EMKM (90%)', en: 'Calibrating SAK EMKM (90%)' } },
-        { cursor: 'ai', xRel: 0.72, yRel: 0.28, delay: 1400, action: 'click', text: { id: 'Kompilasi Macro VBA & UserForms', en: 'Compiling Macro VBA & Forms' } },
-        { cursor: 'ui', xRel: 0.30, yRel: 0.58, delay: 2400, action: 'drag', text: { id: 'Integrasi REST API & Supabase', en: 'Integrating REST API & Supabase' } },
-        { cursor: 'riki', xRel: 0.50, yRel: 0.88, delay: 3600, action: 'click', text: { id: 'Harmonisasi 7 Soft Skills', en: 'Harmonizing Soft Skills' } }
-      ]
-    },
-    {
-      id: 'proyek',
-      targetSelector: '#proyek',
-      duration: 5800,
-      title: {
-        id: '4/7: Portofolio Proyek & Sertifikat HKI DJKI',
-        en: '4/7: Project Showcase & Official Copyright HKI'
-      },
-      tagText: {
-        id: 'Kartu Proyek Unggulan · 4 Proyek Nyata',
-        en: 'Featured Projects · 4 Production Apps'
-      },
-      cursorActions: [
-        { cursor: 'riki', xRel: 0.40, yRel: 0.24, delay: 500, action: 'click', text: { id: 'Sematkan Hak Cipta EC002026199600', en: 'Affixing Copyright EC002026199600' } },
-        { cursor: 'ui', xRel: 0.28, yRel: 0.62, delay: 1700, action: 'click', text: { id: 'Verifikasi Modul Kasir POS Android', en: 'Checking POS Android Modules' } },
-        { cursor: 'ai', xRel: 0.72, yRel: 0.62, delay: 2900, action: 'click', text: { id: 'Uji Tautan Live Demo Website Yayasan', en: 'Testing Foundation Live Demo' } },
-        { cursor: 'riki', xRel: 0.75, yRel: 0.85, delay: 4200, action: 'drag', text: { id: 'Pemeriksaan Arus Kas Logistik Average', en: 'Auditing Logistics Average Cashflow' } }
-      ]
-    },
-    {
-      id: 'pengalaman',
-      targetSelector: '#pengalaman',
-      duration: 5200,
-      title: {
-        id: '5/7: Rekam Jejak Magang Bankaltimtara & Metrik 92%',
-        en: '5/7: Bankaltimtara Internship & 92% Time Savings'
-      },
-      tagText: {
-        id: 'Kartu Pengalaman · Divisi Usaha Syariah',
-        en: 'Experience Card · Sharia Banking Division'
-      },
-      cursorActions: [
-        { cursor: 'riki', xRel: 0.75, yRel: 0.32, delay: 400, action: 'click', text: { id: 'Validasi Efisiensi Laporan 92%', en: 'Validating 92% Time Slashed' } },
-        { cursor: 'ui', xRel: 0.32, yRel: 0.62, delay: 1600, action: 'select', text: { id: 'Pelurusan Sertifikat Magang (+0.85°)', en: 'Deskewing Internship Cert (+0.85°)' } },
-        { cursor: 'ai', xRel: 0.72, yRel: 0.75, delay: 2800, action: 'drag', text: { id: 'Menata 4 Dokumentasi Operasional', en: 'Curating 4 Operational Photos' } },
-        { cursor: 'riki', xRel: 0.28, yRel: 0.90, delay: 3900, action: 'click', text: { id: 'Verifikasi Freelance Developer', en: 'Verifying Freelance Dev Record' } }
-      ]
-    },
-    {
-      id: 'sertifikat',
-      targetSelector: '#sertifikat',
-      duration: 4800,
-      title: {
-        id: '6/7: Penataan Grid Sertifikasi & Legalitas Ijazah',
-        en: '6/7: Arranging Credentials & Diploma Grid'
-      },
-      tagText: {
-        id: 'Galeri Sertifikasi · Ijazah, LSP, HKI, & TOEFL',
-        en: 'Credentials Gallery · Diploma, LSP, HKI, & TOEFL'
-      },
-      cursorActions: [
-        { cursor: 'ui', xRel: 0.22, yRel: 0.36, delay: 400, action: 'click', text: { id: 'Sematkan Ijazah D3 Akuntansi POLNES', en: 'Pinning POLNES Diploma A.Md.Ak.' } },
-        { cursor: 'riki', xRel: 0.50, yRel: 0.36, delay: 1500, action: 'click', text: { id: 'Verifikasi SK Kompetensi LSP', en: 'Verifying LSP Competency SK' } },
-        { cursor: 'ai', xRel: 0.78, yRel: 0.36, delay: 2600, action: 'click', text: { id: 'Pemeriksaan HKI Kemenkum RI', en: 'Inspecting DJKI Copyright Deed' } },
-        { cursor: 'ui', xRel: 0.50, yRel: 0.76, delay: 3600, action: 'drag', text: { id: 'Harmonisasi Galeri Lightbox 60FPS', en: 'Tuning 60FPS Lightbox Gallery' } }
-      ]
-    },
-    {
-      id: 'kontak',
-      targetSelector: '#kontak',
-      duration: 5400,
-      title: {
-        id: '7/7: Otomatisasi Formulir & Kesiapan Kolaborasi',
-        en: '7/7: Form Automation & Ready to Collaborate'
-      },
-      tagText: {
-        id: 'Kanal Kontak · Email, WhatsApp, & Jobstreet',
-        en: 'Contact Channels · Email, WhatsApp, & Jobstreet'
-      },
-      cursorActions: [
-        { cursor: 'riki', xRel: 0.25, yRel: 0.36, delay: 500, action: 'select', text: { id: 'Uji Validasi Form Kontak', en: 'Testing Contact Form Validation' } },
-        { cursor: 'ai', xRel: 0.28, yRel: 0.65, delay: 1600, action: 'click', text: { id: 'Penyusunan Format Mailto Otomatis', en: 'Configuring Mailto Routing' } },
-        { cursor: 'ui', xRel: 0.75, yRel: 0.45, delay: 2800, action: 'click', text: { id: 'Tautkan WhatsApp & Jobstreet', en: 'Linking WhatsApp & Jobstreet' } },
-        { cursor: 'riki', xRel: 0.50, yRel: 0.88, delay: 4000, action: 'celebrate', text: { id: '✨ Portofolio Siap Menjangkau Dunia!', en: '✨ Portfolio Ready for the World!' } }
-      ]
-    }
-  ];
-
-  // State Management
-  let isPlaying = false;
+  // State
+  let isRunning = false;
   let isPaused = false;
-  let currentSceneIndex = 0;
-  let playbackSpeed = 1.0;
-  let sceneTimer = null;
-  let actionTimers = [];
-  let overlayEl = null;
+  let currentStep = 0;
+  let speed = 1.0;
+  let timers = [];
+  let modalEl = null;
 
-  // Helper: Get Current Language
   function getLang() {
     return document.documentElement.lang === 'en' ? 'en' : 'id';
   }
 
-  // Inject CSS Styles for Design Tour
+  // Inject CSS Styles for Canvas Motion
   function injectStyles() {
-    if (document.getElementById('design-tour-styles')) return;
+    if (document.getElementById('stitch-canvas-styles')) return;
     const style = document.createElement('style');
-    style.id = 'design-tour-styles';
+    style.id = 'stitch-canvas-styles';
     style.textContent = `
-      /* Tour Root Layer */
-      #design-tour-overlay {
+      /* Studio Modal Overlay */
+      #stitch-studio-modal {
         position: fixed;
         inset: 0;
-        pointer-events: none;
-        z-index: 99999;
-        font-family: 'Outfit', sans-serif;
-      }
-
-      /* Blueprint Grid Background during tour */
-      .tour-blueprint-active::before {
-        content: '';
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        background-size: 32px 32px;
-        background-image:
-          linear-gradient(to right, rgba(15, 30, 58, 0.05) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(15, 30, 58, 0.05) 1px, transparent 1px);
-        z-index: 9998;
+        background: rgba(15, 30, 58, 0.92);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 100000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         opacity: 0;
-        transition: opacity 0.5s ease;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        padding: 16px;
+        font-family: 'Outfit', sans-serif;
+        user-select: none;
+        overflow: hidden;
       }
-      .tour-blueprint-active.blueprint-on::before {
+      #stitch-studio-modal.active {
         opacity: 1;
+        pointer-events: auto;
       }
 
-      /* Virtual Collaborative Cursors */
-      .v-cursor {
+      /* Studio Window Frame */
+      .stitch-window {
+        width: 100%;
+        max-width: 1040px;
+        height: 90vh;
+        max-height: 720px;
+        background: #0D0D0D;
+        border: 4px solid #0D0D0D;
+        border-radius: 20px;
+        box-shadow: 12px 12px 0px 0px #0F1E3A, 0 20px 40px rgba(0,0,0,0.5);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+        transform: scale(0.96);
+        transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      #stitch-studio-modal.active .stitch-window {
+        transform: scale(1);
+      }
+
+      /* Window Titlebar (macOS / Figma Style) */
+      .stitch-titlebar {
+        background: #fff;
+        border-bottom: 3px solid #0D0D0D;
+        padding: 10px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .stitch-dots {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .stitch-dot {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        border: 2px solid #0D0D0D;
+      }
+      .stitch-dot.red { background: #FF5A5A; }
+      .stitch-dot.yellow { background: #FFE566; }
+      .stitch-dot.green { background: #D4FF4F; }
+
+      .stitch-title-text {
+        font-weight: 900;
+        font-size: 0.85rem;
+        color: #0F1E3A;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .stitch-badge-building {
+        background: #FFE566;
+        color: #0D0D0D;
+        border: 1.5px solid #0D0D0D;
+        padding: 1px 7px;
+        border-radius: 6px;
+        font-size: 0.68rem;
+        font-weight: 800;
+        animation: pulse-building 1.2s infinite alternate;
+      }
+      @keyframes pulse-building {
+        from { opacity: 0.6; }
+        to { opacity: 1; transform: scale(1.04); }
+      }
+
+      /* Main Artboard Canvas Workspace */
+      .stitch-workspace {
+        flex: 1;
+        background: #1E293B;
+        background-image:
+          radial-gradient(#334155 1.5px, transparent 1.5px);
+        background-size: 24px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        padding: 20px;
+      }
+
+      /* The Blank Artboard Sheet (Kanvas Kosong) */
+      .stitch-artboard {
+        width: 100%;
+        max-width: 900px;
+        height: 100%;
+        max-height: 560px;
+        background: #F5F0E8;
+        border: 3px solid #0D0D0D;
+        border-radius: 16px;
+        box-shadow: 8px 8px 0px 0px #0D0D0D;
+        position: relative;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .stitch-artboard::-webkit-scrollbar { width: 8px; }
+      .stitch-artboard::-webkit-scrollbar-thumb { background: #0F1E3A; border-radius: 4px; }
+
+      /* Artboard Placeholder Grid (Shown when blank) */
+      .artboard-empty-hint {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: #94A3B8;
+        font-weight: 800;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+      }
+      .artboard-empty-hint.hidden {
+        opacity: 0;
+      }
+
+      /* Snap/Bounce Animation for dropped elements */
+      @keyframes pop-drop {
+        0% {
+          opacity: 0;
+          transform: scale(0.6) translateY(-20px);
+        }
+        70% {
+          opacity: 1;
+          transform: scale(1.05) translateY(2px);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      .canvas-item {
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .canvas-item.assembled {
+        opacity: 1;
+        pointer-events: auto;
+        animation: pop-drop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      }
+
+      /* Cursors Layer */
+      .stitch-cursor {
         position: absolute;
         top: 0;
         left: 0;
         pointer-events: none;
-        transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
-        will-change: transform, opacity;
-        z-index: 100000;
+        z-index: 999;
+        transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.25s ease;
+        will-change: transform;
         opacity: 0;
-        filter: drop-shadow(2px 3px 0px rgba(13, 13, 13, 0.8));
       }
-      .v-cursor.visible {
+      .stitch-cursor.active {
         opacity: 1;
       }
-      .v-cursor svg {
-        display: block;
-        width: 26px;
-        height: 26px;
+      .stitch-cursor svg {
+        width: 28px;
+        height: 28px;
+        filter: drop-shadow(2px 3px 0 #0D0D0D);
       }
-      .v-cursor .v-badge {
+      .stitch-cursor .sc-tag {
         position: absolute;
-        top: 18px;
+        top: 20px;
         left: 14px;
         white-space: nowrap;
-        font-family: 'Outfit', sans-serif;
         font-weight: 800;
         font-size: 0.68rem;
-        letter-spacing: 0.02em;
         padding: 2px 7px;
         border-radius: 6px;
         border: 2px solid #0D0D0D;
-        box-shadow: 2px 2px 0 0 #0D0D0D;
-        color: #0D0D0D;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-      }
-      .v-cursor .v-action-toast {
-        position: absolute;
-        bottom: 24px;
-        left: 14px;
-        white-space: nowrap;
-        font-size: 0.72rem;
-        font-weight: 800;
-        padding: 3px 9px;
-        border-radius: 8px;
-        background: #0F1E3A;
-        color: #D4FF4F;
-        border: 2px solid #0D0D0D;
         box-shadow: 2px 2px 0 #0D0D0D;
-        opacity: 0;
-        transform: translateY(6px);
-        transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
-      .v-cursor .v-action-toast.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      .stitch-cursor.cur-stitch .sc-tag { background: #3B82F6; color: #fff; }
+      .stitch-cursor.cur-riki   .sc-tag { background: #0F1E3A; color: #D4FF4F; }
+      .stitch-cursor.cur-ai     .sc-tag { background: #FFE566; color: #0D0D0D; }
 
-      /* Specific Cursor Themes */
-      .v-cursor.c-riki .v-badge { background: #0F1E3A; color: #D4FF4F; }
-      .v-cursor.c-ui   .v-badge { background: #D4FF4F; color: #0F1E3A; }
-      .v-cursor.c-ai   .v-badge { background: #FFE566; color: #0D0D0D; }
-
-      /* Click Ripple Effect */
-      .v-ripple {
+      /* Virtual Drag Ghost Box attached to cursor while moving */
+      .sc-drag-ghost {
         position: absolute;
-        width: 44px;
-        height: 44px;
+        top: 30px;
+        left: 30px;
+        background: rgba(212, 255, 79, 0.85);
+        border: 2px dashed #0D0D0D;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-weight: 900;
+        font-size: 0.65rem;
+        color: #0D0D0D;
+        box-shadow: 3px 3px 0 #0D0D0D;
+        opacity: 0;
+        transform: scale(0.8);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .stitch-cursor.dragging .sc-drag-ghost {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* Interactive Click Ripple */
+      .sc-ripple {
+        position: absolute;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
-        border: 3px solid #0D0D0D;
+        border: 3px solid #D4FF4F;
         pointer-events: none;
         transform: translate(-50%, -50%) scale(0.2);
-        opacity: 1;
-        animation: v-ripple-anim 0.7s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-        z-index: 99999;
+        animation: sc-rip 0.5s ease-out forwards;
       }
-      @keyframes v-ripple-anim {
+      @keyframes sc-rip {
         0%   { transform: translate(-50%, -50%) scale(0.2); opacity: 1; }
-        60%  { opacity: 0.8; }
         100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
       }
 
-      /* Selection Box (Figma Canvas Highlight) */
-      #v-selection-box {
-        position: absolute;
-        border: 2px dashed #0F1E3A;
-        background: rgba(200, 232, 255, 0.08);
-        border-radius: 12px;
-        pointer-events: none;
-        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        z-index: 99990;
-        opacity: 0;
-      }
-      #v-selection-box.active {
-        opacity: 1;
-      }
-      #v-selection-box .s-handle {
-        position: absolute;
-        width: 8px;
-        height: 8px;
+      /* Control Toolbar at bottom of window */
+      .stitch-toolbar {
         background: #fff;
-        border: 2px solid #0F1E3A;
-        border-radius: 2px;
-      }
-      #v-selection-box .s-tl { top: -4px; left: -4px; }
-      #v-selection-box .s-tr { top: -4px; right: -4px; }
-      #v-selection-box .s-bl { bottom: -4px; left: -4px; }
-      #v-selection-box .s-br { bottom: -4px; right: -4px; }
-      #v-selection-box .s-tag {
-        position: absolute;
-        top: -24px;
-        left: 0;
-        background: #0F1E3A;
-        color: #D4FF4F;
-        font-family: 'Outfit', sans-serif;
-        font-weight: 800;
-        font-size: 0.68rem;
-        padding: 2px 8px;
-        border-radius: 4px;
-        border: 1.5px solid #0D0D0D;
-        white-space: nowrap;
-      }
-
-      /* Floating Neubrutalist Playback Control Bar */
-      #v-tour-toolbar {
-        position: fixed;
-        bottom: 24px;
-        left: 50%;
-        transform: translateX(-50%) translateY(120px);
-        background: #fff;
-        border: 3px solid #0D0D0D;
-        border-radius: 18px;
-        box-shadow: 6px 6px 0 0 #0D0D0D;
-        padding: 10px 16px;
+        border-top: 3px solid #0D0D0D;
+        padding: 10px 20px;
         display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: 12px;
-        pointer-events: auto;
-        z-index: 100005;
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        max-width: 95vw;
       }
-      #v-tour-toolbar.visible {
-        transform: translateX(-50%) translateY(0);
+      .stitch-progress-outer {
+        flex: 1;
+        max-width: 320px;
+        height: 10px;
+        background: #F5F0E8;
+        border: 2px solid #0D0D0D;
+        border-radius: 999px;
+        overflow: hidden;
       }
-      .tb-btn {
+      .stitch-progress-fill {
+        height: 100%;
+        width: 0%;
+        background: #0F1E3A;
+        transition: width 0.3s ease;
+      }
+
+      .st-btn {
         background: #F5F0E8;
         border: 2px solid #0D0D0D;
         box-shadow: 2px 2px 0 #0D0D0D;
         border-radius: 10px;
         font-family: 'Outfit', sans-serif;
-        font-weight: 800;
+        font-weight: 900;
         font-size: 0.78rem;
-        padding: 6px 11px;
+        padding: 6px 12px;
         cursor: pointer;
         display: inline-flex;
         align-items: center;
-        gap: 4px;
+        gap: 6px;
         color: #0D0D0D;
         transition: all 0.1s ease;
       }
-      .tb-btn:hover {
+      .st-btn:hover {
         background: #D4FF4F;
         transform: translate(-1px, -1px);
         box-shadow: 3px 3px 0 #0D0D0D;
       }
-      .tb-btn:active {
+      .st-btn:active {
         transform: translate(2px, 2px);
         box-shadow: 0px 0px 0 #0D0D0D;
       }
-      .tb-btn.active-speed {
+      .st-btn.active-speed {
         background: #FFE566;
       }
-      .tb-progress-wrap {
-        width: 140px;
-        height: 8px;
-        background: #EFE8DA;
-        border: 2px solid #0D0D0D;
-        border-radius: 999px;
-        overflow: hidden;
-      }
-      .tb-progress-bar {
-        height: 100%;
-        width: 0%;
-        background: #0F1E3A;
-        transition: width 0.3s linear;
-      }
-      .tb-info {
-        font-family: 'Outfit', sans-serif;
-        font-weight: 800;
-        font-size: 0.82rem;
-        color: #0F1E3A;
-        white-space: nowrap;
-        min-width: 170px;
-      }
-      .tb-close {
+      .st-btn.st-close {
         background: #FF5A5A;
         color: #fff;
       }
-      .tb-close:hover {
+      .st-btn.st-close:hover {
         background: #e04444;
       }
 
-      /* Floating FAB Button on Home */
-      .fab-design-tour {
-        position: fixed;
-        bottom: 24px;
-        left: 24px;
-        background: #FFE566;
-        color: #0D0D0D;
-        border: 3px solid #0D0D0D;
-        border-radius: 14px;
-        box-shadow: 4px 4px 0 0 #0D0D0D;
-        font-family: 'Outfit', sans-serif;
-        font-weight: 900;
-        font-size: 0.82rem;
-        padding: 9px 14px;
-        cursor: pointer;
-        z-index: 90;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      /* Complete Overlay Banner */
+      .stitch-complete-card {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        background: #fff;
+        border: 4px solid #0D0D0D;
+        box-shadow: 10px 10px 0px 0px #0F1E3A;
+        border-radius: 20px;
+        padding: 28px;
+        text-align: center;
+        z-index: 1000;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        max-width: 90%;
       }
-      .fab-design-tour:hover {
-        background: #D4FF4F;
-        transform: translate(-3px, -3px);
-        box-shadow: 6px 6px 0 0 #0D0D0D;
-      }
-      .fab-design-tour:active {
-        transform: translate(2px, 2px);
-        box-shadow: 1px 1px 0 0 #0D0D0D;
-      }
-      @media (max-width: 640px) {
-        .fab-design-tour {
-          bottom: 16px;
-          left: 16px;
-          padding: 8px 11px;
-          font-size: 0.75rem;
-        }
-        .tb-progress-wrap, .tb-info {
-          display: none;
-        }
+      .stitch-complete-card.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translate(-50%, -50%) scale(1);
       }
     `;
     document.head.appendChild(style);
   }
 
-  // Create Virtual Cursor Element
-  function createCursorEl(name, roleClass, badgeText, bgBadge) {
-    const el = document.createElement('div');
-    el.className = `v-cursor ${roleClass}`;
-    el.id = `v-cursor-${name}`;
-    el.innerHTML = `
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M4 3L19 11L11.5 13.5L8.5 21L4 3Z" fill="${bgBadge}" stroke="#0D0D0D" stroke-width="2" stroke-linejoin="round"/>
-      </svg>
-      <div class="v-badge">${badgeText}</div>
-      <div class="v-action-toast"></div>
-    `;
-    return el;
-  }
+  // Build Studio Window HTML Structure
+  function buildStudioDOM() {
+    if (modalEl) return modalEl;
 
-  // Build the Tour Overlay DOM
-  function buildTourOverlay() {
-    if (overlayEl) return overlayEl;
+    modalEl = document.createElement('div');
+    modalEl.id = 'stitch-studio-modal';
 
-    overlayEl = document.createElement('div');
-    overlayEl.id = 'design-tour-overlay';
+    modalEl.innerHTML = `
+      <div class="stitch-window" role="dialog" aria-modal="true" aria-label="Studio Motion Desain">
+        <!-- Titlebar -->
+        <div class="stitch-titlebar">
+          <div class="stitch-dots">
+            <span class="stitch-dot red" id="st-dot-close" title="Tutup"></span>
+            <span class="stitch-dot yellow"></span>
+            <span class="stitch-dot green"></span>
+          </div>
+          <div class="stitch-title-text">
+            <span>🎨 Canvas Studio · Riki Rivaldi Portfolio</span>
+            <span class="stitch-badge-building" id="st-status-badge">⚡ Assembling Live...</span>
+          </div>
+          <button type="button" class="st-btn st-close" id="st-btn-close-top">✕ Tutup</button>
+        </div>
 
-    // 1. Selection Box
-    const selBox = document.createElement('div');
-    selBox.id = 'v-selection-box';
-    selBox.innerHTML = `
-      <span class="s-handle s-tl"></span>
-      <span class="s-handle s-tr"></span>
-      <span class="s-handle s-bl"></span>
-      <span class="s-handle s-br"></span>
-      <span class="s-tag">Component</span>
-    `;
-    overlayEl.appendChild(selBox);
+        <!-- Canvas Workspace -->
+        <div class="stitch-workspace" id="st-workspace">
+          <!-- The Blank Canvas / Artboard -->
+          <div class="stitch-artboard" id="st-artboard">
+            <div class="artboard-empty-hint" id="st-empty-hint">
+              <span style="font-size:2.4rem;">📐</span>
+              <p style="font-size:0.9rem; text-transform:uppercase; letter-spacing:0.08em;">Kanvas Kosong (Blank Canvas)</p>
+              <p style="font-size:0.75rem; color:#64748B;">Kursor siap merakit desain UI/UX portofolio...</p>
+            </div>
 
-    // 2. Three Virtual Cursors
-    const cRiki = createCursorEl('riki', 'c-riki', '🟣 Riki Rivaldi (Lead)', '#0F1E3A');
-    const cUi   = createCursorEl('ui',   'c-ui',   '🟢 UI Architect',      '#D4FF4F');
-    const cAi   = createCursorEl('ai',   'c-ai',   '🟡 AI Copilot',        '#FFE566');
-    overlayEl.appendChild(cRiki);
-    overlayEl.appendChild(cUi);
-    overlayEl.appendChild(cAi);
+            <!-- Assembled Block 1: Navbar Header -->
+            <div class="canvas-item w-full" id="c-item-navbar" style="background:#fff; border:3px solid #0D0D0D; border-radius:14px; box-shadow:4px 4px 0 #0D0D0D; padding:12px 18px; display:flex; align-items:center; justify-content:space-between;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <div style="width:32px; height:32px; background:#D4FF4F; border:2px solid #0D0D0D; border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:0.9rem; box-shadow:2px 2px 0 #0D0D0D;">R!</div>
+                <span style="font-weight:900; font-size:1.1rem; color:#0D0D0D;">RIKI <span style="color:#0F1E3A;">RIVALDI</span></span>
+              </div>
+              <div style="display:flex; gap:12px; font-weight:800; font-size:0.75rem;">
+                <span style="color:#0F1E3A;">Tentang</span>
+                <span style="color:#0F1E3A;">Keahlian</span>
+                <span style="color:#0F1E3A;">Proyek</span>
+                <span style="color:#0F1E3A;">Sertifikat</span>
+              </div>
+              <div style="background:#0F1E3A; color:#D4FF4F; padding:4px 12px; border-radius:8px; border:2px solid #0D0D0D; font-weight:900; font-size:0.75rem; box-shadow:2px 2px 0 #0D0D0D;">Hubungi Saya →</div>
+            </div>
 
-    // 3. Floating Toolbar
-    const tb = document.createElement('div');
-    tb.id = 'v-tour-toolbar';
-    tb.innerHTML = `
-      <div class="tb-info" id="v-tour-title">1/7: Merakit Hero</div>
-      <div class="tb-progress-wrap">
-        <div class="tb-progress-bar" id="v-tour-bar"></div>
+            <!-- Assembled Block 2: Hero Grid (Text Left + Photo Right) -->
+            <div class="canvas-item w-full" id="c-item-hero" style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:20px; align-items:center; padding:10px 0;">
+              <div>
+                <div style="display:inline-flex; align-items:center; gap:6px; background:#A7B6D0; border:2px solid #0D0D0D; border-radius:999px; padding:3px 10px; font-size:0.68rem; font-weight:900; box-shadow:2px 2px 0 #0D0D0D; margin-bottom:12px;">
+                  <span style="width:6px; height:6px; background:#D4FF4F; border-radius:50%; border:1px solid #0D0D0D;"></span>
+                  TERBUKA UNTUK PELUANG KARIER &amp; FREELANCE
+                </div>
+                <h1 style="font-weight:900; font-size:2.2rem; line-height:1.05; color:#0D0D0D; margin-bottom:8px;">
+                  Halo, Saya<br>
+                  <span style="background:#FFE566; padding:0 6px; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D; display:inline-block; transform:rotate(-1deg);">Riki Rivaldi</span>
+                </h1>
+                <p style="font-weight:800; font-size:1.05rem; color:#0F1E3A; margin-bottom:12px;">Accounting &amp; Financial System Specialist</p>
+                <p style="font-size:0.8rem; font-weight:600; color:#4A4A4A; line-height:1.5; margin-bottom:14px;">
+                  <strong>Ahli Madya Akuntansi (A.Md.Ak.)</strong> lulusan <strong>Politeknik Negeri Samarinda</strong>. Mengubah alur akuntansi manual menjadi sistem terotomatisasi berbasis SAK EMKM &amp; Macro VBA.
+                </p>
+                <div style="display:flex; gap:12px; align-items:center;">
+                  <div style="background:#0F1E3A; color:#D4FF4F; padding:8px 16px; border-radius:10px; border:2px solid #0D0D0D; font-weight:900; font-size:0.8rem; box-shadow:3px 3px 0 #0D0D0D;">Hubungi Saya →</div>
+                  <div style="background:#fff; color:#0D0D0D; padding:8px 16px; border-radius:10px; border:2px solid #0D0D0D; font-weight:900; font-size:0.8rem; box-shadow:3px 3px 0 #0D0D0D;">Jobstreet Profile</div>
+                </div>
+              </div>
+              <div style="position:relative; display:flex; justify-content:center;">
+                <!-- Layered Cards -->
+                <div style="position:absolute; width:180px; height:230px; background:#A7B6D0; border:2px solid #0D0D0D; border-radius:14px; box-shadow:4px 4px 0 #0D0D0D; transform:rotate(6deg) translate(8px, 8px); opacity:0.6;"></div>
+                <div style="position:absolute; width:180px; height:230px; background:#D4FF4F; border:2px solid #0D0D0D; border-radius:14px; box-shadow:4px 4px 0 #0D0D0D; transform:rotate(-3deg) translate(-4px, -4px); opacity:0.8;"></div>
+                <div style="position:relative; width:185px; height:235px; background:linear-gradient(180deg,#C8E8FF,#E8F4FF); border:3px solid #0D0D0D; border-radius:16px; box-shadow:5px 5px 0 #0D0D0D; overflow:hidden;">
+                  <img src="assets/img/profil-nobg.jpg" style="width:100%; height:100%; object-fit:cover; object-position:top;" alt="Profil Riki Rivaldi" />
+                  <div style="position:absolute; bottom:8px; left:8px; right:8px; background:#0F1E3A; color:#D4FF4F; padding:3px 8px; border-radius:8px; border:1.5px solid #0D0D0D; font-weight:900; font-size:0.68rem; text-align:center;">
+                    📍 Samarinda, Kaltim
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Assembled Block 3: Stats & Core Competencies -->
+            <div class="canvas-item w-full" id="c-item-stats" style="display:grid; grid-template-columns:1fr 1fr 2fr; gap:14px;">
+              <div style="background:#fff; border:3px solid #0D0D0D; border-radius:14px; padding:14px; text-align:center; box-shadow:4px 4px 0 #0D0D0D;">
+                <div style="font-weight:900; font-size:1.8rem; color:#0F1E3A; line-height:1;">3.59</div>
+                <div style="font-size:0.68rem; font-weight:800; color:#7A7060; text-transform:uppercase; margin-top:4px;">IPK Kelulusan POLNES</div>
+              </div>
+              <div style="background:#fff; border:3px solid #0D0D0D; border-radius:14px; padding:14px; text-align:center; box-shadow:4px 4px 0 #0D0D0D;">
+                <div style="font-weight:900; font-size:1.8rem; color:#0F1E3A; line-height:1;">5+</div>
+                <div style="font-size:0.68rem; font-weight:800; color:#7A7060; text-transform:uppercase; margin-top:4px;">Proyek Digital Selesai</div>
+              </div>
+              <div style="background:#fff; border:3px solid #0D0D0D; border-radius:14px; padding:12px 16px; box-shadow:4px 4px 0 #0D0D0D; display:flex; flex-direction:column; justify-content:center; gap:6px;">
+                <div style="display:flex; justify-content:space-between; font-weight:800; font-size:0.75rem;">
+                  <span>Laporan Keuangan SAK EMKM</span>
+                  <span style="color:#0F1E3A; font-weight:900;">90%</span>
+                </div>
+                <div style="height:6px; background:#E0D8CA; border:1.5px solid #0D0D0D; border-radius:3px; overflow:hidden;">
+                  <div style="height:100%; width:90%; background:#0F1E3A;"></div>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-weight:800; font-size:0.75rem; margin-top:2px;">
+                  <span>Excel Macro VBA &amp; POS Systems</span>
+                  <span style="color:#0F1E3A; font-weight:900;">92%</span>
+                </div>
+                <div style="height:6px; background:#E0D8CA; border:1.5px solid #0D0D0D; border-radius:3px; overflow:hidden;">
+                  <div style="height:100%; width:92%; background:#D4FF4F;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Assembled Block 4: Featured HKI & Projects -->
+            <div class="canvas-item w-full" id="c-item-project" style="background:#fff; border:3px solid #0D0D0D; border-radius:16px; box-shadow:5px 5px 0 #0D0D0D; padding:16px; display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:center;">
+              <div style="background:linear-gradient(135deg,#0F1E3A,#1E2F4F); border:2px solid #0D0D0D; border-radius:12px; height:90px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; text-align:center;">
+                <span style="font-size:1.6rem;">©️</span>
+                <span style="font-weight:900; font-size:0.68rem; color:#D4FF4F;">HKI DJKI</span>
+              </div>
+              <div>
+                <div style="display:flex; gap:6px; margin-bottom:4px;">
+                  <span style="background:#FFE566; border:1.5px solid #0D0D0D; padding:1px 6px; border-radius:4px; font-weight:900; font-size:0.62rem;">EC002026199600</span>
+                  <span style="background:#D4FF4F; border:1.5px solid #0D0D0D; padding:1px 6px; border-radius:4px; font-weight:900; font-size:0.62rem;">Program Komputer</span>
+                </div>
+                <h3 style="font-weight:900; font-size:1.05rem; color:#0D0D0D; margin-bottom:2px;">Aplikasi PO-lne-S Mikro Loa Lepu</h3>
+                <p style="font-size:0.75rem; color:#4A4A4A; font-weight:600; line-height:1.4;">
+                  Program komputer resmi tercatat Ciptaan Kementerian Hukum RI. Melindungi SIA UMKM selama 50 tahun.
+                </p>
+              </div>
+            </div>
+
+            <!-- Assembled Block 5: Bankaltimtara Magang & Credentials -->
+            <div class="canvas-item w-full" id="c-item-experience" style="background:#F5F0E8; border:3px solid #0D0D0D; border-radius:14px; box-shadow:4px 4px 0 #0D0D0D; padding:14px; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="display:inline-block; background:#FFE566; border:1.5px solid #0D0D0D; border-radius:4px; padding:1px 6px; font-size:0.62rem; font-weight:900; margin-bottom:4px;">1 Jun - 1 Jul 2025</div>
+                <h4 style="font-weight:900; font-size:0.95rem; color:#0F1E3A;">Staf Magang · Bankaltimtara Sharia</h4>
+                <p style="font-size:0.72rem; font-weight:600; color:#4A4A4A;">Otomatisasi pengolahan data keuangan lintas periode dengan Excel Macro VBA.</p>
+              </div>
+              <div style="background:#D4FF4F; border:2px solid #0D0D0D; border-radius:10px; padding:6px 12px; text-align:center; box-shadow:2px 2px 0 #0D0D0D;">
+                <span style="font-weight:900; font-size:1.2rem; color:#0F1E3A;">92%</span>
+                <p style="font-size:0.6rem; font-weight:800; color:#4A6040;">Waktu Dipangkas</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Virtual Cursors (Stitch Style) -->
+          <div class="stitch-cursor cur-stitch" id="sc-stitch">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 3L19 11L11.5 13.5L8.5 21L4 3Z" fill="#3B82F6" stroke="#0D0D0D" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+            <div class="sc-tag">⚡ Stitch / UI Architect</div>
+            <div class="sc-drag-ghost" id="sc-ghost-stitch">📦 Box Frame</div>
+          </div>
+
+          <div class="stitch-cursor cur-riki" id="sc-riki">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 3L19 11L11.5 13.5L8.5 21L4 3Z" fill="#0F1E3A" stroke="#0D0D0D" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+            <div class="sc-tag">🟣 Riki (Lead Dev)</div>
+            <div class="sc-drag-ghost" id="sc-ghost-riki">✍️ Typography</div>
+          </div>
+
+          <div class="stitch-cursor cur-ai" id="sc-ai">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 3L19 11L11.5 13.5L8.5 21L4 3Z" fill="#FFE566" stroke="#0D0D0D" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+            <div class="sc-tag">🟡 AI Copilot</div>
+            <div class="sc-drag-ghost" id="sc-ghost-ai">🎨 Neubrutalism Assets</div>
+          </div>
+
+          <!-- Celebration Completion Card -->
+          <div class="stitch-complete-card" id="st-complete-card">
+            <div style="font-size:3rem; margin-bottom:8px;">🚀✨</div>
+            <h2 style="font-weight:900; font-size:1.6rem; color:#0F1E3A; margin-bottom:6px;">DESAIN UI/UX SELESAI DIRAKIT!</h2>
+            <p style="font-size:0.88rem; font-weight:600; color:#4A4A4A; max-width:440px; margin:0 auto 18px;">
+              Seluruh elemen website portofolio Riki Rivaldi telah selesai ditempelkan dari kanvas kosong menjadi desain neubrutalis utuh siap produksi.
+            </p>
+            <div style="display:flex; justify-content:center; gap:12px;">
+              <button type="button" class="st-btn" id="st-btn-replay" style="background:#FFE566;">🔄 Putar Ulang Animasi</button>
+              <button type="button" class="st-btn" id="st-btn-view-live" style="background:#D4FF4F;">👀 Lihat Website Asli</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Studio Control Toolbar -->
+        <div class="stitch-toolbar">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <button type="button" class="st-btn" id="st-btn-playpause">⏸ Pause</button>
+            <button type="button" class="st-btn" id="st-btn-speed">1x</button>
+            <button type="button" class="st-btn" id="st-btn-restart">↺ Restart</button>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-weight:800; font-size:0.75rem; color:#7A7060;" id="st-pct-label">0% Selesai</span>
+            <div class="stitch-progress-outer">
+              <div class="stitch-progress-fill" id="st-progress-fill"></div>
+            </div>
+          </div>
+          <div>
+            <button type="button" class="st-btn st-close" id="st-btn-close-bot">✕ Keluar Studio</button>
+          </div>
+        </div>
       </div>
-      <button type="button" class="tb-btn" id="v-tour-playpause" aria-label="Pause Tour">⏸ Pause</button>
-      <button type="button" class="tb-btn" id="v-tour-speed" aria-label="Toggle Speed">1x</button>
-      <button type="button" class="tb-btn tb-close" id="v-tour-exit" aria-label="Exit Tour">✕ Keluar</button>
     `;
-    overlayEl.appendChild(tb);
 
-    document.body.appendChild(overlayEl);
+    document.body.appendChild(modalEl);
 
-    // Bind Toolbar Events
-    document.getElementById('v-tour-playpause').addEventListener('click', togglePause);
-    document.getElementById('v-tour-speed').addEventListener('click', toggleSpeed);
-    document.getElementById('v-tour-exit').addEventListener('click', stopTour);
+    // Event Listeners
+    document.getElementById('st-btn-close-top').addEventListener('click', stopStudio);
+    document.getElementById('st-btn-close-bot').addEventListener('click', stopStudio);
+    document.getElementById('st-dot-close').addEventListener('click', stopStudio);
+    document.getElementById('st-btn-playpause').addEventListener('click', togglePause);
+    document.getElementById('st-btn-speed').addEventListener('click', toggleSpeed);
+    document.getElementById('st-btn-restart').addEventListener('click', restartAnimation);
+    document.getElementById('st-btn-replay').addEventListener('click', restartAnimation);
+    document.getElementById('st-btn-view-live').addEventListener('click', stopStudio);
 
-    return overlayEl;
+    return modalEl;
   }
 
-  // Spawn visual click ripple
-  function triggerRipple(x, y, color = '#0D0D0D') {
-    const ripple = document.createElement('div');
-    ripple.className = 'v-ripple';
-    ripple.style.left = `${x}px`;
-    ripple.style.top = `${y}px`;
-    ripple.style.borderColor = color;
-    document.body.appendChild(ripple);
-    setTimeout(() => ripple.remove(), 750);
+  // Visual Click Ripple inside workspace
+  function spawnRipple(x, y, color = '#D4FF4F') {
+    const ws = document.getElementById('st-workspace');
+    if (!ws) return;
+    const r = document.createElement('div');
+    r.className = 'sc-ripple';
+    r.style.left = `${x}px`;
+    r.style.top = `${y}px`;
+    r.style.borderColor = color;
+    ws.appendChild(r);
+    setTimeout(() => r.remove(), 550);
   }
 
-  // Move Virtual Cursor
-  function moveCursor(cursorId, pageX, pageY, actionToast = '') {
-    const el = document.getElementById(`v-cursor-${cursorId}`);
-    if (!el) return;
-    el.classList.add('visible');
-    el.style.transform = `translate(${pageX}px, ${pageY}px)`;
+  // Move Cursor to element or relative position
+  function moveStitchCursor(cursorId, x, y, isDragging = false, dragLabel = '') {
+    const cur = document.getElementById(`sc-${cursorId}`);
+    if (!cur) return;
+    cur.classList.add('active');
+    cur.style.transform = `translate(${x}px, ${y}px)`;
 
-    const toast = el.querySelector('.v-action-toast');
-    if (toast && actionToast) {
-      toast.textContent = actionToast;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2000 / playbackSpeed);
+    const ghost = document.getElementById(`sc-ghost-${cursorId}`);
+    if (ghost) {
+      if (isDragging) {
+        cur.classList.add('dragging');
+        if (dragLabel) ghost.textContent = dragLabel;
+      } else {
+        cur.classList.remove('dragging');
+      }
     }
   }
 
-  // Update selection box on target element
-  function highlightComponent(targetEl, tagText) {
-    const selBox = document.getElementById('v-selection-box');
-    if (!selBox || !targetEl) return;
-    const rect = targetEl.getBoundingClientRect();
-    const scrollY = window.scrollY;
-    const scrollX = window.scrollX;
+  // The Motion Graphic Timeline Script
+  const TIMELINE_STEPS = [
+    // Step 0: Initial Cursor Entry
+    {
+      time: 200,
+      run: () => {
+        const hint = document.getElementById('st-empty-hint');
+        if (hint) hint.classList.remove('hidden');
+        moveStitchCursor('stitch', 100, 100);
+        moveStitchCursor('riki', 650, 80);
+        moveStitchCursor('ai', 400, 450);
+        updateProgress(5, 'Menyiapkan Kanvas Kosong...');
+      }
+    },
+    // Step 1: Stitch drags and snaps Navbar Header
+    {
+      time: 1400,
+      run: () => {
+        const artboard = document.getElementById('st-artboard');
+        const abRect = artboard.getBoundingClientRect();
+        const wsRect = document.getElementById('st-workspace').getBoundingClientRect();
 
-    selBox.style.top = `${rect.top + scrollY - 6}px`;
-    selBox.style.left = `${rect.left + scrollX - 6}px`;
-    selBox.style.width = `${rect.width + 12}px`;
-    selBox.style.height = `${rect.height + 12}px`;
-    const tag = selBox.querySelector('.s-tag');
-    if (tag) tag.textContent = tagText;
-    selBox.classList.add('active');
+        // Stitch grabs navbar from top
+        moveStitchCursor('stitch', 60, 40, true, '📐 Header Navbar');
+        moveStitchCursor('riki', wsRect.width * 0.45, 120);
+
+        setTimeout(() => {
+          // Drop onto artboard
+          const targetX = abRect.left - wsRect.left + 150;
+          const targetY = abRect.top - wsRect.top + 40;
+          moveStitchCursor('stitch', targetX, targetY, false);
+          spawnRipple(targetX, targetY, '#3B82F6');
+
+          const hint = document.getElementById('st-empty-hint');
+          if (hint) hint.classList.add('hidden');
+
+          const item = document.getElementById('c-item-navbar');
+          if (item) item.classList.add('assembled');
+
+          updateProgress(22, 'Menempelkan Rangka Navbar & Logo R!');
+        }, 500 / speed);
+      }
+    },
+    // Step 2: Riki & AI assemble the Hero Section
+    {
+      time: 3800,
+      run: () => {
+        const artboard = document.getElementById('st-artboard');
+        const abRect = artboard.getBoundingClientRect();
+        const wsRect = document.getElementById('st-workspace').getBoundingClientRect();
+
+        moveStitchCursor('riki', wsRect.width * 0.85, 200, true, '✍️ Hero Typography');
+        moveStitchCursor('ai', wsRect.width * 0.15, 300, true, '🖼️ Profile Photo Frame');
+
+        setTimeout(() => {
+          const targetX = abRect.left - wsRect.left + 220;
+          const targetY = abRect.top - wsRect.top + 160;
+          moveStitchCursor('riki', targetX, targetY, false);
+          spawnRipple(targetX, targetY, '#D4FF4F');
+
+          const photoX = abRect.left - wsRect.left + abRect.width * 0.75;
+          const photoY = abRect.top - wsRect.top + 180;
+          moveStitchCursor('ai', photoX, photoY, false);
+          spawnRipple(photoX, photoY, '#FFE566');
+
+          const item = document.getElementById('c-item-hero');
+          if (item) item.classList.add('assembled');
+
+          updateProgress(45, 'Menempelkan Tipografi & Foto Profil Neubrutalis');
+        }, 600 / speed);
+      }
+    },
+    // Step 3: Stitch & AI snap the Stat Cards and Skills Bar
+    {
+      time: 6800,
+      run: () => {
+        const artboard = document.getElementById('st-artboard');
+        const abRect = artboard.getBoundingClientRect();
+        const wsRect = document.getElementById('st-workspace').getBoundingClientRect();
+
+        moveStitchCursor('stitch', wsRect.width * 0.1, 400, true, '📊 IPK 3.59 & Stats');
+        moveStitchCursor('ai', wsRect.width * 0.7, 450, true, '⚡ Skill Bar SAK EMKM');
+
+        setTimeout(() => {
+          const targetX = abRect.left - wsRect.left + 160;
+          const targetY = abRect.top - wsRect.top + 320;
+          moveStitchCursor('stitch', targetX, targetY, false);
+          spawnRipple(targetX, targetY, '#3B82F6');
+
+          const item = document.getElementById('c-item-stats');
+          if (item) item.classList.add('assembled');
+
+          updateProgress(65, 'Menempelkan Kotak IPK 3.59 & Skill Bar');
+        }, 600 / speed);
+      }
+    },
+    // Step 4: Riki stamps the official HKI DJKI Project Card
+    {
+      time: 9800,
+      run: () => {
+        const artboard = document.getElementById('st-artboard');
+        const abRect = artboard.getBoundingClientRect();
+        const wsRect = document.getElementById('st-workspace').getBoundingClientRect();
+
+        moveStitchCursor('riki', wsRect.width * 0.8, 100, true, '📜 Hak Cipta EC002026199600');
+        moveStitchCursor('stitch', wsRect.width * 0.5, 300);
+
+        setTimeout(() => {
+          const targetX = abRect.left - wsRect.left + 350;
+          const targetY = abRect.top - wsRect.top + 430;
+          moveStitchCursor('riki', targetX, targetY, false);
+          spawnRipple(targetX, targetY, '#FFE566');
+
+          const item = document.getElementById('c-item-project');
+          if (item) item.classList.add('assembled');
+
+          // Auto-scroll artboard down to reveal progress
+          artboard.scrollTo({ top: 320, behavior: 'smooth' });
+
+          updateProgress(82, 'Mencap Sertifikat Resmi HKI DJKI');
+        }, 650 / speed);
+      }
+    },
+    // Step 5: AI & Stitch snap the Experience & Magang Card
+    {
+      time: 12800,
+      run: () => {
+        const artboard = document.getElementById('st-artboard');
+        const abRect = artboard.getBoundingClientRect();
+        const wsRect = document.getElementById('st-workspace').getBoundingClientRect();
+
+        moveStitchCursor('ai', wsRect.width * 0.2, 500, true, '🏦 Magang Bankaltimtara 92%');
+        moveStitchCursor('stitch', wsRect.width * 0.8, 500);
+
+        setTimeout(() => {
+          const targetX = abRect.left - wsRect.left + 420;
+          const targetY = abRect.top - wsRect.top + 480;
+          moveStitchCursor('ai', targetX, targetY, false);
+          spawnRipple(targetX, targetY, '#D4FF4F');
+
+          const item = document.getElementById('c-item-experience');
+          if (item) item.classList.add('assembled');
+
+          artboard.scrollTo({ top: 500, behavior: 'smooth' });
+
+          updateProgress(95, 'Menempelkan Pengalaman Magang Bankaltimtara');
+        }, 650 / speed);
+      }
+    },
+    // Step 6: Completion Finale
+    {
+      time: 15500,
+      run: () => {
+        moveStitchCursor('stitch', 150, 150);
+        moveStitchCursor('riki', 450, 80);
+        moveStitchCursor('ai', 750, 150);
+
+        updateProgress(100, '✨ Selesai 100%! Desain Siap Produksi');
+
+        const card = document.getElementById('st-complete-card');
+        if (card) card.classList.add('show');
+      }
+    }
+  ];
+
+  function updateProgress(pct, statusText) {
+    const fill = document.getElementById('st-progress-fill');
+    const pctLabel = document.getElementById('st-pct-label');
+    const badge = document.getElementById('st-status-badge');
+    if (fill) fill.style.width = `${pct}%`;
+    if (pctLabel) pctLabel.textContent = `${pct}% Selesai`;
+    if (badge && statusText) badge.textContent = `⚡ ${statusText}`;
   }
 
-  // Play a single scene
-  function playScene(idx) {
-    if (!isPlaying) return;
-    if (idx >= TOUR_SCENES.length) {
-      finishTour();
-      return;
-    }
+  // Clear Artboard to Blank State
+  function resetArtboard() {
+    clearAllTimers();
+    const hint = document.getElementById('st-empty-hint');
+    if (hint) hint.classList.remove('hidden');
 
-    currentSceneIndex = idx;
-    const scene = TOUR_SCENES[idx];
-    const lang = getLang();
+    const card = document.getElementById('st-complete-card');
+    if (card) card.classList.remove('show');
 
-    // 1. Update Toolbar
-    const titleEl = document.getElementById('v-tour-title');
-    const barEl = document.getElementById('v-tour-bar');
-    if (titleEl) titleEl.textContent = scene.title[lang] || scene.title.id;
-    if (barEl) barEl.style.width = `${((idx + 1) / TOUR_SCENES.length) * 100}%`;
-
-    // 2. Smoothly scroll target into view
-    const target = document.querySelector(scene.targetSelector);
-    if (target) {
-      const topOffset = target.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top: Math.max(0, topOffset), behavior: 'smooth' });
-
-      setTimeout(() => {
-        highlightComponent(target, scene.tagText[lang] || scene.tagText.id);
-      }, 500 / playbackSpeed);
-    }
-
-    // 3. Clear previous action timers
-    actionTimers.forEach(t => clearTimeout(t));
-    actionTimers = [];
-
-    // 4. Schedule cursor actions within this scene
-    scene.cursorActions.forEach(act => {
-      const t = setTimeout(() => {
-        if (!isPlaying || isPaused || !target) return;
-        const rect = target.getBoundingClientRect();
-        const scrollY = window.scrollY;
-        const scrollX = window.scrollX;
-
-        const posX = rect.left + scrollX + (rect.width * act.xRel);
-        const posY = rect.top + scrollY + (rect.height * act.yRel);
-        const toastMsg = act.text[lang] || act.text.id;
-
-        moveCursor(act.cursor, posX, posY, toastMsg);
-
-        if (act.action === 'click' || act.action === 'celebrate') {
-          setTimeout(() => {
-            triggerRipple(posX, posY, act.cursor === 'riki' ? '#0F1E3A' : '#D4FF4F');
-          }, 350 / playbackSpeed);
-        }
-      }, act.delay / playbackSpeed);
-
-      actionTimers.push(t);
+    document.querySelectorAll('.canvas-item').forEach(el => {
+      el.classList.remove('assembled');
     });
 
-    // 5. Schedule Next Scene
-    sceneTimer = setTimeout(() => {
-      if (isPlaying && !isPaused) {
-        playScene(idx + 1);
-      }
-    }, scene.duration / playbackSpeed);
+    document.querySelectorAll('.stitch-cursor').forEach(c => {
+      c.classList.remove('active', 'dragging');
+    });
+
+    const artboard = document.getElementById('st-artboard');
+    if (artboard) artboard.scrollTo({ top: 0, behavior: 'instant' });
+
+    updateProgress(0, 'Kanvas Siap...');
   }
 
-  // Toggle Pause/Play
+  function clearAllTimers() {
+    timers.forEach(t => clearTimeout(t));
+    timers = [];
+  }
+
+  // Run the Motion Graphic Timeline
+  function runTimeline() {
+    clearAllTimers();
+    isRunning = true;
+    isPaused = false;
+
+    TIMELINE_STEPS.forEach(step => {
+      const t = setTimeout(() => {
+        if (!isRunning || isPaused) return;
+        step.run();
+      }, step.time / speed);
+      timers.push(t);
+    });
+  }
+
+  function restartAnimation() {
+    resetArtboard();
+    setTimeout(() => {
+      runTimeline();
+    }, 200 / speed);
+  }
+
   function togglePause() {
-    const btn = document.getElementById('v-tour-playpause');
-    const lang = getLang();
+    const btn = document.getElementById('st-btn-playpause');
     if (isPaused) {
       isPaused = false;
       if (btn) btn.textContent = '⏸ Pause';
-      playScene(currentSceneIndex);
+      // resume by restarting from current
+      runTimeline();
     } else {
       isPaused = true;
-      if (btn) btn.textContent = lang === 'en' ? '▶ Resume' : '▶ Lanjut';
-      clearTimeout(sceneTimer);
-      actionTimers.forEach(t => clearTimeout(t));
+      if (btn) btn.textContent = '▶ Lanjut';
+      clearAllTimers();
     }
   }
 
-  // Toggle Playback Speed (1x -> 2x -> 1x)
   function toggleSpeed() {
-    const btn = document.getElementById('v-tour-speed');
-    if (playbackSpeed === 1.0) {
-      playbackSpeed = 1.8;
+    const btn = document.getElementById('st-btn-speed');
+    if (speed === 1.0) {
+      speed = 1.8;
       if (btn) {
         btn.textContent = '2x ⚡';
         btn.classList.add('active-speed');
       }
     } else {
-      playbackSpeed = 1.0;
+      speed = 1.0;
       if (btn) {
         btn.textContent = '1x';
         btn.classList.remove('active-speed');
       }
     }
+    restartAnimation();
   }
 
-  // Start Tour
-  function startTour() {
-    if (isPlaying) return;
+  function startStudio() {
     injectStyles();
-    buildTourOverlay();
+    buildStudioDOM();
 
-    isPlaying = true;
-    isPaused = false;
-    currentSceneIndex = 0;
-    playbackSpeed = 1.0;
-
-    document.body.classList.add('tour-blueprint-active');
-    setTimeout(() => document.body.classList.add('blueprint-on'), 100);
-
-    const tb = document.getElementById('v-tour-toolbar');
-    if (tb) tb.classList.add('visible');
-
-    const speedBtn = document.getElementById('v-tour-speed');
-    if (speedBtn) {
-      speedBtn.textContent = '1x';
-      speedBtn.classList.remove('active-speed');
-    }
-
-    const ppBtn = document.getElementById('v-tour-playpause');
-    if (ppBtn) ppBtn.textContent = '⏸ Pause';
+    modalEl.classList.add('active');
+    document.body.style.overflow = 'hidden';
 
     // Close mobile menu if open
     const mob = document.getElementById('mobile-menu');
@@ -681,40 +879,19 @@
       if (cls) cls.click();
     }
 
-    playScene(0);
+    restartAnimation();
   }
 
-  // Stop / Exit Tour
-  function stopTour() {
-    isPlaying = false;
+  function stopStudio() {
+    isRunning = false;
     isPaused = false;
-    clearTimeout(sceneTimer);
-    actionTimers.forEach(t => clearTimeout(t));
-    actionTimers = [];
+    clearAllTimers();
 
-    document.body.classList.remove('blueprint-on');
-    setTimeout(() => document.body.classList.remove('tour-blueprint-active'), 500);
-
-    const tb = document.getElementById('v-tour-toolbar');
-    if (tb) tb.classList.remove('visible');
-
-    const selBox = document.getElementById('v-selection-box');
-    if (selBox) selBox.classList.remove('active');
-
-    document.querySelectorAll('.v-cursor').forEach(c => c.classList.remove('visible'));
+    if (modalEl) modalEl.classList.remove('active');
+    document.body.style.overflow = '';
   }
 
-  // Tour Completion Finale
-  function finishTour() {
-    const lang = getLang();
-    const titleEl = document.getElementById('v-tour-title');
-    if (titleEl) {
-      titleEl.textContent = lang === 'en' ? '🎉 Design Tour Complete!' : '🎉 Simulasi Desain Selesai!';
-    }
-    setTimeout(() => stopTour(), 2500);
-  }
-
-  // Initialize Trigger Buttons on DOM Ready
+  // Bind Buttons on Page
   document.addEventListener('DOMContentLoaded', () => {
     injectStyles();
 
@@ -722,28 +899,28 @@
     const navBtn = document.getElementById('btn-design-tour');
     if (navBtn) navBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      startTour();
+      startStudio();
     });
 
     // 2. Mobile Menu Button
     const mobBtn = document.getElementById('btn-design-tour-mob');
     if (mobBtn) mobBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      startTour();
+      startStudio();
     });
 
-    // 3. Floating Action Pill (FAB)
+    // 3. Floating Action Button
     const fab = document.getElementById('fab-design-tour');
     if (fab) fab.addEventListener('click', (e) => {
       e.preventDefault();
-      startTour();
+      startStudio();
     });
 
     // 4. Keyboard Shortcuts: Esc to Exit, Space to Play/Pause
     document.addEventListener('keydown', (e) => {
-      if (!isPlaying) return;
+      if (!modalEl || !modalEl.classList.contains('active')) return;
       if (e.key === 'Escape') {
-        stopTour();
+        stopStudio();
       } else if (e.code === 'Space' && e.target === document.body) {
         e.preventDefault();
         togglePause();
@@ -752,11 +929,10 @@
   });
 
   // Expose global controller
-  window.AntigravityDesignTour = {
-    start: startTour,
-    stop: stopTour,
-    togglePause,
-    toggleSpeed
+  window.StitchDesignStudio = {
+    open: startStudio,
+    close: stopStudio,
+    restart: restartAnimation
   };
 
 })();
