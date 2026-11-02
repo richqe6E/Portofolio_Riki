@@ -584,8 +584,6 @@
   </style>
   <!-- i18n Bilingual Engine -->
   <script src="assets/js/i18n.js"></script>
-  <!-- Interactive Multi-Cursor Design Tour Engine -->
-  <script src="assets/js/design-tour.js"></script>
 </head>
 <body>
 
@@ -615,14 +613,6 @@
     </nav>
 
     <div class="flex items-center gap-3">
-      <!-- Design Tour Trigger Desktop -->
-      <button type="button" id="btn-design-tour"
-              class="hidden lg:inline-flex items-center gap-1.5 font-outfit font-black text-xs px-3.5 py-2 rounded-xl btn-press"
-              style="background:#FFE566; color:#0F1E3A; border:2px solid #0D0D0D; box-shadow:3px 3px 0 #0D0D0D;"
-              title="Putar Simulasi Desain &amp; Multi-Cursor Replay">
-        <span data-i18n="navDesignTour">🎬 Proses Desain</span>
-      </button>
-
       <!-- Language Switcher Desktop -->
       <div class="lang-switch" role="group" aria-label="Pilih Bahasa / Choose Language">
         <button type="button" class="lang-btn active" data-lang="id" aria-pressed="true" title="Bahasa Indonesia">ID</button>
@@ -653,13 +643,6 @@
   <div class="flex items-center justify-between mb-6">
     <span class="font-outfit font-black text-xl">RIKI RIVALDI</span>
     <div class="flex items-center gap-2">
-      <!-- Design Tour Trigger Mobile -->
-      <button type="button" id="btn-design-tour-mob"
-              class="font-outfit font-black text-xs px-2.5 py-1.5 rounded-lg btn-press"
-              style="background:#FFE566; color:#0F1E3A; border:2px solid #0D0D0D; box-shadow:2px 2px 0 #0D0D0D;"
-              data-i18n="navDesignTour">
-        🎬 Proses Desain
-      </button>
       <!-- Language Switcher Mobile -->
       <div class="lang-switch" role="group" aria-label="Pilih Bahasa / Choose Language">
         <button type="button" class="lang-btn active" data-lang="id" aria-pressed="true">ID</button>
@@ -1626,14 +1609,8 @@
   <p id="lb-caption"></p>
 </div>
 
-<!-- ================== BACK TO TOP & FLOATING TOUR ================== -->
+<!-- ================== BACK TO TOP ================== -->
 <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Kembali ke atas">↑</button>
-
-<!-- Floating Action Pill for Design Tour -->
-<button type="button" id="fab-design-tour" class="fab-design-tour btn-press"
-        title="Jalankan Simulasi Multi-Cursor Pembuatan Website" aria-label="Simulasi Desain Website">
-  <span data-i18n="fabDesignTour">🎬 Simulasi Desain</span>
-</button>
 
 <!-- ================== SCRIPTS ================== -->
 <style>

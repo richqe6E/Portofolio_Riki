@@ -16,8 +16,6 @@ const I18N_DATA = {
     navExperience: "Pengalaman",
     navCertificates: "Sertifikat",
     navContact: "Kontak",
-    navDesignTour: "🎬 Proses Desain",
-    fabDesignTour: "🎬 Simulasi Desain",
     navCta: "Hubungi Saya →",
     mobileCta: "Hubungi Saya",
 
@@ -228,8 +226,6 @@ const I18N_DATA = {
     navExperience: "Experience",
     navCertificates: "Certificates",
     navContact: "Contact",
-    navDesignTour: "🎬 Design Tour",
-    fabDesignTour: "🎬 Live Design Tour",
     navCta: "Contact Me →",
     mobileCta: "Contact Me",
 
@@ -625,4 +621,3 @@ document.addEventListener('DOMContentLoaded', () => {
   // Apply initial language
   setLanguage(initialLang);
 });
-
